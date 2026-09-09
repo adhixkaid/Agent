@@ -7,6 +7,7 @@
     <title>CR7 GOAT AI</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -15,299 +16,549 @@
 
         body {
             min-height: 100vh;
-            background:
-                radial-gradient(circle at 50% 35%, #29200d 0%, #0c0c0c 35%, #050505 75%);
-            color: white;
+
             font-family: Arial, Helvetica, sans-serif;
-            overflow: hidden;
-        }
-
-        /* Main container */
-        .container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            padding-top: 35px;
-            overflow: hidden;
-        }
-
-        /* Background glow */
-        .glow {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: rgba(255, 190, 40, 0.08);
-            filter: blur(100px);
-            border-radius: 50%;
-            top: 250px;
-            left: 50%;
-            transform: translateX(-50%);
-            pointer-events: none;
-        }
-
-        /* Crown */
-        .crown {
-            font-size: 45px;
-            color: #ffd45a;
-            filter: drop-shadow(0 0 12px rgba(255, 196, 55, 0.8));
-            margin-bottom: 5px;
-        }
-
-        /* CR7 */
-        .cr7 {
-            font-size: 82px;
-            font-weight: 900;
-            letter-spacing: -5px;
-            line-height: 0.9;
-            background: linear-gradient(
-                180deg,
-                #ffffff,
-                #d9d9d9,
-                #ffffff
-            );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255,255,255,0.15);
-        }
-
-        /* GOAT AI */
-        .goat {
-            font-size: 62px;
-            font-weight: 900;
-            font-style: italic;
-            letter-spacing: -3px;
-            margin-top: 5px;
-
-            background: linear-gradient(
-                180deg,
-                #ffe48a,
-                #f5b52c,
-                #c98200
-            );
-
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-
-            filter: drop-shadow(0 5px 10px rgba(255, 185, 30, 0.25));
-        }
-
-        /* Tagline */
-        .tagline {
-            margin-top: 18px;
-            font-size: 14px;
-            letter-spacing: 7px;
-            color: #cfcfcf;
-            text-align: center;
-        }
-
-        .tagline span {
-            color: #eab936;
-            margin: 0 10px;
-        }
-
-        /* Song input */
-        .song-box {
-            width: min(650px, 85vw);
-            height: 75px;
-            margin-top: 65px;
-
-            border: 2px solid #dca82d;
-            border-radius: 45px;
-
-            background: rgba(15, 15, 15, 0.85);
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 30px;
-
-            box-shadow:
-                0 0 15px rgba(218, 168, 45, 0.25),
-                inset 0 0 20px rgba(255, 190, 30, 0.04);
-        }
-
-        .song-text {
-            font-size: 25px;
-            color: #dedede;
-        }
-
-        .music {
-            font-size: 30px;
-            color: #f4bd32;
-        }
-
-        /* Microphone area */
-        .mic-wrapper {
-            margin-top: 70px;
-            position: relative;
-        }
-
-        /* Outer glow */
-        .mic-glow {
-            position: absolute;
-            width: 310px;
-            height: 310px;
-            border-radius: 50%;
-            background: rgba(255, 196, 55, 0.18);
-            filter: blur(35px);
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Main microphone button */
-        .mic-button {
-            position: relative;
-
-            width: 280px;
-            height: 280px;
-
-            border-radius: 50%;
-
-            border: 5px solid #f4c64f;
 
             background:
                 radial-gradient(
-                    circle,
-                    #211b0e 0%,
-                    #0c0c0c 70%
+                    circle at 50% 20%,
+                    #fffdf5 0%,
+                    #ffffff 45%,
+                    #f1f1f1 100%
                 );
 
-            color: #f5c74e;
+            color: #111;
+
+            overflow: hidden;
+        }
+
+
+        /* MAIN */
+
+        .container {
+            min-height: 100vh;
 
             display: flex;
+            flex-direction: column;
             align-items: center;
+
+            padding-top: 35px;
+
+            position: relative;
+        }
+
+
+        /* TOP DECORATION */
+
+        .top-line {
+            width: 100px;
+            height: 3px;
+
+            background: #d9a927;
+
+            margin-bottom: 12px;
+
+            border-radius: 10px;
+        }
+
+
+        /* CROWN */
+
+        .crown {
+            font-size: 38px;
+
+            color: #d9a927;
+
+            margin-bottom: 3px;
+
+            filter:
+                drop-shadow(
+                    0 3px 5px
+                    rgba(0,0,0,0.15)
+                );
+        }
+
+
+        /* CR7 */
+
+        .cr7 {
+            font-size: 80px;
+
+            font-weight: 900;
+
+            letter-spacing: -5px;
+
+            line-height: 0.9;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #171717,
+                    #555,
+                    #111
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        /* GOAT AI */
+
+        .goat {
+            font-size: 58px;
+
+            font-weight: 900;
+
+            font-style: italic;
+
+            letter-spacing: -3px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f4cf5b,
+                    #d39b16
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            filter:
+                drop-shadow(
+                    0 3px 4px
+                    rgba(0,0,0,0.15)
+                );
+        }
+
+
+        /* TAGLINE */
+
+        .tagline {
+            margin-top: 12px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            letter-spacing: 6px;
+
+            color: #666;
+        }
+
+        .tagline span {
+            color: #d9a927;
+
+            margin: 0 8px;
+        }
+
+
+        /* SONG INPUT */
+
+        .song-box {
+
+            width: min(620px, 85vw);
+
+            height: 70px;
+
+            margin-top: 50px;
+
+            border: 2px solid #d8aa32;
+
+            border-radius: 40px;
+
+            background: rgba(255,255,255,0.9);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 28px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .song-box:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0,0,0,0.12);
+        }
+
+
+        .song-text {
+
+            font-size: 22px;
+
+            color: #777;
+        }
+
+
+        .music {
+
+            font-size: 30px;
+
+            color: #d39b16;
+        }
+
+
+        /* =========================
+           FOOTBALL + MIC BUTTON
+           ========================= */
+
+        .mic-area {
+
+            margin-top: 55px;
+
+            position: relative;
+
+            width: 280px;
+
+            height: 280px;
+
+            display: flex;
+
+            align-items: center;
+
             justify-content: center;
+        }
+
+
+        /* GOLD GLOW */
+
+        .mic-glow {
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(221,171,43,0.16);
+
+            filter: blur(25px);
+        }
+
+
+        /* MAIN BUTTON */
+
+        .mic-button {
+
+            position: relative;
+
+            width: 245px;
+            height: 245px;
+
+            border-radius: 50%;
+
+            border: 6px solid #d9a927;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #f4f4f4
+                );
 
             cursor: pointer;
 
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
             box-shadow:
-                0 0 15px #e4ad32,
-                0 0 45px rgba(238, 180, 45, 0.5),
-                inset 0 0 25px rgba(255, 190, 40, 0.12);
+
+                0 8px 20px
+                rgba(0,0,0,0.12),
+
+                0 0 0 10px
+                rgba(217,169,39,0.08),
+
+                0 0 35px
+                rgba(217,169,39,0.25);
 
             transition: 0.3s ease;
         }
 
+
         .mic-button:hover {
-            transform: scale(1.06);
+
+            transform: scale(1.05);
 
             box-shadow:
-                0 0 20px #ffd65c,
-                0 0 70px rgba(255, 190, 40, 0.7),
-                inset 0 0 35px rgba(255, 190, 40, 0.2);
+
+                0 12px 25px
+                rgba(0,0,0,0.15),
+
+                0 0 0 15px
+                rgba(217,169,39,0.10),
+
+                0 0 55px
+                rgba(217,169,39,0.40);
         }
+
 
         .mic-button:active {
-            transform: scale(0.96);
+
+            transform: scale(0.95);
         }
 
-        /* Microphone icon */
-        .microphone {
-            width: 75px;
-            height: 105px;
 
-            border: 9px solid #f5c74e;
-            border-radius: 45px;
+        /* FOOTBALL */
+
+        .football {
+
+            width: 125px;
+
+            height: 125px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    #ffffff,
+                    #eeeeee
+                );
+
+            border: 4px solid #222;
 
             position: relative;
-        }
-
-        .microphone::before {
-            content: "";
-
-            position: absolute;
-
-            width: 115px;
-            height: 100px;
-
-            border: 9px solid #f5c74e;
-            border-top: none;
-
-            border-radius: 0 0 70px 70px;
-
-            left: 50%;
-            top: 45px;
-
-            transform: translateX(-50%);
-        }
-
-        .microphone::after {
-            content: "";
-
-            position: absolute;
-
-            width: 9px;
-            height: 38px;
-
-            background: #f5c74e;
-
-            left: 50%;
-            bottom: -70px;
-
-            transform: translateX(-50%);
-        }
-
-        /* Mic stand */
-        .mic-stand {
-            position: absolute;
-
-            width: 65px;
-            height: 9px;
-
-            background: #f5c74e;
-
-            bottom: -75px;
-            left: 50%;
-
-            transform: translateX(-50%);
-            border-radius: 10px;
-        }
-
-        /* Status */
-        .status {
-            margin-top: 70px;
-
-            padding: 12px 45px;
-
-            border: 1px solid #454545;
-            border-radius: 30px;
-
-            background: rgba(15, 15, 15, 0.8);
-
-            color: #cfcfcf;
-
-            font-size: 18px;
-
-            box-shadow: 0 0 15px rgba(255,255,255,0.04);
-        }
-
-        /* Footer */
-        .footer {
-            position: absolute;
-            bottom: 35px;
 
             display: flex;
+
             align-items: center;
-            gap: 25px;
+
+            justify-content: center;
+
+            box-shadow:
+                0 5px 10px
+                rgba(0,0,0,0.18);
+
+            overflow: hidden;
+        }
+
+
+        /* FOOTBALL PENTAGON */
+
+        .football::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 35px;
+            height: 35px;
+
+            background: #222;
+
+            clip-path: polygon(
+                50% 0%,
+                100% 35%,
+                82% 100%,
+                18% 100%,
+                0% 35%
+            );
+        }
+
+
+        /* FOOTBALL LINES */
+
+        .football::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+
+            border: 3px dashed #333;
+
+            transform: rotate(35deg);
+
+            opacity: 0.65;
+        }
+
+
+        /* MICROPHONE INSIDE FOOTBALL */
+
+        .mini-mic {
+
+            position: relative;
+
+            z-index: 5;
+
+            width: 42px;
+
+            height: 65px;
+
+            border: 6px solid #d4a21f;
+
+            border-radius: 25px;
+
+            background: #fff;
+
+            box-shadow:
+                0 2px 5px
+                rgba(0,0,0,0.15);
+        }
+
+
+        /* MIC U-SHAPE */
+
+        .mini-mic::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 68px;
+
+            height: 55px;
+
+            border: 6px solid #d4a21f;
+
+            border-top: none;
+
+            border-radius:
+                0 0 40px 40px;
+
+            left: 50%;
+
+            top: 25px;
+
+            transform:
+                translateX(-50%);
+        }
+
+
+        /* MIC STEM */
+
+        .mini-mic::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 6px;
+
+            height: 25px;
+
+            background: #d4a21f;
+
+            left: 50%;
+
+            bottom: -48px;
+
+            transform:
+                translateX(-50%);
+        }
+
+
+        /* MIC BASE */
+
+        .mic-base {
+
+            position: absolute;
+
+            z-index: 6;
+
+            width: 42px;
+
+            height: 6px;
+
+            background: #d4a21f;
+
+            border-radius: 10px;
+
+            bottom: 63px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+        }
+
+
+        /* STATUS */
+
+        .status {
+
+            margin-top: 38px;
+
+            padding: 12px 38px;
+
+            border-radius: 30px;
+
+            background: white;
+
+            border: 1px solid #ddd;
+
+            color: #555;
+
+            font-size: 17px;
+
+            font-weight: 600;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0,0,0,0.07);
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+
+            position: absolute;
+
+            bottom: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
 
             color: #999;
 
-            font-size: 13px;
-            letter-spacing: 6px;
+            font-size: 12px;
+
+            font-weight: 600;
+
+            letter-spacing: 5px;
         }
+
 
         .line {
-            width: 80px;
+
+            width: 70px;
+
             height: 2px;
-            background: #dca82d;
+
+            background: #d9a927;
         }
 
-        /* Small screens */
-        @media (max-width: 600px) {
+
+        /* MOBILE */
+
+        @media(max-width:600px) {
 
             .cr7 {
                 font-size: 65px;
@@ -318,59 +569,75 @@
             }
 
             .tagline {
-                font-size: 10px;
-                letter-spacing: 4px;
-            }
-
-            .song-box {
-                margin-top: 45px;
-                height: 65px;
-            }
-
-            .song-text {
-                font-size: 19px;
-            }
-
-            .mic-wrapper {
-                margin-top: 55px;
-            }
-
-            .mic-button {
-                width: 220px;
-                height: 220px;
-            }
-
-            .footer {
                 font-size: 9px;
                 letter-spacing: 3px;
             }
+
+            .song-box {
+                margin-top: 40px;
+            }
+
+            .song-text {
+                font-size: 18px;
+            }
+
+            .mic-area {
+                margin-top: 45px;
+            }
+
+            .mic-button {
+                width: 215px;
+                height: 215px;
+            }
+
+            .football {
+                width: 110px;
+                height: 110px;
+            }
+
+            .footer {
+                font-size: 8px;
+                letter-spacing: 2px;
+            }
+
+            .line {
+                width: 35px;
+            }
         }
+
     </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
-    <div class="glow"></div>
+    <div class="top-line"></div>
 
-    <!-- Logo -->
     <div class="crown">♛</div>
 
-    <div class="cr7">CR7</div>
+    <div class="cr7">
+        CR7
+    </div>
 
-    <div class="goat">GOAT AI</div>
+    <div class="goat">
+        GOAT AI
+    </div>
 
     <div class="tagline">
+
         SPEAK
         <span>•</span>
         LISTEN
         <span>•</span>
         BE INSPIRED
+
     </div>
 
 
-    <!-- Song input -->
+    <!-- SONG -->
+
     <div class="song-box">
 
         <div class="song-text">
@@ -384,34 +651,47 @@
     </div>
 
 
-    <!-- Microphone -->
-    <div class="mic-wrapper">
+    <!-- FOOTBALL + MICROPHONE -->
+
+    <div class="mic-area">
 
         <div class="mic-glow"></div>
 
-        <button id="mic" class="mic-button">
+        <button
+            id="mic"
+            class="mic-button"
+        >
 
-            <div class="microphone">
-                <div class="mic-stand"></div>
+            <div class="football">
+
+                <div class="mini-mic"></div>
+
             </div>
+
+            <div class="mic-base"></div>
 
         </button>
 
     </div>
 
 
-    <!-- Status -->
-    <div id="status" class="status">
-        Tap Microphone
+    <!-- STATUS -->
+
+    <div
+        id="status"
+        class="status"
+    >
+        ⚽ Tap to Speak
     </div>
 
 
-    <!-- Footer -->
+    <!-- FOOTER -->
+
     <div class="footer">
 
         <div class="line"></div>
 
-        GOAT MINDSET FOR A BETTER YOU
+        CR7 GOAT MINDSET
 
         <div class="line"></div>
 
@@ -422,32 +702,65 @@
 
 <script>
 
-    const mic = document.getElementById("mic");
-    const status = document.getElementById("status");
+    const mic =
+        document.getElementById("mic");
+
+    const status =
+        document.getElementById("status");
+
 
     let listening = false;
 
-    mic.addEventListener("click", () => {
 
-        listening = !listening;
+    mic.addEventListener(
+        "click",
+        () => {
 
-        if (listening) {
+            listening = !listening;
 
-            status.innerHTML = "🎙 Listening...";
 
-            mic.style.boxShadow =
-                "0 0 25px #ffd65c, 0 0 90px rgba(255,190,40,0.9)";
+            if (listening) {
 
-        } else {
+                status.innerHTML =
+                    "🎙️ Listening...";
 
-            status.innerHTML = "Tap Microphone";
+                mic.style.transform =
+                    "scale(1.07)";
 
-            mic.style.boxShadow =
-                "0 0 15px #e4ad32, 0 0 45px rgba(238,180,45,0.5)";
+                mic.style.boxShadow =
+                    `
+                    0 0 0 15px
+                    rgba(217,169,39,0.12),
+
+                    0 0 60px
+                    rgba(217,169,39,0.6)
+                    `;
+
+            }
+
+            else {
+
+                status.innerHTML =
+                    "⚽ Tap to Speak";
+
+                mic.style.transform =
+                    "scale(1)";
+
+                mic.style.boxShadow =
+                    `
+                    0 8px 20px
+                    rgba(0,0,0,0.12),
+
+                    0 0 0 10px
+                    rgba(217,169,39,0.08),
+
+                    0 0 35px
+                    rgba(217,169,39,0.25)
+                    `;
+            }
 
         }
-
-    });
+    );
 
 </script>
 
