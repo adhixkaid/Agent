@@ -1,239 +1,466 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nova AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CR7 GOAT AI</title>
 
 <style>
-body{
-    margin:0;
-    height:100vh;
-    display:grid;
-    place-items:center;
-    background:#09090b;
-    color:white;
-    font-family:Arial;
-}
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
 
-.card{
-    width:300px;
-    padding:35px;
-    text-align:center;
-    background:#151518;
-    border:1px solid #333;
-    border-radius:25px;
-}
+    body {
+        background: #f5f7fb;
+        color: #111;
+        min-height: 100vh;
+    }
 
-.mic{
-    width:90px;
-    height:90px;
-    border:0;
-    border-radius:50%;
-    font-size:35px;
-    cursor:pointer;
-}
+    header {
+        padding: 25px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        border-bottom: 1px solid #ddd;
+    }
 
-.status{
-    margin-top:20px;
-    color:#aaa;
-}
+    .logo {
+        font-size: 25px;
+        font-weight: 900;
+    }
 
-.song{
-    margin-top:10px;
-    font-size:13px;
-}
+    .logo span {
+        color: #e50914;
+    }
 
-.listening{
-    transform:scale(1.1);
-    box-shadow:0 0 0 10px #ffffff18;
-}
+    .hero {
+        text-align: center;
+        padding: 55px 20px 30px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+
+    .hero h1 span {
+        color: #e50914;
+    }
+
+    .hero p {
+        color: #666;
+        font-size: 18px;
+    }
+
+    /* MIC */
+
+    .mic-container {
+        display: flex;
+        justify-content: center;
+        margin: 35px 0;
+    }
+
+    .mic {
+        width: 115px;
+        height: 115px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background: #111;
+        color: white;
+        font-size: 45px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.2);
+        transition: .25s;
+    }
+
+    .mic:hover {
+        transform: scale(1.08);
+    }
+
+    .mic.listening {
+        background: #e50914;
+        animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(229,9,20,.5); }
+        70% { box-shadow: 0 0 0 25px rgba(229,9,20,0); }
+        100% { box-shadow: 0 0 0 0 rgba(229,9,20,0); }
+    }
+
+    #status {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    #command {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 18px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,.06);
+        min-height: 55px;
+    }
+
+    /* STATS */
+
+    .stats-section {
+        max-width: 1100px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+
+    .stats-section h2 {
+        text-align: center;
+        font-size: 34px;
+        margin-bottom: 25px;
+    }
+
+    .stats-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    }
+
+    .stats-table th,
+    .stats-table td {
+        padding: 18px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .stats-table th {
+        background: #111;
+        color: white;
+        font-size: 18px;
+    }
+
+    .ronaldo {
+        color: #e50914;
+        font-weight: bold;
+    }
+
+    .messi {
+        color: #1677ff;
+        font-weight: bold;
+    }
+
+    .winner {
+        font-weight: 900;
+    }
+
+    /* CARDS */
+
+    .cards {
+        max-width: 1100px;
+        margin: 40px auto 70px;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    }
+
+    .card h3 {
+        font-size: 27px;
+        margin-bottom: 15px;
+    }
+
+    .card p {
+        color: #666;
+        line-height: 1.7;
+    }
+
+    footer {
+        text-align: center;
+        padding: 25px;
+        background: #111;
+        color: white;
+    }
+
+    @media(max-width:700px) {
+        .hero h1 {
+            font-size: 35px;
+        }
+
+        .cards {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-table th,
+        .stats-table td {
+            padding: 10px 5px;
+            font-size: 13px;
+        }
+    }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<header>
+    <div class="logo">CR7 <span>GOAT AI</span></div>
+    <div>⚽ 🎙️</div>
+</header>
 
-    <h2>Nova AI</h2>
+<section class="hero">
 
-    <p>Say a song name</p>
+    <h1>CR7 <span>GOAT AI</span></h1>
 
-    <button id="mic" class="mic">
-        🎙️
-    </button>
+    <p>
+        Say what you want — search YouTube instantly.
+    </p>
 
-    <div id="status" class="status">
-        Tap microphone
+    <div class="mic-container">
+        <button class="mic" id="micButton">🎙️</button>
     </div>
 
-    <div id="song" class="song"></div>
+    <div id="status">
+        Tap the microphone and speak
+    </div>
 
-</div>
+    <div id="command">
+        Your command will appear here...
+    </div>
+
+</section>
+
+
+<section class="stats-section">
+
+    <h2>🐐 Ronaldo vs Messi</h2>
+
+    <table class="stats-table">
+
+        <tr>
+            <th>Category</th>
+            <th class="ronaldo">Cristiano Ronaldo</th>
+            <th class="messi">Lionel Messi</th>
+        </tr>
+
+        <tr>
+            <td>Ballon d'Or</td>
+            <td class="winner">5</td>
+            <td>8</td>
+        </tr>
+
+        <tr>
+            <td>Champions League</td>
+            <td class="winner">5</td>
+            <td>4</td>
+        </tr>
+
+        <tr>
+            <td>International Major Trophy</td>
+            <td>Euro 2016</td>
+            <td>Copa América + World Cup</td>
+        </tr>
+
+        <tr>
+            <td>Career Goals</td>
+            <td class="winner">900+</td>
+            <td>800+</td>
+        </tr>
+
+        <tr>
+            <td>Heading</td>
+            <td class="winner">🔥 Elite</td>
+            <td>Very Good</td>
+        </tr>
+
+        <tr>
+            <td>Dribbling</td>
+            <td>Elite</td>
+            <td class="winner">🔥 Elite</td>
+        </tr>
+
+        <tr>
+            <td>Free Kicks</td>
+            <td>Elite</td>
+            <td class="winner">🔥 Elite</td>
+        </tr>
+
+        <tr>
+            <td>Physicality</td>
+            <td class="winner">🔥 Elite</td>
+            <td>Excellent</td>
+        </tr>
+
+        <tr>
+            <td>Longevity</td>
+            <td class="winner">🔥 Incredible</td>
+            <td>🔥 Incredible</td>
+        </tr>
+
+    </table>
+
+</section>
+
+
+<section class="cards">
+
+    <div class="card">
+        <h3>🇵🇹 CR7</h3>
+
+        <p>
+            Explosive athleticism, elite finishing, aerial ability,
+            Champions League dominance and extraordinary longevity.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>🇦🇷 Messi</h3>
+
+        <p>
+            Exceptional dribbling, playmaking, chance creation,
+            finishing and extraordinary consistency.
+        </p>
+    </div>
+
+</section>
+
+
+<footer>
+    CR7 GOAT AI • Football Mode ⚽
+</footer>
+
 
 <script>
 
-const mic=document.getElementById("mic");
-const status=document.getElementById("status");
-const song=document.getElementById("song");
+const micButton = document.getElementById("micButton");
+const statusText = document.getElementById("status");
+const commandText = document.getElementById("command");
 
-const SpeechRecognition=
+const SpeechRecognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
-let youtubeTab=null;
-let listening=false;
+if (!SpeechRecognition) {
 
-if(!SpeechRecognition){
+    statusText.innerText =
+        "Speech recognition is not supported in this browser.";
 
-    status.textContent=
-        "Speech recognition unavailable";
+} else {
 
-    mic.disabled=true;
+    const recognition = new SpeechRecognition();
 
-}else{
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
 
-    const recognition=
-        new SpeechRecognition();
+    micButton.addEventListener("click", () => {
 
-    recognition.lang="en-US";
-    recognition.continuous=false;
-    recognition.interimResults=false;
+        recognition.start();
 
-    recognition.onstart=()=>{
+        micButton.classList.add("listening");
 
-        listening=true;
+        statusText.innerText =
+            "🎙️ Listening...";
 
-        mic.classList.add("listening");
+    });
 
-        status.textContent=
-            "Listening...";
 
+    recognition.onresult = function(event) {
+
+        const spokenText =
+            event.results[0][0].transcript;
+
+        commandText.innerText =
+            "You said: " + spokenText;
+
+        statusText.innerText =
+            "Searching YouTube... 🔎";
+
+        micButton.classList.remove("listening");
+
+        playYouTube(spokenText);
     };
 
-    recognition.onend=()=>{
 
-        listening=false;
+    recognition.onerror = function() {
 
-        mic.classList.remove("listening");
+        statusText.innerText =
+            "Couldn't hear you. Try again.";
 
+        micButton.classList.remove("listening");
     };
 
-    recognition.onerror=()=>{
 
-        listening=false;
+    recognition.onend = function() {
 
-        mic.classList.remove("listening");
-
-        status.textContent="Try again";
-
+        micButton.classList.remove("listening");
     };
+}
 
-    recognition.onresult=async(event)=>{
 
-        const command=
-            event.results[0][0]
-            .transcript
-            .trim();
+/*
+    YOUTUBE COMMAND
+*/
 
-        if(!command){
+function playYouTube(command) {
 
-            status.textContent=
-                "No song detected";
+    let searchQuery = command;
 
-            return;
+    /*
+       Remove common voice commands.
+       Example:
 
-        }
+       "play believer"
 
-        song.textContent=command;
+       becomes:
 
-        status.textContent=
-            "Finding song...";
+       "believer"
+    */
 
-        try{
+    searchQuery = searchQuery
+        .replace(/^play\s+/i, "")
+        .replace(/^search\s+/i, "")
+        .replace(/^open\s+/i, "")
+        .replace(/^youtube\s+/i, "")
+        .trim();
 
-            const response=
-                await fetch(
-                    "/youtube/play",
-                    {
-                        method:"POST",
+    if (!searchQuery) {
 
-                        headers:{
-                            "Content-Type":
-                                "application/json"
-                        },
+        statusText.innerText =
+            "Tell me what you want to play.";
 
-                        body:JSON.stringify({
-                            command:command
-                        })
-                    }
-                );
+        return;
+    }
 
-            const data=
-                await response.json();
+    /*
+       Opens YouTube search for whatever
+       you said.
+    */
 
-            if(!data.success){
+    const youtubeURL =
+        "https://www.youtube.com/results?search_query=" +
+        encodeURIComponent(searchQuery);
 
-                status.textContent=
-                    data.message ||
-                    "Song not found";
+    window.open(youtubeURL, "_blank");
 
-                return;
-
-            }
-
-            if(!youtubeTab ||
-               youtubeTab.closed){
-
-                youtubeTab=
-                    window.open(
-                        data.url,
-                        "NovaYouTube"
-                    );
-
-            }else{
-
-                youtubeTab.location.href=
-                    data.url;
-
-                youtubeTab.focus();
-
-            }
-
-            status.textContent="Playing";
-
-        }catch(error){
-
-            console.error(error);
-
-            status.textContent=
-                "Server connection failed";
-
-        }
-
-    };
-
-    mic.onclick=()=>{
-
-        if(listening)
-            return;
-
-        try{
-
-            recognition.start();
-
-        }catch(error){
-
-            console.log(error);
-
-        }
-
-    };
-
+    statusText.innerText =
+        "Opening YouTube for: " + searchQuery;
 }
 
 </script>
 
 </body>
 </html>
+```
