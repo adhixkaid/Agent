@@ -1,29 +1,20 @@
-from Flask import Blueprint , request , jsonify
+import os , urllib.parse , urllib.request , render_template
+from app.youtube import youtube_bp
 
-youtube_bp = Blueprint(
-  " youtube ",
-  __name__
-  )
+Gemini_api_key = "Gemini_API_Key";
 
-@youtube_bp.route(
-  "/play" ,
-  methoda =["POST"]
+def home():
+  return render_template ("index.html")
 
-  )
-  def play ():
+def create_app():
 
-   data = request.get_json(
-     silent = True
-     )or {}
+  app = Flask(_name_)
 
-     command = data.get(
-     "command",
-     ""
-     ).strip()
+  app.register_blueprint(youtube_bp, url_prefix="/youtube")
 
-     if not command : 
+@app.route("/html")
 
-            return jsonify({
-              "success"="False",
-              "message"="there's no song name mentioned "
-              })400
+  def html():
+     return render_template("index.html")
+
+return app;
