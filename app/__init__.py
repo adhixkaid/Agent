@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template
 from flask_cors import CORS
 
 from app.gmail import (
@@ -32,7 +32,7 @@ def create_app():
     @app.route("/health")
     def health():
         return jsonify({
-            "status": "ok",
+            "status": "ok", 
             "service": "NOVA AI AGENT"
         })
 
@@ -42,19 +42,19 @@ def create_app():
 
         try:
             data = request.get_json(silent=True) or {}
-            command = data.get("command", "").strip()
+            command = data.get("command","").strip()
 
             if not command:
                 return jsonify({
                     "success": False,
                     "message": "please give a Gmail command."
-                }), 400
+                }),400
 
             if not is_email_command(command):
                 return jsonify({
                     "success": False,
                     "message": "please give a Gmail command."
-                }), 400
+                }),400
 
             recipient = extract_email(command)
             email = generate_email_with_gemini(command)
@@ -66,18 +66,17 @@ def create_app():
                 "recipient": recipient,
                 "subject": email["subject"],
                 "body": email["body"],
-                "gmail_url": create_gmial_url(
+                "gmail_url": create_gmail_url(
                     email["subject"],
                     email["body"],
                     recipient
                 )
             })
-
         except Exception as e:
 
             return jsonify({
                 "success": False,
                 "message": str(e)
-            }), 500
+            }),500
 
     return app
