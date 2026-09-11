@@ -9,13 +9,12 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>CR7 vs Messi — The Achievement Battle</title>
-
+<title>THE FOOTBALL ERA — GOAT ARENA</title>
 
 <style>
 
 /* =========================================================
-   GLOBAL
+   RESET
 ========================================================= */
 
 *{
@@ -30,8 +29,7 @@ html{
 
 body{
 
-    background:#050505;
-
+    background:#030303;
     color:#fff;
 
     font-family:
@@ -40,14 +38,37 @@ body{
         sans-serif;
 
     overflow-x:hidden;
+
+    cursor:default;
 }
 
 
 /* =========================================================
-   ATMOSPHERE
+   CUSTOM SCROLLBAR
 ========================================================= */
 
-body::before{
+::-webkit-scrollbar{
+    width:5px;
+}
+
+::-webkit-scrollbar-track{
+    background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#444;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#fff;
+}
+
+
+/* =========================================================
+   GRAIN
+========================================================= */
+
+body::after{
 
     content:"";
 
@@ -57,84 +78,139 @@ body::before{
 
     pointer-events:none;
 
-    z-index:-10;
+    z-index:9999;
 
-    background:
-        radial-gradient(
-            circle at 50% 10%,
-            rgba(255,255,255,.10),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 15% 60%,
-            rgba(255,255,255,.035),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 70%,
-            rgba(255,255,255,.035),
-            transparent 30%
-        );
+    opacity:.035;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+
 }
 
 
 /* =========================================================
-   STADIUM
+   AMBIENT LIGHT
 ========================================================= */
 
-.stadium-lines{
+.ambient{
 
     position:fixed;
 
-    inset:0;
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.09),
+            transparent 68%
+        );
+
+    filter:blur(30px);
 
     pointer-events:none;
 
     z-index:-5;
 
-    opacity:.13;
+    transition:
+        transform 1s ease;
 
 }
 
-.stadium-lines::before{
+.ambient.one{
+    top:-300px;
+    left:-250px;
+}
 
-    content:"";
+.ambient.two{
+    right:-350px;
+    bottom:-300px;
+    opacity:.5;
+}
 
-    position:absolute;
+
+/* =========================================================
+   STADIUM GRID
+========================================================= */
+
+.stadium-grid{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-10;
+
+    pointer-events:none;
+
+    opacity:.13;
+
+    background:
+
+        linear-gradient(
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        80px 80px;
+
+    mask-image:
+        radial-gradient(
+            ellipse at center,
+            black 20%,
+            transparent 75%
+        );
+
+}
+
+
+/* =========================================================
+   CENTER CIRCLE
+========================================================= */
+
+.center-circle{
+
+    position:fixed;
 
     width:900px;
     height:900px;
 
-    left:50%;
+    border:
+        1px solid rgba(255,255,255,.07);
+
+    border-radius:50%;
+
     top:50%;
+    left:50%;
 
     transform:
         translate(-50%,-50%);
 
-    border:
-        1px solid #fff;
+    pointer-events:none;
 
-    border-radius:50%;
+    z-index:-9;
 
 }
 
-.stadium-lines::after{
+.center-circle::before{
 
     content:"";
 
     position:absolute;
 
-    width:350px;
-    height:350px;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-50%);
+    inset:180px;
 
     border:
-        1px solid #fff;
+        1px solid rgba(255,255,255,.05);
 
     border-radius:50%;
 
@@ -145,50 +221,51 @@ body::before{
    FLOATING FOOTBALLS
 ========================================================= */
 
-.ball{
+.bg-ball{
 
     position:fixed;
 
-    width:55px;
-    height:55px;
+    width:50px;
+    height:50px;
 
     border-radius:50%;
 
-    border:2px solid
-        rgba(255,255,255,.5);
-
     background:
         radial-gradient(
-            circle at 35% 30%,
+            circle at 30% 25%,
             #fff,
-            #777 35%,
-            #111 70%
+            #aaa 30%,
+            #222 70%,
+            #000
         );
 
-    opacity:.25;
+    border:
+        1px solid #777;
+
+    opacity:.18;
 
     pointer-events:none;
 
-    z-index:-1;
-
-    animation:
-        floatBall 12s linear infinite;
+    z-index:-3;
 
 }
 
-.ball::after{
+.bg-ball::after{
 
     content:"";
 
     position:absolute;
 
-    width:15px;
-    height:15px;
+    width:16px;
+    height:16px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
 
     background:#000;
-
-    top:18px;
-    left:18px;
 
     clip-path:
         polygon(
@@ -201,76 +278,35 @@ body::before{
 
 }
 
-.ball:nth-child(1){
-
-    left:7%;
-    top:20%;
-
-    animation-duration:15s;
-
+.b1{
+    left:8%;
+    top:18%;
 }
 
-.ball:nth-child(2){
-
+.b2{
     right:8%;
-    top:55%;
-
-    width:38px;
-    height:38px;
-
-    animation-duration:18s;
-
+    top:38%;
+    width:35px;
+    height:35px;
 }
 
-.ball:nth-child(3){
-
-    left:75%;
-    top:15%;
-
+.b3{
+    left:14%;
+    bottom:18%;
     width:28px;
     height:28px;
-
-    animation-duration:11s;
-
 }
 
-.ball:nth-child(4){
-
-    left:20%;
-    bottom:8%;
-
-    width:42px;
-    height:42px;
-
-    animation-duration:17s;
-
-}
-
-@keyframes floatBall{
-
-    0%{
-        transform:
-            translateY(0)
-            rotate(0deg);
-    }
-
-    50%{
-        transform:
-            translateY(-80px)
-            rotate(180deg);
-    }
-
-    100%{
-        transform:
-            translateY(0)
-            rotate(360deg);
-    }
-
+.b4{
+    right:18%;
+    bottom:10%;
+    width:65px;
+    height:65px;
 }
 
 
 /* =========================================================
-   NAVIGATION
+   NAV
 ========================================================= */
 
 nav{
@@ -281,7 +317,10 @@ nav{
     left:0;
     right:0;
 
-    height:75px;
+    height:78px;
+
+    padding:
+        0 5%;
 
     display:flex;
 
@@ -289,11 +328,10 @@ nav{
 
     justify-content:space-between;
 
-    padding:
-        0 6%;
+    z-index:1000;
 
     background:
-        rgba(5,5,5,.75);
+        rgba(3,3,3,.72);
 
     backdrop-filter:
         blur(20px);
@@ -302,23 +340,21 @@ nav{
         1px solid
         rgba(255,255,255,.08);
 
-    z-index:1000;
-
 }
 
-.nav-logo{
+.logo{
 
     font-size:18px;
 
-    font-weight:900;
+    font-weight:1000;
 
-    letter-spacing:3px;
+    letter-spacing:4px;
 
 }
 
-.nav-logo span{
+.logo span{
 
-    opacity:.4;
+    color:#555;
 
 }
 
@@ -326,17 +362,17 @@ nav{
 
     display:flex;
 
-    gap:35px;
+    gap:30px;
 
 }
 
 .nav-links a{
 
-    color:#777;
+    color:#555;
 
     text-decoration:none;
 
-    font-size:10px;
+    font-size:9px;
 
     font-weight:bold;
 
@@ -349,6 +385,44 @@ nav{
 .nav-links a:hover{
 
     color:#fff;
+
+}
+
+.nav-live{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#555;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+}
+
+.live-dot{
+
+    width:6px;
+    height:6px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+    animation:
+        blink 1.5s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:.2;
+    }
 
 }
 
@@ -371,114 +445,88 @@ nav{
 
     text-align:center;
 
+    position:relative;
+
     padding:
         120px 20px 80px;
 
-    position:relative;
-
 }
 
-.hero::before{
+.hero-kicker{
 
-    content:"";
+    font-size:9px;
 
-    position:absolute;
+    letter-spacing:7px;
 
-    width:650px;
-    height:650px;
+    color:#555;
 
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.11),
-            transparent 65%
-        );
-
-    filter:blur(10px);
-
-    z-index:-1;
-
-}
-
-.eyebrow{
-
-    font-size:10px;
-
-    letter-spacing:6px;
-
-    color:#666;
-
-    margin-bottom:30px;
+    margin-bottom:35px;
 
     animation:
-        fadeUp 1s ease forwards;
+        fadeIn 1.2s ease;
 
 }
 
 .hero h1{
 
     font-size:
-        clamp(55px,10vw,145px);
-
-    line-height:.82;
+        clamp(58px,11vw,155px);
 
     font-weight:1000;
 
-    letter-spacing:-8px;
+    line-height:.78;
+
+    letter-spacing:-10px;
 
     animation:
-        heroIn 1.2s ease forwards;
+        heroEnter 1.4s cubic-bezier(.16,1,.3,1);
 
 }
 
-.hero h1 .ronaldo{
-
-    display:block;
-
+.hero h1 .white{
+    color:#fff;
 }
 
-.hero h1 .vs{
+.hero h1 .gray{
+    color:#555;
+}
+
+.hero-vs{
 
     display:block;
 
-    font-size:.22em;
+    font-size:.18em;
 
-    letter-spacing:6px;
+    letter-spacing:10px;
 
-    color:#444;
+    color:#333;
 
     margin:
-        25px 0;
+        28px 0;
 
 }
 
-.hero h1 .messi{
-
-    display:block;
-
-    color:#777;
-
-}
-
-.hero-sub{
+.hero-description{
 
     max-width:650px;
 
-    margin-top:40px;
+    color:#555;
 
-    color:#777;
+    font-size:13px;
 
-    font-size:14px;
+    line-height:2;
 
-    line-height:1.9;
-
-    transition:.3s;
+    margin-top:45px;
 
 }
 
-.scroll{
+.hero-description strong{
+
+    color:#aaa;
+
+}
+
+.hero-scroll{
 
     position:absolute;
 
@@ -491,19 +539,19 @@ nav{
     color:#444;
 
     animation:
-        bounce 2s infinite;
+        scrollBounce 2s infinite;
 
 }
 
-@keyframes heroIn{
+@keyframes heroEnter{
 
     from{
 
         opacity:0;
 
         transform:
-            translateY(50px)
-            scale(.95);
+            translateY(80px)
+            scale(.9);
 
     }
 
@@ -517,51 +565,75 @@ nav{
 
 }
 
-@keyframes fadeUp{
+@keyframes fadeIn{
 
     from{
-
         opacity:0;
-
-        transform:
-            translateY(25px);
-
     }
 
     to{
-
         opacity:1;
-
-        transform:none;
-
     }
 
 }
 
-@keyframes bounce{
-
-    0%,100%{
-        transform:
-            translateY(0);
-    }
+@keyframes scrollBounce{
 
     50%{
         transform:
-            translateY(10px);
+            translateY(12px);
     }
 
 }
 
 
 /* =========================================================
-   DIVIDER
+   SECTION
 ========================================================= */
+
+section{
+
+    width:90%;
+
+    max-width:1350px;
+
+    margin:auto;
+
+    padding:
+        150px 0;
+
+}
+
+.section-number{
+
+    color:#444;
+
+    font-size:8px;
+
+    letter-spacing:6px;
+
+    margin-bottom:18px;
+
+}
+
+.section-title{
+
+    font-size:
+        clamp(42px,6vw,85px);
+
+    line-height:.9;
+
+    letter-spacing:-5px;
+
+    margin-bottom:70px;
+
+}
 
 .divider{
 
     width:90%;
 
-    max-width:1200px;
+    max-width:1300px;
 
     height:1px;
 
@@ -571,7 +643,7 @@ nav{
         linear-gradient(
             90deg,
             transparent,
-            #444,
+            #333,
             transparent
         );
 
@@ -579,108 +651,95 @@ nav{
 
 
 /* =========================================================
-   SECTIONS
+   PLAYER ARENA
 ========================================================= */
 
-section{
-
-    width:90%;
-
-    max-width:1300px;
-
-    margin:auto;
-
-    padding:
-        130px 0;
-
-}
-
-.section-label{
-
-    color:#444;
-
-    font-size:9px;
-
-    letter-spacing:5px;
-
-    margin-bottom:15px;
-
-}
-
-.section-title{
-
-    font-size:
-        clamp(35px,5vw,70px);
-
-    letter-spacing:-3px;
-
-    margin-bottom:60px;
-
-}
-
-
-/* =========================================================
-   PLAYER CARDS
-========================================================= */
-
-.players{
+.player-arena{
 
     display:grid;
 
     grid-template-columns:
-        1fr 1fr;
+        1.2fr .8fr;
 
     gap:20px;
 
 }
 
-.player{
+.player-card{
 
-    min-height:290px;
-
-    border:
-        1px solid #222;
+    min-height:430px;
 
     position:relative;
 
     overflow:hidden;
 
-    padding:40px;
+    padding:45px;
+
+    border:
+        1px solid #222;
 
     background:
         linear-gradient(
             135deg,
-            #111,
+            #121212,
             #050505
         );
 
-    transition:.5s;
+    transition:
+        transform .7s cubic-bezier(.16,1,.3,1),
+        border-color .4s;
 
 }
 
-.player:hover{
+.player-card:hover{
 
     transform:
-        translateY(-8px);
+        translateY(-12px);
 
-    border-color:#555;
+    border-color:#777;
 
 }
 
-.player::before{
+.player-card.cr7{
+
+    border:
+        2px solid #fff;
+
+}
+
+.player-card::before{
 
     content:"";
 
     position:absolute;
 
-    width:250px;
-    height:250px;
+    width:500px;
+    height:500px;
 
-    right:-100px;
-    bottom:-100px;
+    right:-280px;
+    bottom:-280px;
 
     border:
         1px solid #333;
+
+    border-radius:50%;
+
+}
+
+.player-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    right:-120px;
+    bottom:-120px;
+
+    border:
+        1px solid #222;
 
     border-radius:50%;
 
@@ -690,505 +749,83 @@ section{
 
     position:absolute;
 
-    right:25px;
+    right:35px;
     top:15px;
 
-    font-size:90px;
+    font-size:180px;
+
+    line-height:1;
 
     font-weight:1000;
 
-    color:#151515;
+    color:#121212;
 
 }
 
-.player h3{
+.player-card h3{
 
     position:relative;
 
-    z-index:2;
+    z-index:3;
 
-    font-size:38px;
+    font-size:
+        clamp(32px,4vw,58px);
 
-    letter-spacing:-1px;
-
-}
-
-.player p{
-
-    margin-top:10px;
-
-    color:#666;
-
-    font-size:10px;
-
-    letter-spacing:3px;
+    letter-spacing:-3px;
 
 }
 
-.player.cr7{
+.player-role{
 
-    border:
-        2px solid #fff;
+    position:relative;
 
-    box-shadow:
-        0 0 50px
-        rgba(255,255,255,.04);
+    z-index:3;
 
-}
+    margin-top:15px;
 
-.player.cr7::after{
+    color:#555;
 
-    content:"DOMINANT";
-
-    position:absolute;
-
-    right:25px;
-    bottom:25px;
-
-    font-size:8px;
+    font-size:9px;
 
     letter-spacing:4px;
 
 }
 
-
-/* =========================================================
-   ACHIEVEMENT GRID
-========================================================= */
-
-.achievement-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:14px;
-
-}
-
-.achievement{
-
-    min-height:200px;
-
-    border:
-        1px solid #222;
-
-    padding:25px;
-
-    position:relative;
-
-    background:#080808;
-
-    overflow:hidden;
-
-    transition:
-        transform .4s,
-        border-color .4s,
-        background .4s;
-
-}
-
-.achievement:hover{
-
-    transform:
-        translateY(-10px);
-
-    border-color:#666;
-
-    background:#111;
-
-}
-
-.achievement::before{
-
-    content:"";
+.player-badge{
 
     position:absolute;
 
-    left:0;
-    bottom:0;
-
-    width:0;
-    height:2px;
-
-    background:#fff;
-
-    transition:.5s;
-
-}
-
-.achievement:hover::before{
-
-    width:100%;
-
-}
-
-.achievement .icon{
-
-    font-size:24px;
-
-    margin-bottom:25px;
-
-    filter:
-        grayscale(1);
-
-}
-
-.achievement h4{
-
-    font-size:16px;
-
-    margin-bottom:10px;
-
-}
-
-.achievement p{
-
-    color:#666;
-
-    font-size:10px;
-
-    line-height:1.7;
-
-}
-
-.winner{
-
-    border:
-        2px solid #fff;
-
-    transform:
-        scale(1.025);
-
-    background:
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(255,255,255,.08),
-            transparent 50%
-        );
-
-}
-
-.winner::after{
-
-    content:"CR7";
-
-    position:absolute;
-
-    right:15px;
-    top:15px;
-
-    font-size:7px;
-
-    letter-spacing:3px;
-
-    color:#fff;
-
-}
-
-
-/* =========================================================
-   BATTLE TABLE
-========================================================= */
-
-.battle-table{
-
-    width:100%;
-
-    border-collapse:
-        collapse;
-
-}
-
-.battle-table th,
-.battle-table td{
+    bottom:35px;
+    left:45px;
 
     padding:
-        25px 20px;
-
-    border-bottom:
-        1px solid #222;
-
-    text-align:center;
-
-}
-
-.battle-table th{
-
-    color:#444;
-
-    font-size:9px;
-
-    letter-spacing:3px;
-
-}
-
-.battle-table td:first-child{
-
-    text-align:left;
-
-    color:#aaa;
-
-}
-
-.cr7-score{
-
-    font-size:30px;
-
-    font-weight:900;
-
-    color:#fff;
-
-}
-
-.messi-score{
-
-    font-size:25px;
-
-    color:#555;
-
-}
-
-.winner-cell{
-
-    position:relative;
-
-}
-
-.winner-cell::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    top:50%;
-
-    transform:
-        translateY(-50%);
-
-    width:3px;
-    height:35px;
-
-    background:#fff;
-
-}
-
-.battle-table tbody tr{
-
-    transition:
-        background .3s;
-
-}
-
-.battle-table tbody tr:hover{
-
-    background:
-        rgba(255,255,255,.035);
-
-}
-
-
-/* =========================================================
-   DOMINANCE METER
-========================================================= */
-
-.meter-section{
-
-    text-align:center;
-
-}
-
-.meter-wrap{
-
-    max-width:900px;
-
-    margin:
-        70px auto 0;
-
-}
-
-.meter-labels{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-bottom:15px;
-
-    font-size:9px;
-
-    letter-spacing:3px;
-
-}
-
-.meter{
-
-    height:16px;
-
-    background:#181818;
+        10px 15px;
 
     border:
         1px solid #333;
 
-    overflow:hidden;
-
-}
-
-.meter-fill{
-
-    width:86%;
-
-    height:100%;
-
-    background:#fff;
-
-    position:relative;
-
-    animation:
-        meterLoad 2s ease forwards;
-
-}
-
-.meter-fill::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        repeating-linear-gradient(
-            135deg,
-            transparent 0,
-            transparent 8px,
-            rgba(0,0,0,.15) 8px,
-            rgba(0,0,0,.15) 16px
-        );
-
-}
-
-@keyframes meterLoad{
-
-    from{
-        width:0;
-    }
-
-    to{
-        width:86%;
-    }
-
-}
-
-.meter-result{
-
-    margin-top:30px;
-
-    font-size:
-        clamp(35px,7vw,90px);
-
-    font-weight:1000;
-
-    letter-spacing:-5px;
-
-}
-
-
-/* =========================================================
-   ACHIEVEMENT WALL
-========================================================= */
-
-.wall{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-
-}
-
-.wall-card{
-
-    height:250px;
-
-    border:
-        1px solid #222;
-
-    padding:35px;
-
-    position:relative;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:flex-end;
-
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            #151515,
-            #050505
-        );
-
-    transition:.5s;
-
-}
-
-.wall-card:hover{
-
-    transform:
-        scale(1.02);
-
-    border-color:#666;
-
-}
-
-.wall-card .big{
-
-    position:absolute;
-
-    top:15px;
-    right:20px;
-
-    font-size:75px;
-
-    font-weight:1000;
-
-    color:#151515;
-
-}
-
-.wall-card small{
-
-    color:#555;
-
-    letter-spacing:3px;
+    color:#666;
 
     font-size:8px;
 
+    letter-spacing:3px;
+
 }
 
-.wall-card h3{
+.cr7 .player-badge{
 
-    margin-top:10px;
+    color:#fff;
 
-    font-size:23px;
+    border-color:#777;
 
 }
 
 
 /* =========================================================
-   MESSI ACHIEVEMENT WALL
+   LEGENDS MINI GRID
 ========================================================= */
 
-.messi-wall{
+.legend-grid{
 
     display:grid;
 
@@ -1197,28 +834,30 @@ section{
 
     gap:15px;
 
+    margin-top:20px;
+
 }
 
-.messi-card{
+.legend{
 
-    min-height:220px;
+    min-height:205px;
 
     padding:30px;
+
+    position:relative;
 
     border:
         1px solid #222;
 
     background:#090909;
 
-    position:relative;
-
     overflow:hidden;
 
-    transition:.4s;
+    transition:.5s;
 
 }
 
-.messi-card:hover{
+.legend:hover{
 
     transform:
         translateY(-8px);
@@ -1227,7 +866,7 @@ section{
 
 }
 
-.messi-card .number{
+.legend-number{
 
     position:absolute;
 
@@ -1242,27 +881,517 @@ section{
 
 }
 
-.messi-card h3{
+.legend h3{
 
     position:absolute;
 
     bottom:45px;
 
-    font-size:23px;
+    font-size:25px;
 
 }
 
-.messi-card p{
+.legend p{
 
     position:absolute;
 
-    bottom:20px;
+    bottom:22px;
+
+    font-size:8px;
 
     color:#555;
 
+    letter-spacing:2px;
+
+}
+
+
+/* =========================================================
+   ACHIEVEMENT CARDS
+========================================================= */
+
+.achievement-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+
+}
+
+.achievement{
+
+    min-height:230px;
+
+    position:relative;
+
+    padding:30px;
+
+    border:
+        1px solid #222;
+
+    background:#080808;
+
+    overflow:hidden;
+
+    transition:
+        transform .5s,
+        border-color .5s,
+        background .5s;
+
+}
+
+.achievement:hover{
+
+    transform:
+        translateY(-10px);
+
+    border-color:#777;
+
+    background:#111;
+
+}
+
+.achievement::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:0;
+    height:2px;
+
+    background:#fff;
+
+    transition:.6s;
+
+}
+
+.achievement:hover::after{
+
+    width:100%;
+
+}
+
+.achievement-icon{
+
+    font-size:25px;
+
+    filter:grayscale(1);
+
+    margin-bottom:30px;
+
+}
+
+.achievement h4{
+
+    font-size:15px;
+
+    margin-bottom:12px;
+
+}
+
+.achievement p{
+
+    color:#555;
+
+    font-size:10px;
+
+    line-height:1.8;
+
+}
+
+.achievement.cr7{
+
+    border:
+        2px solid #fff;
+
+    box-shadow:
+        0 0 45px
+        rgba(255,255,255,.04);
+
+}
+
+.achievement.cr7::before{
+
+    content:"CR7 DOMINANCE";
+
+    position:absolute;
+
+    right:15px;
+    top:15px;
+
+    font-size:6px;
+
+    letter-spacing:3px;
+
+    color:#fff;
+
+}
+
+
+/* =========================================================
+   RECORD BATTLE
+========================================================= */
+
+.records{
+
+    border:
+        1px solid #222;
+
+    background:#070707;
+
+}
+
+.record-row{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 180px 180px;
+
+    align-items:center;
+
+    min-height:100px;
+
+    border-bottom:
+        1px solid #191919;
+
+    padding:
+        0 30px;
+
+    transition:.3s;
+
+}
+
+.record-row:hover{
+
+    background:#111;
+
+}
+
+.record-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.record-title{
+
+    color:#777;
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+}
+
+.record-value{
+
+    text-align:center;
+
+    font-size:27px;
+
+    font-weight:1000;
+
+}
+
+.record-head{
+
+    color:#444;
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+}
+
+.record-cr7{
+
+    color:#fff;
+
+}
+
+.record-messi{
+
+    color:#555;
+
+}
+
+.record-win{
+
+    position:relative;
+
+}
+
+.record-win::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-12px;
+
+    left:50%;
+
+    width:25px;
+
+    height:2px;
+
+    background:#fff;
+
+    transform:
+        translateX(-50%);
+
+}
+
+
+/* =========================================================
+   DOMINANCE
+========================================================= */
+
+.dominance{
+
+    text-align:center;
+
+    position:relative;
+
+}
+
+.dominance-ring{
+
+    width:
+        min(500px,75vw);
+
+    height:
+        min(500px,75vw);
+
+    border:
+        1px solid #333;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+}
+
+.dominance-ring::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:35px;
+
+    border:
+        1px solid #222;
+
+    border-radius:50%;
+
+    animation:
+        ringSpin 15s linear infinite;
+
+}
+
+.dominance-ring::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:80px;
+
+    border:
+        1px dashed #222;
+
+    border-radius:50%;
+
+    animation:
+        ringSpinReverse 20s linear infinite;
+
+}
+
+.dominance-number{
+
+    font-size:
+        clamp(80px,15vw,170px);
+
+    font-weight:1000;
+
+    letter-spacing:-12px;
+
+    position:relative;
+
+    z-index:3;
+
+}
+
+.dominance-word{
+
+    position:absolute;
+
+    bottom:100px;
+
+    font-size:8px;
+
+    letter-spacing:7px;
+
+    color:#555;
+
+}
+
+@keyframes ringSpin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes ringSpinReverse{
+
+    to{
+        transform:rotate(-360deg);
+    }
+
+}
+
+.dominance-text{
+
+    max-width:600px;
+
+    margin:
+        55px auto 0;
+
+    color:#555;
+
+    font-size:12px;
+
+    line-height:2;
+
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline{
+
+    position:relative;
+
+    max-width:950px;
+
+    margin:auto;
+
+}
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+    bottom:0;
+
+    width:1px;
+
+    background:#222;
+
+}
+
+.timeline-item{
+
+    width:50%;
+
+    padding:
+        30px 50px;
+
+    position:relative;
+
+}
+
+.timeline-item:nth-child(even){
+
+    margin-left:50%;
+
+}
+
+.timeline-dot{
+
+    position:absolute;
+
+    top:42px;
+
+    width:9px;
+    height:9px;
+
+    border:
+        2px solid #fff;
+
+    background:#030303;
+
+    border-radius:50%;
+
+}
+
+.timeline-item:nth-child(odd)
+.timeline-dot{
+
+    right:-5px;
+
+}
+
+.timeline-item:nth-child(even)
+.timeline-dot{
+
+    left:-5px;
+
+}
+
+.timeline-year{
+
+    color:#444;
+
     font-size:9px;
 
-    letter-spacing:2px;
+    letter-spacing:4px;
+
+}
+
+.timeline-item h3{
+
+    margin-top:12px;
+
+    font-size:25px;
+
+}
+
+.timeline-item p{
+
+    margin-top:10px;
+
+    color:#555;
+
+    font-size:10px;
+
+    line-height:1.8;
 
 }
 
@@ -1272,8 +1401,6 @@ section{
 ========================================================= */
 
 .voice-section{
-
-    text-align:center;
 
     min-height:100vh;
 
@@ -1285,17 +1412,21 @@ section{
 
     justify-content:center;
 
+    text-align:center;
+
 }
 
 .voice-status{
 
-    margin-bottom:40px;
+    color:#555;
 
-    font-size:10px;
+    font-size:9px;
 
     letter-spacing:5px;
 
-    color:#555;
+    margin-bottom:45px;
+
+    min-height:15px;
 
 }
 
@@ -1304,14 +1435,14 @@ section{
     color:#fff;
 
     animation:
-        statusBlink 1s infinite;
+        statusPulse 1s infinite;
 
 }
 
-@keyframes statusBlink{
+@keyframes statusPulse{
 
     50%{
-        opacity:.4;
+        opacity:.35;
     }
 
 }
@@ -1323,8 +1454,11 @@ section{
 
 .football-mic{
 
-    width:290px;
-    height:290px;
+    width:
+        min(310px,70vw);
+
+    height:
+        min(310px,70vw);
 
     border-radius:50%;
 
@@ -1334,11 +1468,12 @@ section{
 
     background:
         radial-gradient(
-            circle at 32% 24%,
+            circle at 30% 22%,
             #fff 0%,
             #ddd 22%,
-            #888 52%,
-            #111 100%
+            #888 50%,
+            #111 78%,
+            #000 100%
         );
 
     border:
@@ -1346,23 +1481,23 @@ section{
 
     box-shadow:
 
-        0 25px 70px
+        0 30px 90px
         rgba(0,0,0,.9),
 
         inset
-        -25px -25px 45px
-        rgba(0,0,0,.6),
+        -30px -30px 55px
+        rgba(0,0,0,.65),
 
         inset
         20px 20px 40px
         rgba(255,255,255,.5);
 
     transition:
-        transform .35s ease,
-        box-shadow .35s ease;
+        transform .5s,
+        box-shadow .5s;
 
     animation:
-        footballFloat 4s ease-in-out infinite;
+        ballFloat 4s ease-in-out infinite;
 
     overflow:hidden;
 
@@ -1371,14 +1506,35 @@ section{
 .football-mic:hover{
 
     transform:
-        scale(1.05);
+        scale(1.06);
+
+}
+
+.football-mic::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:12px;
+
+    border:
+        1px solid rgba(0,0,0,.35);
+
+    border-radius:50%;
 
 }
 
 
-/* =========================================================
-   FOOTBALL PATTERN
-========================================================= */
+/* FOOTBALL CENTER */
+
+.football-pattern{
+
+    position:absolute;
+
+    inset:0;
+
+}
 
 .football-pattern::before{
 
@@ -1386,8 +1542,8 @@ section{
 
     position:absolute;
 
-    width:80px;
-    height:80px;
+    width:75px;
+    height:75px;
 
     left:50%;
     top:50%;
@@ -1395,7 +1551,7 @@ section{
     transform:
         translate(-50%,-50%);
 
-    background:#111;
+    background:#080808;
 
     clip-path:
         polygon(
@@ -1414,8 +1570,8 @@ section{
 
     position:absolute;
 
-    width:180px;
-    height:180px;
+    width:190px;
+    height:190px;
 
     left:50%;
     top:50%;
@@ -1424,7 +1580,7 @@ section{
         translate(-50%,-50%);
 
     border:
-        4px solid #111;
+        5px solid #111;
 
     border-radius:50%;
 
@@ -1433,9 +1589,7 @@ section{
 }
 
 
-/* =========================================================
-   FOOTBALL LINES
-========================================================= */
+/* FOOTBALL CURVES */
 
 .football-lines{
 
@@ -1452,11 +1606,11 @@ section{
 
     position:absolute;
 
-    width:250px;
-    height:80px;
+    width:260px;
+    height:90px;
 
     border:
-        4px solid #111;
+        5px solid #111;
 
     border-radius:50%;
 
@@ -1464,7 +1618,7 @@ section{
 
 .football-lines::before{
 
-    left:-80px;
+    left:-90px;
     top:70px;
 
     transform:
@@ -1474,7 +1628,7 @@ section{
 
 .football-lines::after{
 
-    right:-80px;
+    right:-90px;
     bottom:70px;
 
     transform:
@@ -1484,7 +1638,7 @@ section{
 
 
 /* =========================================================
-   MIC SYMBOL
+   MIC ICON
 ========================================================= */
 
 .mic-symbol{
@@ -1497,10 +1651,10 @@ section{
     transform:
         translate(-50%,-50%);
 
-    z-index:20;
+    width:80px;
+    height:115px;
 
-    width:75px;
-    height:110px;
+    z-index:20;
 
 }
 
@@ -1508,11 +1662,11 @@ section{
 
     position:absolute;
 
+    left:20px;
+    top:0;
+
     width:40px;
     height:60px;
-
-    left:18px;
-    top:0;
 
     border:
         6px solid #fff;
@@ -1527,11 +1681,11 @@ section{
 
     position:absolute;
 
-    width:70px;
-    height:58px;
-
     left:2px;
-    top:38px;
+    top:40px;
+
+    width:76px;
+    height:60px;
 
     border:
         6px solid #fff;
@@ -1547,13 +1701,13 @@ section{
 
     position:absolute;
 
+    left:36px;
+    top:94px;
+
     width:6px;
-    height:28px;
+    height:25px;
 
     background:#fff;
-
-    left:34px;
-    top:92px;
 
 }
 
@@ -1563,13 +1717,13 @@ section{
 
     position:absolute;
 
-    width:40px;
+    width:42px;
     height:6px;
 
-    background:#fff;
-
-    left:-17px;
+    left:-18px;
     bottom:0;
+
+    background:#fff;
 
     border-radius:10px;
 
@@ -1577,17 +1731,17 @@ section{
 
 
 /* =========================================================
-   LISTENING ANIMATION
+   LISTENING
 ========================================================= */
 
 .voice-active{
 
     animation:
-        listening 1s infinite !important;
+        listeningBall 1s infinite !important;
 
 }
 
-@keyframes listening{
+@keyframes listeningBall{
 
     0%{
 
@@ -1596,11 +1750,9 @@ section{
             rotate(0deg);
 
         box-shadow:
-
             0 0 0 0
-            rgba(255,255,255,.5),
-
-            0 25px 70px
+            rgba(255,255,255,.55),
+            0 30px 90px
             rgba(0,0,0,.9);
 
     }
@@ -1612,12 +1764,10 @@ section{
             rotate(180deg);
 
         box-shadow:
-
             0 0 0 25px
             rgba(255,255,255,0),
-
-            0 0 90px
-            rgba(255,255,255,.5);
+            0 0 100px
+            rgba(255,255,255,.45);
 
     }
 
@@ -1628,29 +1778,23 @@ section{
             rotate(360deg);
 
         box-shadow:
-
             0 0 0 50px
             rgba(255,255,255,0),
-
-            0 25px 70px
+            0 30px 90px
             rgba(0,0,0,.9);
 
     }
 
 }
 
-@keyframes footballFloat{
+@keyframes ballFloat{
 
     0%,100%{
-
         margin-top:0;
-
     }
 
     50%{
-
         margin-top:-12px;
-
     }
 
 }
@@ -1672,7 +1816,7 @@ section{
 
     gap:5px;
 
-    margin-top:35px;
+    margin-top:30px;
 
     opacity:.2;
 
@@ -1681,8 +1825,7 @@ section{
 .waveform span{
 
     width:4px;
-
-    height:10px;
+    height:8px;
 
     background:#fff;
 
@@ -1690,16 +1833,18 @@ section{
 
 }
 
-.voice-active + .waveform{
+.voice-active
+~ .waveform{
 
     opacity:1;
 
 }
 
-.voice-active + .waveform span{
+.voice-active
+~ .waveform span{
 
     animation:
-        wave .7s ease-in-out infinite alternate;
+        wave .65s ease-in-out infinite alternate;
 
 }
 
@@ -1747,20 +1892,9 @@ section{
 .command-box{
 
     width:
-        min(750px,90vw);
+        min(760px,90vw);
 
     min-height:70px;
-
-    margin-top:35px;
-
-    padding:20px 30px;
-
-    border:
-        1px solid #222;
-
-    background:#090909;
-
-    color:#777;
 
     display:flex;
 
@@ -1768,25 +1902,41 @@ section{
 
     justify-content:center;
 
-    font-size:14px;
+    margin-top:25px;
 
-    line-height:1.6;
+    padding:
+        20px 25px;
 
-    transition:.3s;
+    border:
+        1px solid #222;
+
+    background:#080808;
+
+    color:#555;
+
+    font-size:12px;
+
+    line-height:1.8;
+
+    transition:.4s;
 
 }
 
 .command-box.active{
 
-    border-color:#666;
+    border-color:#777;
 
     color:#fff;
+
+    box-shadow:
+        0 0 35px
+        rgba(255,255,255,.03);
 
 }
 
 
 /* =========================================================
-   COMMAND EXAMPLES
+   COMMANDS
 ========================================================= */
 
 .commands{
@@ -1799,23 +1949,23 @@ section{
 
     gap:10px;
 
-    max-width:800px;
+    max-width:850px;
 
-    margin-top:25px;
+    margin-top:20px;
 
 }
 
-.command-chip{
+.command{
 
     padding:
-        10px 15px;
+        10px 14px;
 
     border:
         1px solid #222;
 
     color:#555;
 
-    font-size:9px;
+    font-size:8px;
 
     letter-spacing:1px;
 
@@ -1825,7 +1975,7 @@ section{
 
 }
 
-.command-chip:hover{
+.command:hover{
 
     color:#fff;
 
@@ -1835,12 +1985,12 @@ section{
 
 
 /* =========================================================
-   FINAL GOAT
+   GOAT FINALE
 ========================================================= */
 
-.goat{
+.final{
 
-    min-height:90vh;
+    min-height:100vh;
 
     display:flex;
 
@@ -1852,19 +2002,22 @@ section{
 
     text-align:center;
 
-    position:relative;
-
 }
 
-.goat-circle{
+.final-ring{
 
-    width:280px;
-    height:280px;
+    width:
+        min(430px,70vw);
 
-    border-radius:50%;
+    height:
+        min(430px,70vw);
 
     border:
         1px solid #444;
+
+    border-radius:50%;
+
+    position:relative;
 
     display:flex;
 
@@ -1872,124 +2025,128 @@ section{
 
     justify-content:center;
 
-    position:relative;
-
-    animation:
-        rotateSlow 20s linear infinite;
-
 }
 
-.goat-circle::before,
-.goat-circle::after{
+.final-ring::before{
 
     content:"";
 
     position:absolute;
 
+    inset:25px;
+
     border:
-        1px solid #333;
+        1px solid #222;
 
     border-radius:50%;
 
-}
-
-.goat-circle::before{
-
-    inset:20px;
+    animation:
+        ringSpin 18s linear infinite;
 
 }
 
-.goat-circle::after{
+.final-ring::after{
 
-    inset:45px;
-
-}
-
-.goat-text{
+    content:"";
 
     position:absolute;
 
-    z-index:2;
+    inset:60px;
+
+    border:
+        1px dashed #222;
+
+    border-radius:50%;
 
     animation:
-        rotateReverse 20s linear infinite;
+        ringSpinReverse 25s linear infinite;
 
 }
 
-.goat-text small{
+.final-word{
+
+    position:relative;
+
+    z-index:3;
+
+}
+
+.final-word small{
 
     display:block;
 
+    color:#555;
+
     font-size:8px;
 
-    letter-spacing:5px;
+    letter-spacing:6px;
 
-    color:#555;
-
-    margin-bottom:10px;
+    margin-bottom:12px;
 
 }
 
-.goat-text strong{
-
-    font-size:75px;
-
-    letter-spacing:-5px;
-
-}
-
-.goat h2{
-
-    margin-top:60px;
+.final-word strong{
 
     font-size:
-        clamp(45px,8vw,110px);
+        clamp(65px,11vw,120px);
 
-    letter-spacing:-6px;
+    letter-spacing:-8px;
 
 }
 
-.goat p{
+.final h2{
 
-    max-width:500px;
+    margin-top:70px;
 
-    margin-top:20px;
+    font-size:
+        clamp(45px,8vw,105px);
+
+    line-height:.85;
+
+    letter-spacing:-7px;
+
+}
+
+.final p{
+
+    max-width:600px;
+
+    margin-top:30px;
 
     color:#555;
 
-    font-size:12px;
+    font-size:11px;
 
-    line-height:1.9;
-
-}
-
-@keyframes rotateSlow{
-
-    from{
-        transform:rotate(0);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-@keyframes rotateReverse{
-
-    from{
-        transform:rotate(0);
-    }
-
-    to{
-        transform:rotate(-360deg);
-    }
+    line-height:2;
 
 }
 
 
 /* =========================================================
-   REVEAL
+   FOOTER
+========================================================= */
+
+footer{
+
+    padding:
+        60px 20px;
+
+    border-top:
+        1px solid #151515;
+
+    text-align:center;
+
+    color:#333;
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
 ========================================================= */
 
 .reveal{
@@ -1997,11 +2154,12 @@ section{
     opacity:0;
 
     transform:
-        translateY(50px);
+        translateY(70px)
+        scale(.98);
 
     transition:
-        opacity 1s ease,
-        transform 1s ease;
+        opacity 1.1s cubic-bezier(.16,1,.3,1),
+        transform 1.1s cubic-bezier(.16,1,.3,1);
 
 }
 
@@ -2015,24 +2173,63 @@ section{
 
 
 /* =========================================================
-   FOOTER
+   STAGGER
 ========================================================= */
 
-footer{
+.stagger > *{
 
-    padding:
-        50px 20px;
+    opacity:0;
 
-    text-align:center;
+    transform:
+        translateY(30px);
 
-    border-top:
-        1px solid #161616;
+}
 
-    color:#333;
+.stagger.show > *{
 
-    font-size:8px;
+    animation:
+        staggerIn .8s cubic-bezier(.16,1,.3,1)
+        forwards;
 
-    letter-spacing:4px;
+}
+
+.stagger.show > *:nth-child(2){
+    animation-delay:.08s;
+}
+
+.stagger.show > *:nth-child(3){
+    animation-delay:.16s;
+}
+
+.stagger.show > *:nth-child(4){
+    animation-delay:.24s;
+}
+
+.stagger.show > *:nth-child(5){
+    animation-delay:.32s;
+}
+
+.stagger.show > *:nth-child(6){
+    animation-delay:.40s;
+}
+
+.stagger.show > *:nth-child(7){
+    animation-delay:.48s;
+}
+
+.stagger.show > *:nth-child(8){
+    animation-delay:.56s;
+}
+
+@keyframes staggerIn{
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
 
 }
 
@@ -2041,102 +2238,74 @@ footer{
    MOBILE
 ========================================================= */
 
-@media(max-width:800px){
-
-    nav{
-
-        padding:
-            0 20px;
-
-    }
+@media(max-width:850px){
 
     .nav-links{
-
         display:none;
-
     }
 
     section{
-
-        padding:
-            90px 0;
-
+        padding:100px 0;
     }
 
-    .players{
-
+    .player-arena{
         grid-template-columns:1fr;
-
     }
 
     .achievement-grid{
-
         grid-template-columns:
             repeat(2,1fr);
-
     }
 
-    .wall,
-    .messi-wall{
-
+    .legend-grid{
         grid-template-columns:1fr;
-
     }
 
-    .battle-table{
-
-        font-size:10px;
-
+    .record-row{
+        grid-template-columns:
+            1fr 80px 80px;
+        padding:0 15px;
     }
 
-    .battle-table th,
-    .battle-table td{
-
-        padding:
-            18px 8px;
-
+    .record-value{
+        font-size:20px;
     }
 
 }
 
-@media(max-width:500px){
+@media(max-width:550px){
 
     .achievement-grid{
-
         grid-template-columns:1fr;
-
     }
 
-    .player{
-
-        min-height:230px;
-
+    .hero h1{
+        letter-spacing:-6px;
     }
 
-    .player h3{
-
-        font-size:30px;
-
+    .player-card{
+        min-height:330px;
+        padding:30px;
     }
 
-    .football-mic{
-
-        width:230px;
-        height:230px;
-
+    .player-badge{
+        left:30px;
     }
 
-    .goat-circle{
-
-        width:210px;
-        height:210px;
-
+    .timeline::before{
+        left:10px;
     }
 
-    .goat-text strong{
+    .timeline-item{
+        width:100%;
+        margin-left:0 !important;
+        padding-left:40px;
+        padding-right:10px;
+    }
 
-        font-size:55px;
-
+    .timeline-item .timeline-dot{
+        left:6px !important;
+        right:auto !important;
     }
 
 }
@@ -2150,15 +2319,21 @@ footer{
 
 
 <!-- =====================================================
-     BACKGROUND FOOTBALLS
+     ATMOSPHERE
 ====================================================== -->
 
-<div class="ball"></div>
-<div class="ball"></div>
-<div class="ball"></div>
-<div class="ball"></div>
+<div class="ambient one"></div>
+<div class="ambient two"></div>
 
-<div class="stadium-lines"></div>
+<div class="stadium-grid"></div>
+
+<div class="center-circle"></div>
+
+
+<div class="bg-ball b1"></div>
+<div class="bg-ball b2"></div>
+<div class="bg-ball b3"></div>
+<div class="bg-ball b4"></div>
 
 
 <!-- =====================================================
@@ -2167,19 +2342,18 @@ footer{
 
 <nav>
 
-    <div class="nav-logo">
+    <div class="logo">
 
-        CR7
-        <span>VS</span>
-        LM10
+        GOAT
+        <span>/ ARENA</span>
 
     </div>
 
 
     <div class="nav-links">
 
-        <a href="#battle">
-            BATTLE
+        <a href="#rivals">
+            RIVALS
         </a>
 
         <a href="#achievements">
@@ -2190,9 +2364,22 @@ footer{
             RECORDS
         </a>
 
-        <a href="#voice">
-            VOICE AGENT
+        <a href="#legends">
+            LEGENDS
         </a>
+
+        <a href="#voice">
+            VOICE AI
+        </a>
+
+    </div>
+
+
+    <div class="nav-live">
+
+        <span class="live-dot"></span>
+
+        LIVE
 
     </div>
 
@@ -2205,48 +2392,56 @@ footer{
 
 <header class="hero">
 
-    <div class="eyebrow">
+    <div class="hero-kicker">
 
-        THE GREATEST RIVALRY IN FOOTBALL
+        THE BEAUTIFUL GAME
 
     </div>
 
 
     <h1>
 
-        <span class="ronaldo">
+        <span class="white">
             RONALDO
         </span>
 
-
-        <span class="vs">
+        <span class="hero-vs">
             VS
         </span>
 
-
-        <span class="messi">
-            MESSI
+        <span class="gray">
+            THE LEGENDS
         </span>
 
     </h1>
 
 
-    <p class="hero-sub" id="heroText">
+    <p class="hero-description">
 
-        Two legends.
-        One era.
-        Thousands of moments.
+        Ronaldo.
+        Messi.
+        Neymar.
+        Pelé.
+        Mbappé.
+
+        <br><br>
+
+        <strong>
+            Different generations.
+            Different stories.
+            One eternal question.
+        </strong>
 
         <br>
 
-        The achievements tell the story.
+        Who owns the GOAT conversation?
 
     </p>
 
 
-    <div class="scroll">
+    <div class="hero-scroll">
 
-        SCROLL TO ENTER THE BATTLE
+        ↓ &nbsp; ENTER THE ARENA &nbsp; ↓
 
     </div>
 
@@ -2257,29 +2452,29 @@ footer{
 
 
 <!-- =====================================================
-     PLAYERS
+     RIVALS
 ====================================================== -->
 
-<section id="battle" class="reveal">
+<section id="rivals" class="reveal">
 
-    <div class="section-label">
+    <div class="section-number">
         01 / THE RIVALS
     </div>
 
 
     <h2 class="section-title">
 
-        TWO ICONS.
+        THE ERA
         <br>
-        ONE LEGACY.
+        THAT CHANGED FOOTBALL
 
     </h2>
 
 
-    <div class="players">
+    <div class="player-arena">
 
 
-        <div class="player cr7">
+        <div class="player-card cr7">
 
             <div class="player-number">
                 07
@@ -2287,22 +2482,25 @@ footer{
 
 
             <h3>
-
                 CRISTIANO
                 <br>
                 RONALDO
-
             </h3>
 
 
-            <p>
+            <div class="player-role">
                 THE MACHINE
-            </p>
+            </div>
+
+
+            <div class="player-badge">
+                CR7 DOMINANCE MODE
+            </div>
 
         </div>
 
 
-        <div class="player">
+        <div class="player-card">
 
             <div class="player-number">
                 10
@@ -2310,20 +2508,78 @@ footer{
 
 
             <h3>
-
                 LIONEL
                 <br>
                 MESSI
-
             </h3>
 
 
-            <p>
+            <div class="player-role">
                 THE MAGICIAN
+            </div>
+
+
+            <div class="player-badge">
+                LEGEND
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="legend-grid">
+
+
+        <div class="legend">
+
+            <div class="legend-number">
+                11
+            </div>
+
+            <h3>
+                NEYMAR
+            </h3>
+
+            <p>
+                SKILL • FLAIR • CREATIVITY
             </p>
 
         </div>
 
+
+        <div class="legend">
+
+            <div class="legend-number">
+                10
+            </div>
+
+            <h3>
+                PELÉ
+            </h3>
+
+            <p>
+                THE KING
+            </p>
+
+        </div>
+
+
+        <div class="legend">
+
+            <div class="legend-number">
+                09
+            </div>
+
+            <h3>
+                MBAPPÉ
+            </h3>
+
+            <p>
+                THE NEXT GENERATION
+            </p>
+
+        </div>
 
     </div>
 
@@ -2337,18 +2593,21 @@ footer{
      ACHIEVEMENTS
 ====================================================== -->
 
-<section id="achievements" class="reveal">
+<section id="achievements"
+         class="reveal stagger">
 
-    <div class="section-label">
-        02 / ACHIEVEMENT WAR
+    <div class="section-number">
+        02 / ACHIEVEMENTS
     </div>
 
 
     <h2 class="section-title">
 
-        THE
+        TROPHIES.
         <br>
-        TROPHY ROOM
+        RECORDS.
+        <br>
+        LEGACY.
 
     </h2>
 
@@ -2356,99 +2615,75 @@ footer{
     <div class="achievement-grid">
 
 
-        <!-- RONALDO -->
+        <div class="achievement cr7">
 
-        <div class="achievement winner">
-
-            <div class="icon">
+            <div class="achievement-icon">
                 🏆
             </div>
 
             <h4>
-                CHAMPIONS LEAGUE
+                5× CHAMPIONS LEAGUE
             </h4>
 
             <p>
-                Five Champions League
-                titles and an extraordinary
-                European legacy.
+                Ronaldo built one of the
+                greatest Champions League
+                careers in football history.
             </p>
 
         </div>
 
 
-        <div class="achievement winner">
+        <div class="achievement cr7">
 
-            <div class="icon">
+            <div class="achievement-icon">
                 ⚽
             </div>
 
             <h4>
-                ALL-TIME CL GOALS
+                CHAMPIONS LEAGUE GOALS
             </h4>
 
             <p>
-                Ronaldo's Champions League
-                scoring record is one of
-                football's defining records.
+                The all-time Champions League
+                scoring record belongs to CR7.
             </p>
 
         </div>
 
 
-        <div class="achievement">
+        <div class="achievement cr7">
 
-            <div class="icon">
-                👑
-            </div>
-
-            <h4>
-                BALLON D'OR
-            </h4>
-
-            <p>
-                Five Ballon d'Or awards
-                across an exceptional
-                individual career.
-            </p>
-
-        </div>
-
-
-        <div class="achievement winner">
-
-            <div class="icon">
+            <div class="achievement-icon">
                 🇵🇹
             </div>
 
             <h4>
-                PORTUGAL
+                EURO 2016
             </h4>
 
             <p>
-                European champion and
-                Nations League winner
-                with Portugal.
+                Ronaldo captained Portugal
+                to their first major European
+                international title.
             </p>
 
         </div>
 
 
-        <!-- MESSI -->
+        <div class="achievement cr7">
 
-        <div class="achievement">
-
-            <div class="icon">
+            <div class="achievement-icon">
                 👑
             </div>
 
             <h4>
-                BALLON D'OR
+                5× BALLON D'OR
             </h4>
 
             <p>
-                Messi has won the Ballon d'Or
-                eight times, the most in history.
+                Five individual Ballon d'Or
+                victories across his career.
             </p>
 
         </div>
@@ -2456,17 +2691,17 @@ footer{
 
         <div class="achievement">
 
-            <div class="icon">
+            <div class="achievement-icon">
                 🌎
             </div>
 
             <h4>
-                WORLD CUP
+                MESSI — WORLD CUP
             </h4>
 
             <p>
-                Argentina captain who lifted
-                the 2022 FIFA World Cup.
+                Messi won the 2022 FIFA
+                World Cup with Argentina.
             </p>
 
         </div>
@@ -2474,17 +2709,17 @@ footer{
 
         <div class="achievement">
 
-            <div class="icon">
-                🏆
+            <div class="achievement-icon">
+                👑
             </div>
 
             <h4>
-                COPA AMÉRICA
+                MESSI — 8× BALLON D'OR
             </h4>
 
             <p>
-                Messi led Argentina to
-                Copa América success.
+                Messi holds eight Ballon d'Or
+                awards.
             </p>
 
         </div>
@@ -2492,17 +2727,35 @@ footer{
 
         <div class="achievement">
 
-            <div class="icon">
-                🎯
+            <div class="achievement-icon">
+                🎨
             </div>
 
             <h4>
-                CREATIVE GENIUS
+                NEYMAR — FLAIR
             </h4>
 
             <p>
-                Elite goalscoring, passing,
-                dribbling and playmaking.
+                One of the defining creative
+                players of his generation.
+            </p>
+
+        </div>
+
+
+        <div class="achievement">
+
+            <div class="achievement-icon">
+                👑
+            </div>
+
+            <h4>
+                PELÉ — THE KING
+            </h4>
+
+            <p>
+                Three FIFA World Cup
+                victories with Brazil.
             </p>
 
         </div>
@@ -2517,204 +2770,131 @@ footer{
 
 
 <!-- =====================================================
-     RECORDS
+     RECORD BATTLE
 ====================================================== -->
 
-<section id="records" class="reveal">
+<section class="reveal">
 
-    <div class="section-label">
-        03 / HEAD TO HEAD
+    <div class="section-number">
+        03 / RECORD BATTLE
     </div>
 
 
     <h2 class="section-title">
 
-        RECORDS
+        NUMBERS
         <br>
-        ON TRIAL
+        DON'T LIE
 
     </h2>
 
 
-    <table class="battle-table">
+    <div class="records">
 
-        <thead>
 
-            <tr>
+        <div class="record-row">
 
-                <th>
-                    CATEGORY
-                </th>
+            <div class="record-title">
+                CATEGORY
+            </div>
 
-                <th>
-                    CR7
-                </th>
+            <div class="record-value record-head">
+                CR7
+            </div>
 
-                <th>
-                    MESSI
-                </th>
+            <div class="record-value record-head">
+                MESSI
+            </div>
 
-            </tr>
+        </div>
 
-        </thead>
 
+        <div class="record-row">
 
-        <tbody>
+            <div class="record-title">
+                Champions League titles
+            </div>
 
+            <div class="record-value record-cr7 record-win">
+                5
+            </div>
 
-            <tr>
+            <div class="record-value record-messi">
+                4
+            </div>
 
-                <td>
-                    Champions League titles
-                </td>
+        </div>
 
-                <td class="winner-cell">
 
-                    <span class="cr7-score">
-                        5
-                    </span>
+        <div class="record-row">
 
-                </td>
+            <div class="record-title">
+                Ballon d'Or
+            </div>
 
-                <td>
+            <div class="record-value record-cr7">
+                5
+            </div>
 
-                    <span class="messi-score">
-                        4
-                    </span>
+            <div class="record-value record-messi">
+                8
+            </div>
 
-                </td>
+        </div>
 
-            </tr>
 
+        <div class="record-row">
 
-            <tr>
+            <div class="record-title">
+                FIFA World Cup
+            </div>
 
-                <td>
-                    Ballon d'Or
-                </td>
+            <div class="record-value record-messi">
+                —
+            </div>
 
-                <td>
+            <div class="record-value record-messi">
+                1
+            </div>
 
-                    <span class="cr7-score">
-                        5
-                    </span>
+        </div>
 
-                </td>
 
-                <td>
+        <div class="record-row">
 
-                    <span class="messi-score">
-                        8
-                    </span>
+            <div class="record-title">
+                European Championship
+            </div>
 
-                </td>
+            <div class="record-value record-cr7 record-win">
+                1
+            </div>
 
-            </tr>
+            <div class="record-value record-messi">
+                —
+            </div>
 
+        </div>
 
-            <tr>
 
-                <td>
-                    World Cup
-                </td>
+        <div class="record-row">
 
-                <td>
+            <div class="record-title">
+                International longevity
+            </div>
 
-                    <span class="messi-score">
-                        —
-                    </span>
+            <div class="record-value record-cr7 record-win">
+                ★
+            </div>
 
-                </td>
+            <div class="record-value record-messi">
+                ★
+            </div>
 
-                <td>
+        </div>
 
-                    <span class="messi-score">
-                        1
-                    </span>
 
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    European Championship
-                </td>
-
-                <td class="winner-cell">
-
-                    <span class="cr7-score">
-                        1
-                    </span>
-
-                </td>
-
-                <td>
-
-                    <span class="messi-score">
-                        —
-                    </span>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    International trophies
-                </td>
-
-                <td>
-
-                    <span class="cr7-score">
-                        2
-                    </span>
-
-                </td>
-
-                <td>
-
-                    <span class="messi-score">
-                        3+
-                    </span>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Elite longevity
-                </td>
-
-                <td class="winner-cell">
-
-                    <span class="cr7-score">
-                        ★
-                    </span>
-
-                </td>
-
-                <td>
-
-                    <span class="messi-score">
-                        ★
-                    </span>
-
-                </td>
-
-            </tr>
-
-
-        </tbody>
-
-    </table>
+    </div>
 
 </section>
 
@@ -2726,329 +2906,181 @@ footer{
      DOMINANCE
 ====================================================== -->
 
-<section class="meter-section reveal">
+<section class="dominance reveal">
 
-    <div class="section-label">
+    <div class="section-number">
         04 / CR7 MODE
     </div>
 
 
     <h2 class="section-title">
 
-        THE
+        ENTER
         <br>
-        DOMINANCE METER
+        DOMINANCE MODE
 
     </h2>
 
 
-    <div class="meter-wrap">
+    <div class="dominance-ring">
 
-        <div class="meter-labels">
+        <div class="dominance-number">
+            CR7
+        </div>
 
-            <span>
+        <div class="dominance-word">
+            THE MACHINE
+        </div>
+
+    </div>
+
+
+    <p class="dominance-text">
+
+        This is the visual verdict of the page —
+        a fan-driven CR7 dominance meter.
+
+        <br><br>
+
+        Not every statistic belongs to Ronaldo.
+        The point is the mentality:
+
+        <strong style="color:#fff;">
+            compete → improve → repeat.
+        </strong>
+
+    </p>
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- =====================================================
+     LEGENDS TIMELINE
+====================================================== -->
+
+<section id="legends" class="reveal">
+
+    <div class="section-number">
+        05 / LEGACY TIMELINE
+    </div>
+
+
+    <h2 class="section-title">
+
+        FROM
+        <br>
+        KING TO MACHINE
+
+    </h2>
+
+
+    <div class="timeline">
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">
+                PELE ERA
+            </div>
+
+            <h3>
+                PELÉ
+            </h3>
+
+            <p>
+                The global icon who helped
+                define football's worldwide
+                identity.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">
+                MODERN ERA
+            </div>
+
+            <h3>
+                RONALDO
+            </h3>
+
+            <p>
+                Athleticism, mentality,
+                goals and longevity turned
+                CR7 into a global phenomenon.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">
+                MODERN ERA
+            </div>
+
+            <h3>
                 MESSI
-            </span>
-
-            <span>
-                CR7
-            </span>
-
-        </div>
-
-
-        <div class="meter">
-
-            <div class="meter-fill"></div>
-
-        </div>
-
-
-        <div class="meter-result">
-
-            86%
-
-        </div>
-
-
-        <p style="
-            color:#555;
-            margin-top:15px;
-            font-size:9px;
-            letter-spacing:3px;
-        ">
-
-            CR7 MODE ACTIVATED
-
-        </p>
-
-    </div>
-
-</section>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     RONALDO WALL
-====================================================== -->
-
-<section class="reveal">
-
-    <div class="section-label">
-        05 / CR7 FILES
-    </div>
-
-
-    <h2 class="section-title">
-
-        THE
-        <br>
-        RONALDO WALL
-
-    </h2>
-
-
-    <div class="wall">
-
-
-        <div class="wall-card">
-
-            <div class="big">
-                5
-            </div>
-
-            <small>
-                BALLON D'OR
-            </small>
-
-            <h3>
-                INDIVIDUAL
-                EXCELLENCE
-            </h3>
-
-        </div>
-
-
-        <div class="wall-card">
-
-            <div class="big">
-                5
-            </div>
-
-            <small>
-                CHAMPIONS LEAGUE
-            </small>
-
-            <h3>
-                EUROPEAN
-                ROYALTY
-            </h3>
-
-        </div>
-
-
-        <div class="wall-card">
-
-            <div class="big">
-                1
-            </div>
-
-            <small>
-                EURO 2016
-            </small>
-
-            <h3>
-                PORTUGAL
-                CHAMPION
-            </h3>
-
-        </div>
-
-
-        <div class="wall-card">
-
-            <div class="big">
-                ∞
-            </div>
-
-            <small>
-                GOALS
-            </small>
-
-            <h3>
-                THE
-                GOAL MACHINE
-            </h3>
-
-        </div>
-
-
-        <div class="wall-card">
-
-            <div class="big">
-                4
-            </div>
-
-            <small>
-                MAJOR EUROPEAN LEAGUES
-            </small>
-
-            <h3>
-                DIFFERENT
-                BATTLEGROUNDS
-            </h3>
-
-        </div>
-
-
-        <div class="wall-card">
-
-            <div class="big">
-                7
-            </div>
-
-            <small>
-                ICONIC NUMBER
-            </small>
-
-            <h3>
-                THE
-                BRAND
-            </h3>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     MESSI WALL
-====================================================== -->
-
-<section class="reveal">
-
-    <div class="section-label">
-        06 / MESSI FILES
-    </div>
-
-
-    <h2 class="section-title">
-
-        THE
-        <br>
-        MESSI WALL
-
-    </h2>
-
-
-    <div class="messi-wall">
-
-
-        <div class="messi-card">
-
-            <div class="number">
-                8
-            </div>
-
-            <h3>
-                BALLON D'OR
             </h3>
 
             <p>
-                INDIVIDUAL AWARDS
+                Dribbling, vision and
+                extraordinary playmaking
+                created another historic career.
             </p>
 
         </div>
 
 
-        <div class="messi-card">
+        <div class="timeline-item">
 
-            <div class="number">
-                1
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">
+                NEXT GENERATION
             </div>
 
             <h3>
-                WORLD CUP
+                MBAPPÉ
             </h3>
 
             <p>
-                ARGENTINA — 2022
+                Explosive pace and elite
+                finishing represent football's
+                next generation.
             </p>
 
         </div>
 
 
-        <div class="messi-card">
+        <div class="timeline-item">
 
-            <div class="number">
-                4
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">
+                FLAIR ERA
             </div>
 
             <h3>
-                CHAMPIONS LEAGUE
+                NEYMAR
             </h3>
 
             <p>
-                EUROPEAN TITLES
-            </p>
-
-        </div>
-
-
-        <div class="messi-card">
-
-            <div class="number">
-                2
-            </div>
-
-            <h3>
-                COPA AMÉRICA
-            </h3>
-
-            <p>
-                ARGENTINA
-            </p>
-
-        </div>
-
-
-        <div class="messi-card">
-
-            <div class="number">
-                1
-            </div>
-
-            <h3>
-                FINALISSIMA
-            </h3>
-
-            <p>
-                ARGENTINA
-            </p>
-
-        </div>
-
-
-        <div class="messi-card">
-
-            <div class="number">
-                10
-            </div>
-
-            <h3>
-                THE MAGICIAN
-            </h3>
-
-            <p>
-                CREATIVE LEGACY
+                Technique, creativity and
+                Brazilian flair created one
+                of the era's most entertaining
+                stars.
             </p>
 
         </div>
@@ -3066,13 +3098,12 @@ footer{
      VOICE AGENT
 ====================================================== -->
 
-<section id="voice" class="voice-section reveal">
+<section id="voice"
+         class="voice-section reveal">
 
 
-    <div class="section-label">
-
-        07 / CR7 VOICE AGENT
-
+    <div class="section-number">
+        06 / VOICE AGENT
     </div>
 
 
@@ -3080,26 +3111,24 @@ footer{
 
         SPEAK.
         <br>
-        I'LL HANDLE IT.
+        THE ARENA
+        <br>
+        RESPONDS.
 
     </h2>
 
 
-    <div
-        class="voice-status"
-        id="voiceStatus">
+    <div class="voice-status"
+         id="voiceStatus">
 
         TAP THE FOOTBALL TO SPEAK
 
     </div>
 
 
-    <!-- FOOTBALL MIC -->
-
-    <div
-        class="football-mic"
-        id="voiceMic"
-        title="Tap to speak">
+    <div class="football-mic"
+         id="voiceMic"
+         title="Tap to speak">
 
 
         <div class="football-pattern"></div>
@@ -3121,11 +3150,7 @@ footer{
     </div>
 
 
-    <!-- WAVEFORM -->
-
-    <div
-        class="waveform"
-        id="waveform">
+    <div class="waveform">
 
         <span></span>
         <span></span>
@@ -3138,60 +3163,58 @@ footer{
     </div>
 
 
-    <!-- COMMAND RESULT -->
-
-    <div
-        class="command-box"
-        id="commandBox">
+    <div class="command-box"
+         id="commandBox">
 
         Your voice command will appear here...
 
     </div>
 
 
-    <!-- EXAMPLES -->
-
     <div class="commands">
 
 
-        <div
-            class="command-chip"
-            data-command="Play Cristiano Ronaldo Champions League goals on YouTube">
+        <div class="command"
+             data-command="Play Ronaldo Champions League goals on YouTube">
 
-            ▶ Ronaldo YouTube
-
-        </div>
-
-
-        <div
-            class="command-chip"
-            data-command="Search Messi vs Ronaldo on YouTube">
-
-            ▶ Messi vs Ronaldo
+            ▶ RONALDO VIDEO
 
         </div>
 
 
-        <div
-            class="command-chip"
-            data-command="Open Gmail">
+        <div class="command"
+             data-command="Search Messi vs Ronaldo on YouTube">
 
-            ✉ Open Gmail
+            ▶ MESSI VS RONALDO
 
         </div>
 
 
-        <div
-            class="command-chip"
-            data-command="Search Ronaldo records on Google">
+        <div class="command"
+             data-command="Open Gmail">
 
-            🔎 Google Search
+            ✉ GMAIL
+
+        </div>
+
+
+        <div class="command"
+             data-command="Search Ronaldo records on Google">
+
+            🔎 GOOGLE
+
+        </div>
+
+
+        <div class="command"
+             data-command="Open Instagram">
+
+            ◎ INSTAGRAM
 
         </div>
 
 
     </div>
-
 
 </section>
 
@@ -3200,18 +3223,18 @@ footer{
 
 
 <!-- =====================================================
-     FINAL GOAT
+     FINAL
 ====================================================== -->
 
-<section id="goat" class="goat reveal">
+<section class="final reveal">
 
 
-    <div class="goat-circle">
+    <div class="final-ring">
 
-        <div class="goat-text">
+        <div class="final-word">
 
             <small>
-                FINAL VERDICT
+                THE FAN VERDICT
             </small>
 
             <strong>
@@ -3234,33 +3257,48 @@ footer{
 
     <p>
 
-        Talent creates moments.
+        Messi brought magic.
 
         <br>
 
-        Discipline creates careers.
+        Neymar brought flair.
 
         <br>
 
-        Ronaldo turned obsession,
-        ambition and consistency
-        into an extraordinary football legacy.
+        Pelé became the King.
+
+        <br>
+
+        Mbappé represents the future.
+
+        <br><br>
+
+        And Ronaldo?
+
+        <br>
+
+        <strong style="color:#fff;">
+            He made obsession a football identity.
+        </strong>
 
     </p>
-
 
 </section>
 
 
 <footer>
 
-    CR7 × MESSI
+    GOAT ARENA
     &nbsp; • &nbsp;
-    THE ACHIEVEMENT BATTLE
-    &nbsp; • &nbsp;
-    VOICE AGENT
-    &nbsp; • &nbsp;
-    CR7 GOAT MODE
+    RONALDO
+    &nbsp; × &nbsp;
+    MESSI
+    &nbsp; × &nbsp;
+    NEYMAR
+    &nbsp; × &nbsp;
+    PELÉ
+    &nbsp; × &nbsp;
+    MBAPPÉ
 
 </footer>
 
@@ -3268,14 +3306,14 @@ footer{
 <script>
 
 /* =========================================================
-   SCROLL REVEAL
+   SMOOTH REVEAL
 ========================================================= */
 
-const reveals =
+const revealElements =
     document.querySelectorAll(".reveal");
 
 
-const observer =
+const revealObserver =
     new IntersectionObserver(
 
         entries => {
@@ -3287,6 +3325,9 @@ const observer =
                     entry.target
                         .classList
                         .add("show");
+
+                    revealObserver
+                        .unobserve(entry.target);
 
                 }
 
@@ -3301,18 +3342,26 @@ const observer =
     );
 
 
-reveals.forEach(
+revealElements.forEach(
     element =>
-    observer.observe(element)
+    revealObserver.observe(element)
 );
 
 
 /* =========================================================
-   HERO PARALLAX
+   MOUSE PARALLAX
 ========================================================= */
 
-const heroTitle =
-    document.querySelector(".hero h1");
+const balls =
+    document.querySelectorAll(".bg-ball");
+
+
+const ambientOne =
+    document.querySelector(".ambient.one");
+
+
+const ambientTwo =
+    document.querySelector(".ambient.two");
 
 
 document.addEventListener(
@@ -3320,77 +3369,46 @@ document.addEventListener(
 
     event => {
 
-        if(window.innerWidth < 700)
-            return;
-
-
         const x =
-            (
-                event.clientX /
-                window.innerWidth -
-                .5
-            ) * 5;
+            event.clientX /
+            window.innerWidth -
+            .5;
 
 
         const y =
-            (
-                event.clientY /
-                window.innerHeight -
-                .5
-            ) * 5;
+            event.clientY /
+            window.innerHeight -
+            .5;
 
 
-        heroTitle.style.transform =
-            `translate(${x}px,${y}px)`;
+        balls.forEach(
+            (ball,index) => {
 
-    }
+                const amount =
+                    (index + 1) * 12;
 
-);
+                ball.style.transform =
+                    `translate(
+                        ${x * amount}px,
+                        ${y * amount}px
+                    )`;
 
-
-/* =========================================================
-   FLOATING BALL PARALLAX
-========================================================= */
-
-document.addEventListener(
-    "mousemove",
-
-    event => {
-
-        const x =
-            (
-                event.clientX /
-                window.innerWidth -
-                .5
-            ) * 15;
+            }
+        );
 
 
-        const y =
-            (
-                event.clientY /
-                window.innerHeight -
-                .5
-            ) * 15;
+        ambientOne.style.transform =
+            `translate(
+                ${x * 40}px,
+                ${y * 40}px
+            )`;
 
 
-        document
-            .querySelectorAll(".ball")
-            .forEach(
-                (ball,index) => {
-
-                    const multiplier =
-                        (index + 1) * .3;
-
-
-                    ball.style.marginLeft =
-                        `${x * multiplier}px`;
-
-
-                    ball.style.marginTop =
-                        `${y * multiplier}px`;
-
-                }
-            );
+        ambientTwo.style.transform =
+            `translate(
+                ${x * -30}px,
+                ${y * -30}px
+            )`;
 
     }
 
@@ -3419,12 +3437,6 @@ const commandBox =
     );
 
 
-const heroText =
-    document.getElementById(
-        "heroText"
-    );
-
-
 const SpeechRecognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
@@ -3433,19 +3445,17 @@ const SpeechRecognition =
 let recognition = null;
 
 
-/* =========================================================
-   CHECK BROWSER SUPPORT
-========================================================= */
-
 if(!SpeechRecognition){
 
     voiceStatus.innerHTML =
-        "VOICE RECOGNITION NOT SUPPORTED — USE CHROME";
+        "VOICE RECOGNITION NOT SUPPORTED — USE GOOGLE CHROME";
 
     voiceMic.style.opacity =
         ".5";
 
-}else{
+}
+
+else{
 
     recognition =
         new SpeechRecognition();
@@ -3468,7 +3478,7 @@ if(!SpeechRecognition){
 
 
     /* =====================================================
-       MIC CLICK
+       CLICK FOOTBALL
     ===================================================== */
 
     voiceMic.addEventListener(
@@ -3485,7 +3495,7 @@ if(!SpeechRecognition){
             catch(error){
 
                 console.log(
-                    "Recognition already running."
+                    "Already listening"
                 );
 
             }
@@ -3502,7 +3512,24 @@ if(!SpeechRecognition){
     recognition.onstart =
         () => {
 
-            activateVoice();
+            voiceMic.classList
+                .add("voice-active");
+
+
+            voiceStatus.classList
+                .add("active");
+
+
+            voiceStatus.innerHTML =
+                "● LISTENING — SPEAK NOW";
+
+
+            commandBox.innerHTML =
+                "I'm listening...";
+
+
+            commandBox.classList
+                .add("active");
 
         };
 
@@ -3521,25 +3548,12 @@ if(!SpeechRecognition){
                     .trim();
 
 
-            console.log(
-                "USER:",
-                transcript
-            );
-
-
             commandBox.innerHTML =
                 `🎙️ "${transcript}"`;
 
 
             commandBox.classList
                 .add("active");
-
-
-            heroText.innerHTML =
-                `You said:
-                <strong>
-                "${transcript}"
-                </strong>`;
 
 
             voiceStatus.innerHTML =
@@ -3560,7 +3574,12 @@ if(!SpeechRecognition){
     recognition.onend =
         () => {
 
-            deactivateVoice();
+            voiceMic.classList
+                .remove("voice-active");
+
+
+            voiceStatus.classList
+                .remove("active");
 
         };
 
@@ -3572,13 +3591,12 @@ if(!SpeechRecognition){
     recognition.onerror =
         event => {
 
-            console.log(
-                "VOICE ERROR:",
-                event.error
-            );
+            voiceMic.classList
+                .remove("voice-active");
 
 
-            deactivateVoice();
+            voiceStatus.classList
+                .remove("active");
 
 
             if(
@@ -3587,13 +3605,12 @@ if(!SpeechRecognition){
             ){
 
                 voiceStatus.innerHTML =
-                    "MICROPHONE PERMISSION DENIED";
+                    "MICROPHONE ACCESS DENIED";
 
                 commandBox.innerHTML =
-                    "Please allow microphone access in Chrome.";
+                    "Allow microphone permission and try again.";
 
             }
-
 
             else if(
                 event.error ===
@@ -3601,21 +3618,9 @@ if(!SpeechRecognition){
             ){
 
                 voiceStatus.innerHTML =
-                    "I COULDN'T HEAR YOU — TRY AGAIN";
+                    "I DIDN'T HEAR YOU — TRY AGAIN";
 
             }
-
-
-            else if(
-                event.error ===
-                "audio-capture"
-            ){
-
-                voiceStatus.innerHTML =
-                    "NO MICROPHONE FOUND";
-
-            }
-
 
             else{
 
@@ -3630,63 +3635,7 @@ if(!SpeechRecognition){
 
 
 /* =========================================================
-   VOICE ACTIVE
-========================================================= */
-
-function activateVoice(){
-
-    voiceMic.classList
-        .add("voice-active");
-
-
-    voiceStatus.classList
-        .add("active");
-
-
-    voiceStatus.innerHTML =
-        "🎙️ LISTENING... SPEAK NOW";
-
-
-    commandBox.innerHTML =
-        "I'm listening...";
-
-
-    commandBox.classList
-        .add("active");
-
-}
-
-
-/* =========================================================
-   VOICE DEACTIVATE
-========================================================= */
-
-function deactivateVoice(){
-
-    voiceMic.classList
-        .remove("voice-active");
-
-
-    voiceStatus.classList
-        .remove("active");
-
-
-    if(
-        voiceStatus.innerHTML
-        ===
-        "🎙️ LISTENING... SPEAK NOW"
-    ){
-
-        voiceStatus.innerHTML =
-            "TAP THE FOOTBALL TO SPEAK";
-
-    }
-
-}
-
-
-/* =========================================================
-   COMMAND PROCESSOR
+   COMMAND ENGINE
 ========================================================= */
 
 function processCommand(command){
@@ -3714,11 +3663,7 @@ function processCommand(command){
     ){
 
         let searchText =
-            command;
-
-
-        searchText =
-            searchText
+            command
                 .replace(
                     /youtube/gi,
                     ""
@@ -3750,29 +3695,33 @@ function processCommand(command){
                 .trim();
 
 
-        /* Just "Open YouTube" */
-
         if(
-
             searchText === "" ||
-
             searchText
                 .toLowerCase()
                 .includes("open")
-
         ){
 
-            window.open(
-                "https://www.youtube.com/",
-                "_blank"
+            voiceStatus.innerHTML =
+                "▶ OPENING YOUTUBE...";
+
+
+            setTimeout(
+                () => {
+
+                    window.open(
+                        "https://www.youtube.com/",
+                        "_blank"
+                    );
+
+                },
+                500
             );
 
             return;
 
         }
 
-
-        /* YouTube search */
 
         const youtubeURL =
             "https://www.youtube.com/results?search_query=" +
@@ -3782,11 +3731,10 @@ function processCommand(command){
 
 
         voiceStatus.innerHTML =
-            "▶ OPENING YOUTUBE...";
+            "▶ SEARCHING YOUTUBE...";
 
 
         setTimeout(
-
             () => {
 
                 window.open(
@@ -3795,9 +3743,7 @@ function processCommand(command){
                 );
 
             },
-
             600
-
         );
 
 
@@ -3820,17 +3766,17 @@ function processCommand(command){
 
     ){
 
-        /* Open Gmail */
-
         if(
+
+            text === "gmail" ||
 
             text.includes(
                 "open gmail"
             ) ||
 
-            text === "gmail" ||
-
-            text === "open mail"
+            text.includes(
+                "open mail"
+            )
 
         ){
 
@@ -3839,7 +3785,6 @@ function processCommand(command){
 
 
             setTimeout(
-
                 () => {
 
                     window.open(
@@ -3848,20 +3793,13 @@ function processCommand(command){
                     );
 
                 },
-
                 500
-
             );
-
 
             return;
 
         }
 
-
-        /*
-         * Find email address
-         */
 
         const emailMatch =
             command.match(
@@ -3869,24 +3807,19 @@ function processCommand(command){
             );
 
 
-        let subject = "";
-
-
-        /*
-         * Extract subject
-         */
-
         const subjectMatch =
             command.match(
                 /subject (.+?)(?: body | message | saying |$)/i
             );
 
 
+        let subject = "";
+
+
         if(subjectMatch){
 
             subject =
-                subjectMatch[1]
-                    .trim();
+                subjectMatch[1].trim();
 
         }
 
@@ -3932,10 +3865,6 @@ function processCommand(command){
                     /send an email/gi,
                     ""
                 )
-                .replace(
-                    /email/gi,
-                    ""
-                )
                 .trim();
 
 
@@ -3955,7 +3884,6 @@ function processCommand(command){
 
 
         setTimeout(
-
             () => {
 
                 window.open(
@@ -3964,9 +3892,7 @@ function processCommand(command){
                 );
 
             },
-
             600
-
         );
 
 
@@ -3993,7 +3919,7 @@ function processCommand(command){
 
     ){
 
-        let query =
+        const query =
             command
                 .replace(
                     /search google/gi,
@@ -4022,7 +3948,6 @@ function processCommand(command){
 
 
         setTimeout(
-
             () => {
 
                 window.open(
@@ -4031,9 +3956,7 @@ function processCommand(command){
                 );
 
             },
-
             600
-
         );
 
 
@@ -4051,11 +3974,10 @@ function processCommand(command){
     ){
 
         voiceStatus.innerHTML =
-            "OPENING INSTAGRAM...";
+            "◎ OPENING INSTAGRAM...";
 
 
         setTimeout(
-
             () => {
 
                 window.open(
@@ -4064,9 +3986,7 @@ function processCommand(command){
                 );
 
             },
-
             500
-
         );
 
 
@@ -4079,10 +3999,6 @@ function processCommand(command){
        FALLBACK
     ===================================================== */
 
-    /*
-     * Unknown commands are sent to YouTube.
-     */
-
     const fallbackURL =
         "https://www.youtube.com/results?search_query=" +
         encodeURIComponent(
@@ -4091,11 +4007,10 @@ function processCommand(command){
 
 
     voiceStatus.innerHTML =
-        "SEARCHING YOUTUBE...";
+        "▶ SEARCHING YOUTUBE...";
 
 
     setTimeout(
-
         () => {
 
             window.open(
@@ -4104,30 +4019,28 @@ function processCommand(command){
             );
 
         },
-
         600
-
     );
 
 }
 
 
 /* =========================================================
-   QUICK COMMAND BUTTONS
+   QUICK COMMANDS
 ========================================================= */
 
 document
-    .querySelectorAll(".command-chip")
+    .querySelectorAll(".command")
     .forEach(
-        chip => {
+        button => {
 
-            chip.addEventListener(
+            button.addEventListener(
                 "click",
 
                 () => {
 
                     const command =
-                        chip.dataset.command;
+                        button.dataset.command;
 
 
                     commandBox.innerHTML =
@@ -4136,13 +4049,6 @@ document
 
                     commandBox.classList
                         .add("active");
-
-
-                    heroText.innerHTML =
-                        `Command:
-                        <strong>
-                        "${command}"
-                        </strong>`;
 
 
                     processCommand(
@@ -4156,6 +4062,90 @@ document
         }
 
     );
+
+
+/* =========================================================
+   ACTIVE NAV HIGHLIGHT
+========================================================= */
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav-links a"
+    );
+
+
+window.addEventListener(
+    "scroll",
+
+    () => {
+
+        const scroll =
+            window.scrollY;
+
+        navLinks.forEach(
+            link => {
+
+                const target =
+                    document.querySelector(
+                        link.getAttribute("href")
+                    );
+
+                if(!target)
+                    return;
+
+                const top =
+                    target.offsetTop - 200;
+
+
+                if(
+                    scroll >= top &&
+                    scroll <
+                    top + target.offsetHeight
+                ){
+
+                    link.style.color =
+                        "#fff";
+
+                }
+
+                else{
+
+                    link.style.color =
+                        "#555";
+
+                }
+
+            }
+
+        );
+
+    }
+
+);
+
+
+/* =========================================================
+   ESCAPE COMMAND
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+
+    event => {
+
+        if(event.key === "Escape"){
+
+            try{
+
+                recognition.stop();
+
+            }catch(e){}
+
+        }
+
+    }
+
+);
 
 </script>
 
