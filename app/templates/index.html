@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +32,7 @@ body{
     color:#fff;
 
     font-family:
+        'Segoe UI',
         Arial,
         Helvetica,
         sans-serif;
@@ -302,6 +302,18 @@ body::after{
     bottom:10%;
     width:65px;
     height:65px;
+}
+
+
+/* =========================================================
+   PARTICLES CANVAS
+========================================================= */
+
+#particlesCanvas{
+    position:fixed;
+    inset:0;
+    z-index:-4;
+    pointer-events:none;
 }
 
 
@@ -651,7 +663,7 @@ section{
 
 
 /* =========================================================
-   PLAYER ARENA
+   PLAYER ARENA — WITH IMAGES
 ========================================================= */
 
 .player-arena{
@@ -667,7 +679,7 @@ section{
 
 .player-card{
 
-    min-height:430px;
+    min-height:500px;
 
     position:relative;
 
@@ -822,7 +834,66 @@ section{
 
 
 /* =========================================================
-   LEGENDS MINI GRID
+   PLAYER IMAGE OVERLAY
+========================================================= */
+
+.player-img{
+
+    position:absolute;
+    right:0;
+    bottom:0;
+
+    height:90%;
+    width:auto;
+
+    object-fit:contain;
+    object-position:bottom right;
+
+    opacity:.15;
+
+    filter:
+        grayscale(1)
+        contrast(1.2);
+
+    z-index:1;
+
+    transition:
+        opacity .6s,
+        filter .6s;
+
+    pointer-events:none;
+
+}
+
+.player-card:hover .player-img{
+
+    opacity:.3;
+
+    filter:
+        grayscale(.4)
+        contrast(1.3);
+
+}
+
+.cr7 .player-img{
+
+    opacity:.25;
+
+}
+
+.cr7:hover .player-img{
+
+    opacity:.45;
+
+    filter:
+        grayscale(0)
+        contrast(1.1);
+
+}
+
+
+/* =========================================================
+   LEGENDS MINI GRID — WITH IMAGES
 ========================================================= */
 
 .legend-grid{
@@ -840,7 +911,7 @@ section{
 
 .legend{
 
-    min-height:205px;
+    min-height:280px;
 
     padding:30px;
 
@@ -885,9 +956,11 @@ section{
 
     position:absolute;
 
-    bottom:45px;
+    bottom:55px;
 
     font-size:25px;
+
+    z-index:3;
 
 }
 
@@ -895,13 +968,53 @@ section{
 
     position:absolute;
 
-    bottom:22px;
+    bottom:30px;
 
     font-size:8px;
 
     color:#555;
 
     letter-spacing:2px;
+
+    z-index:3;
+
+}
+
+.legend-img{
+
+    position:absolute;
+    right:0;
+    bottom:0;
+
+    height:85%;
+    width:auto;
+
+    object-fit:contain;
+    object-position:bottom right;
+
+    opacity:.12;
+
+    filter:
+        grayscale(1)
+        contrast(1.2);
+
+    z-index:1;
+
+    transition:
+        opacity .5s,
+        filter .5s;
+
+    pointer-events:none;
+
+}
+
+.legend:hover .legend-img{
+
+    opacity:.25;
+
+    filter:
+        grayscale(.3)
+        contrast(1.2);
 
 }
 
@@ -1032,6 +1145,100 @@ section{
 
     color:#fff;
 
+}
+
+
+/* =========================================================
+   CR7 STAT BARS
+========================================================= */
+
+.stat-bars{
+    margin-top:20px;
+}
+
+.stat-bar-row{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.stat-bar-label{
+    font-size:9px;
+    letter-spacing:2px;
+    color:#777;
+    min-width:130px;
+    text-align:right;
+}
+
+.stat-bar-track{
+    flex:1;
+    height:6px;
+    background:#191919;
+    border-radius:3px;
+    overflow:hidden;
+    position:relative;
+}
+
+.stat-bar-fill{
+    height:100%;
+    border-radius:3px;
+    width:0;
+    transition:
+        width 1.8s cubic-bezier(.16,1,.3,1);
+}
+
+.stat-bar-fill.cr7-bar{
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #aaa
+        );
+}
+
+.stat-bar-fill.messi-bar{
+    background:
+        linear-gradient(
+            90deg,
+            #555,
+            #333
+        );
+}
+
+.stat-bar-value{
+    font-size:18px;
+    font-weight:1000;
+    min-width:55px;
+}
+
+.stat-bar-value.cr7-val{
+    color:#fff;
+}
+
+.stat-bar-value.messi-val{
+    color:#555;
+}
+
+.stat-comparison-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+    padding:0 10px;
+}
+
+.stat-player-label{
+    font-size:10px;
+    letter-spacing:4px;
+    font-weight:bold;
+}
+
+.stat-player-label.cr7-label{
+    color:#fff;
+}
+
+.stat-player-label.messi-label{
+    color:#555;
 }
 
 
@@ -1282,6 +1489,75 @@ section{
 
     line-height:2;
 
+}
+
+
+/* =========================================================
+   CR7 COUNTER STATS
+========================================================= */
+
+.counter-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-top:60px;
+}
+
+.counter-card{
+    text-align:center;
+    padding:40px 20px;
+    border:1px solid #222;
+    background:#080808;
+    position:relative;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.counter-card:hover{
+    border-color:#555;
+    transform:translateY(-6px);
+}
+
+.counter-card::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #fff,
+            transparent
+        );
+    opacity:0;
+    transition:.4s;
+}
+
+.counter-card:hover::after{
+    opacity:1;
+}
+
+.counter-value{
+    font-size:52px;
+    font-weight:1000;
+    letter-spacing:-3px;
+    line-height:1;
+}
+
+.counter-label{
+    margin-top:15px;
+    font-size:8px;
+    letter-spacing:3px;
+    color:#555;
+}
+
+.counter-sub{
+    margin-top:8px;
+    font-size:10px;
+    color:#333;
 }
 
 
@@ -1985,6 +2261,73 @@ section{
 
 
 /* =========================================================
+   VIDEO PLAYER MODAL
+========================================================= */
+
+.video-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.92);
+    backdrop-filter:blur(20px);
+    z-index:10000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+}
+
+.video-overlay.show{
+    display:flex;
+}
+
+.video-close{
+    position:absolute;
+    top:30px;
+    right:40px;
+    font-size:28px;
+    color:#555;
+    cursor:pointer;
+    z-index:10001;
+    width:50px;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #333;
+    border-radius:50%;
+    transition:.3s;
+    background:transparent;
+    font-family:inherit;
+}
+
+.video-close:hover{
+    color:#fff;
+    border-color:#fff;
+}
+
+.video-title{
+    font-size:9px;
+    letter-spacing:5px;
+    color:#555;
+    margin-bottom:25px;
+}
+
+.video-container{
+    width:min(960px,90vw);
+    aspect-ratio:16/9;
+    background:#000;
+    border:1px solid #333;
+    position:relative;
+}
+
+.video-container iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+
+/* =========================================================
    GOAT FINALE
 ========================================================= */
 
@@ -2271,6 +2614,10 @@ footer{
         font-size:20px;
     }
 
+    .counter-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
 }
 
 @media(max-width:550px){
@@ -2308,6 +2655,10 @@ footer{
         right:auto !important;
     }
 
+    .counter-grid{
+        grid-template-columns:1fr;
+    }
+
 }
 
 </style>
@@ -2316,6 +2667,13 @@ footer{
 
 
 <body>
+
+
+<!-- =====================================================
+     PARTICLES CANVAS
+====================================================== -->
+
+<canvas id="particlesCanvas"></canvas>
 
 
 <!-- =====================================================
@@ -2334,6 +2692,35 @@ footer{
 <div class="bg-ball b2"></div>
 <div class="bg-ball b3"></div>
 <div class="bg-ball b4"></div>
+
+
+<!-- =====================================================
+     VIDEO PLAYER MODAL
+====================================================== -->
+
+<div class="video-overlay"
+     id="videoOverlay">
+
+    <button class="video-close"
+            id="videoClose">
+        ✕
+    </button>
+
+    <div class="video-title">
+        ⚽ FOOTBALL HIGHLIGHTS — NOW PLAYING
+    </div>
+
+    <div class="video-container">
+
+        <iframe id="videoFrame"
+                src=""
+                allow="autoplay; encrypted-media"
+                allowfullscreen>
+        </iframe>
+
+    </div>
+
+</div>
 
 
 <!-- =====================================================
@@ -2480,6 +2867,11 @@ footer{
                 07
             </div>
 
+            <img class="player-img"
+                 src="https://i.imgur.com/bNFZVCF.png"
+                 alt="Cristiano Ronaldo"
+                 loading="lazy"
+                 onerror="this.style.display='none'">
 
             <h3>
                 CRISTIANO
@@ -2506,6 +2898,11 @@ footer{
                 10
             </div>
 
+            <img class="player-img"
+                 src="https://i.imgur.com/FsxEHEm.png"
+                 alt="Lionel Messi"
+                 loading="lazy"
+                 onerror="this.style.display='none'">
 
             <h3>
                 LIONEL
@@ -2537,6 +2934,12 @@ footer{
                 11
             </div>
 
+            <img class="legend-img"
+                 src="https://i.imgur.com/WQKQhJh.png"
+                 alt="Neymar Jr"
+                 loading="lazy"
+                 onerror="this.style.display='none'">
+
             <h3>
                 NEYMAR
             </h3>
@@ -2554,6 +2957,12 @@ footer{
                 10
             </div>
 
+            <img class="legend-img"
+                 src="https://i.imgur.com/bFqz5qs.png"
+                 alt="Pelé"
+                 loading="lazy"
+                 onerror="this.style.display='none'">
+
             <h3>
                 PELÉ
             </h3>
@@ -2570,6 +2979,12 @@ footer{
             <div class="legend-number">
                 09
             </div>
+
+            <img class="legend-img"
+                 src="https://i.imgur.com/5nwBxPP.png"
+                 alt="Mbappé"
+                 loading="lazy"
+                 onerror="this.style.display='none'">
 
             <h3>
                 MBAPPÉ
@@ -2641,12 +3056,13 @@ footer{
             </div>
 
             <h4>
-                CHAMPIONS LEAGUE GOALS
+                140+ UCL GOALS
             </h4>
 
             <p>
                 The all-time Champions League
                 scoring record belongs to CR7.
+                Nobody even comes close.
             </p>
 
         </div>
@@ -2659,13 +3075,13 @@ footer{
             </div>
 
             <h4>
-                EURO 2016
+                EURO 2016 + NATIONS LEAGUE
             </h4>
 
             <p>
                 Ronaldo captained Portugal
-                to their first major European
-                international title.
+                to TWO major international
+                trophies.
             </p>
 
         </div>
@@ -2683,7 +3099,8 @@ footer{
 
             <p>
                 Five individual Ballon d'Or
-                victories across his career.
+                victories. Three different
+                leagues dominated.
             </p>
 
         </div>
@@ -2770,13 +3187,119 @@ footer{
 
 
 <!-- =====================================================
-     RECORD BATTLE
+     CR7 vs MESSI STAT BARS
+====================================================== -->
+
+<section id="records" class="reveal">
+
+    <div class="section-number">
+        03 / HEAD TO HEAD
+    </div>
+
+    <h2 class="section-title">
+
+        CR7
+        <br>
+        DOMINATES
+
+    </h2>
+
+    <div class="stat-comparison-header">
+        <div class="stat-player-label cr7-label">CR7</div>
+        <div class="stat-player-label messi-label">LM10</div>
+    </div>
+
+
+    <div class="stat-bars" id="statBars">
+
+        <div class="stat-bar-row">
+            <div class="stat-bar-value cr7-val" data-target="901">0</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill cr7-bar" data-width="95"></div>
+            </div>
+            <div class="stat-bar-label">CAREER GOALS</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill messi-bar" data-width="88"></div>
+            </div>
+            <div class="stat-bar-value messi-val" data-target="838">0</div>
+        </div>
+
+        <div class="stat-bar-row">
+            <div class="stat-bar-value cr7-val" data-target="5">0</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill cr7-bar" data-width="100"></div>
+            </div>
+            <div class="stat-bar-label">UCL TITLES</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill messi-bar" data-width="80"></div>
+            </div>
+            <div class="stat-bar-value messi-val" data-target="4">0</div>
+        </div>
+
+        <div class="stat-bar-row">
+            <div class="stat-bar-value cr7-val" data-target="140">0</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill cr7-bar" data-width="100"></div>
+            </div>
+            <div class="stat-bar-label">UCL GOALS</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill messi-bar" data-width="73"></div>
+            </div>
+            <div class="stat-bar-value messi-val" data-target="129">0</div>
+        </div>
+
+        <div class="stat-bar-row">
+            <div class="stat-bar-value cr7-val" data-target="135">0</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill cr7-bar" data-width="100"></div>
+            </div>
+            <div class="stat-bar-label">INT'L GOALS</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill messi-bar" data-width="76"></div>
+            </div>
+            <div class="stat-bar-value messi-val" data-target="109">0</div>
+        </div>
+
+        <div class="stat-bar-row">
+            <div class="stat-bar-value cr7-val" data-target="5">0</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill cr7-bar" data-width="63"></div>
+            </div>
+            <div class="stat-bar-label">BALLON D'OR</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill messi-bar" data-width="100"></div>
+            </div>
+            <div class="stat-bar-value messi-val" data-target="8">0</div>
+        </div>
+
+        <div class="stat-bar-row">
+            <div class="stat-bar-value cr7-val" data-target="4">0</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill cr7-bar" data-width="100"></div>
+            </div>
+            <div class="stat-bar-label">LEAGUES WON</div>
+            <div class="stat-bar-track">
+                <div class="stat-bar-fill messi-bar" data-width="50"></div>
+            </div>
+            <div class="stat-bar-value messi-val" data-target="2">0</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- =====================================================
+     RECORD BATTLE TABLE
 ====================================================== -->
 
 <section class="reveal">
 
     <div class="section-number">
-        03 / RECORD BATTLE
+        04 / RECORD BATTLE
     </div>
 
 
@@ -2829,6 +3352,40 @@ footer{
         <div class="record-row">
 
             <div class="record-title">
+                UCL goals (all-time)
+            </div>
+
+            <div class="record-value record-cr7 record-win">
+                140+
+            </div>
+
+            <div class="record-value record-messi">
+                129
+            </div>
+
+        </div>
+
+
+        <div class="record-row">
+
+            <div class="record-title">
+                International goals
+            </div>
+
+            <div class="record-value record-cr7 record-win">
+                135
+            </div>
+
+            <div class="record-value record-messi">
+                109
+            </div>
+
+        </div>
+
+
+        <div class="record-row">
+
+            <div class="record-title">
                 Ballon d'Or
             </div>
 
@@ -2838,23 +3395,6 @@ footer{
 
             <div class="record-value record-messi">
                 8
-            </div>
-
-        </div>
-
-
-        <div class="record-row">
-
-            <div class="record-title">
-                FIFA World Cup
-            </div>
-
-            <div class="record-value record-messi">
-                —
-            </div>
-
-            <div class="record-value record-messi">
-                1
             </div>
 
         </div>
@@ -2880,15 +3420,32 @@ footer{
         <div class="record-row">
 
             <div class="record-title">
-                International longevity
+                Leagues won (different countries)
             </div>
 
             <div class="record-value record-cr7 record-win">
-                ★
+                4
             </div>
 
             <div class="record-value record-messi">
-                ★
+                2
+            </div>
+
+        </div>
+
+
+        <div class="record-row">
+
+            <div class="record-title">
+                Hat-tricks (career)
+            </div>
+
+            <div class="record-value record-cr7 record-win">
+                65+
+            </div>
+
+            <div class="record-value record-messi">
+                57
             </div>
 
         </div>
@@ -2909,7 +3466,7 @@ footer{
 <section class="dominance reveal">
 
     <div class="section-number">
-        04 / CR7 MODE
+        05 / CR7 MODE
     </div>
 
 
@@ -2930,6 +3487,36 @@ footer{
 
         <div class="dominance-word">
             THE MACHINE
+        </div>
+
+    </div>
+
+
+    <!-- CR7 Counter Stats -->
+    <div class="counter-grid reveal">
+
+        <div class="counter-card">
+            <div class="counter-value" data-count="901">0</div>
+            <div class="counter-label">CAREER GOALS</div>
+            <div class="counter-sub">All-time top scorer</div>
+        </div>
+
+        <div class="counter-card">
+            <div class="counter-value" data-count="140">0</div>
+            <div class="counter-label">UCL GOALS</div>
+            <div class="counter-sub">All-time record</div>
+        </div>
+
+        <div class="counter-card">
+            <div class="counter-value" data-count="135">0</div>
+            <div class="counter-label">INT'L GOALS</div>
+            <div class="counter-sub">All-time record</div>
+        </div>
+
+        <div class="counter-card">
+            <div class="counter-value" data-count="35">0</div>
+            <div class="counter-label">TROPHIES</div>
+            <div class="counter-sub">Silverware machine</div>
         </div>
 
     </div>
@@ -2964,7 +3551,7 @@ footer{
 <section id="legends" class="reveal">
 
     <div class="section-number">
-        05 / LEGACY TIMELINE
+        06 / LEGACY TIMELINE
     </div>
 
 
@@ -2995,7 +3582,7 @@ footer{
             <p>
                 The global icon who helped
                 define football's worldwide
-                identity.
+                identity. Three World Cups.
             </p>
 
         </div>
@@ -3017,6 +3604,7 @@ footer{
                 Athleticism, mentality,
                 goals and longevity turned
                 CR7 into a global phenomenon.
+                900+ career goals.
             </p>
 
         </div>
@@ -3048,27 +3636,6 @@ footer{
             <div class="timeline-dot"></div>
 
             <div class="timeline-year">
-                NEXT GENERATION
-            </div>
-
-            <h3>
-                MBAPPÉ
-            </h3>
-
-            <p>
-                Explosive pace and elite
-                finishing represent football's
-                next generation.
-            </p>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-year">
                 FLAIR ERA
             </div>
 
@@ -3086,6 +3653,27 @@ footer{
         </div>
 
 
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">
+                NEXT GENERATION
+            </div>
+
+            <h3>
+                MBAPPÉ
+            </h3>
+
+            <p>
+                Explosive pace and elite
+                finishing represent football's
+                next generation.
+            </p>
+
+        </div>
+
+
     </div>
 
 </section>
@@ -3095,7 +3683,7 @@ footer{
 
 
 <!-- =====================================================
-     VOICE AGENT
+     VOICE AGENT — FOOTBALL HIGHLIGHTS
 ====================================================== -->
 
 <section id="voice"
@@ -3103,19 +3691,22 @@ footer{
 
 
     <div class="section-number">
-        06 / VOICE AGENT
+        07 / VOICE AGENT
     </div>
 
 
     <h2 class="section-title">
 
-        SPEAK.
+        ⚽ FOOTBALL
         <br>
-        THE ARENA
-        <br>
-        RESPONDS.
+        HIGHLIGHTS
 
     </h2>
+
+    <p style="color:#555;font-size:10px;letter-spacing:2px;margin-bottom:40px;max-width:500px;">
+        TAP THE FOOTBALL MIC & SAY ANYTHING —
+        IT PLAYS ANY VIDEO ON YOUTUBE
+    </p>
 
 
     <div class="voice-status"
@@ -3166,7 +3757,8 @@ footer{
     <div class="command-box"
          id="commandBox">
 
-        Your voice command will appear here...
+        Say anything — "play Ronaldo goals", "play Drake",
+        "play lofi beats"... it all works!
 
     </div>
 
@@ -3175,18 +3767,37 @@ footer{
 
 
         <div class="command"
-             data-command="Play Ronaldo Champions League goals on YouTube">
+             data-command="Play Ronaldo Champions League goals">
 
-            ▶ RONALDO VIDEO
-
+            ▶ CR7 HIGHLIGHTS
         </div>
 
 
         <div class="command"
-             data-command="Search Messi vs Ronaldo on YouTube">
+             data-command="Play Messi World Cup 2022 goals">
 
-            ▶ MESSI VS RONALDO
+            ▶ MESSI HIGHLIGHTS
+        </div>
 
+
+        <div class="command"
+             data-command="Play Neymar best skills and goals">
+
+            ▶ NEYMAR SKILLS
+        </div>
+
+
+        <div class="command"
+             data-command="Play Pele greatest goals ever">
+
+            ▶ PELÉ GREATEST
+        </div>
+
+
+        <div class="command"
+             data-command="Play football highlights 2024">
+
+            ▶ FOOTBALL MIX
         </div>
 
 
@@ -3194,7 +3805,6 @@ footer{
              data-command="Open Gmail">
 
             ✉ GMAIL
-
         </div>
 
 
@@ -3202,7 +3812,6 @@ footer{
              data-command="Search Ronaldo records on Google">
 
             🔎 GOOGLE
-
         </div>
 
 
@@ -3210,7 +3819,6 @@ footer{
              data-command="Open Instagram">
 
             ◎ INSTAGRAM
-
         </div>
 
 
@@ -3306,6 +3914,128 @@ footer{
 <script>
 
 /* =========================================================
+   PARTICLES
+========================================================= */
+
+(function(){
+
+    const canvas =
+        document.getElementById(
+            "particlesCanvas"
+        );
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    function resize(){
+
+        canvas.width =
+            window.innerWidth;
+
+        canvas.height =
+            window.innerHeight;
+
+    }
+
+    resize();
+
+    window.addEventListener(
+        "resize",
+        resize
+    );
+
+
+    const dots = [];
+
+    const COUNT = 60;
+
+
+    for(let i = 0; i < COUNT; i++){
+
+        dots.push({
+
+            x:
+                Math.random() *
+                canvas.width,
+
+            y:
+                Math.random() *
+                canvas.height,
+
+            r:
+                Math.random() * 1.5 + .3,
+
+            dx:
+                (Math.random() - .5) * .3,
+
+            dy:
+                (Math.random() - .5) * .3,
+
+            o:
+                Math.random() * .3 + .05
+
+        });
+
+    }
+
+
+    function draw(){
+
+        ctx.clearRect(
+            0, 0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        dots.forEach(d => {
+
+            d.x += d.dx;
+            d.y += d.dy;
+
+
+            if(d.x < 0)
+                d.x = canvas.width;
+
+            if(d.x > canvas.width)
+                d.x = 0;
+
+            if(d.y < 0)
+                d.y = canvas.height;
+
+            if(d.y > canvas.height)
+                d.y = 0;
+
+
+            ctx.beginPath();
+
+            ctx.arc(
+                d.x,
+                d.y,
+                d.r,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle =
+                `rgba(255,255,255,${d.o})`;
+
+            ctx.fill();
+
+        });
+
+
+        requestAnimationFrame(draw);
+
+    }
+
+    draw();
+
+})();
+
+
+/* =========================================================
    SMOOTH REVEAL
 ========================================================= */
 
@@ -3346,6 +4076,208 @@ revealElements.forEach(
     element =>
     revealObserver.observe(element)
 );
+
+
+/* =========================================================
+   ANIMATED COUNTERS
+========================================================= */
+
+function animateCounters(){
+
+    document
+        .querySelectorAll(".counter-value")
+        .forEach(el => {
+
+            const target =
+                parseInt(
+                    el.dataset.count,
+                    10
+                );
+
+            if(el.dataset.done)
+                return;
+
+
+            const duration = 2000;
+
+            const step =
+                target / (duration / 16);
+
+            let current = 0;
+
+
+            function tick(){
+
+                current += step;
+
+                if(current >= target){
+
+                    el.textContent =
+                        target.toLocaleString();
+
+                    el.dataset.done =
+                        "true";
+
+                    return;
+
+                }
+
+                el.textContent =
+                    Math.floor(current)
+                        .toLocaleString();
+
+                requestAnimationFrame(tick);
+
+            }
+
+            tick();
+
+        });
+
+}
+
+
+const counterObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting){
+
+                    animateCounters();
+
+                    counterObserver
+                        .unobserve(
+                            entry.target
+                        );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:.3
+        }
+
+    );
+
+
+document
+    .querySelectorAll(".counter-grid")
+    .forEach(
+        el =>
+        counterObserver.observe(el)
+    );
+
+
+/* =========================================================
+   ANIMATED STAT BARS
+========================================================= */
+
+function animateStatBars(){
+
+    document
+        .querySelectorAll(".stat-bar-fill")
+        .forEach(bar => {
+
+            const w =
+                bar.dataset.width;
+
+            bar.style.width =
+                w + "%";
+
+        });
+
+
+    document
+        .querySelectorAll(
+            ".stat-bar-value[data-target]"
+        )
+        .forEach(el => {
+
+            const target =
+                parseInt(
+                    el.dataset.target,
+                    10
+                );
+
+            if(el.dataset.done)
+                return;
+
+            const duration = 1800;
+            const step = target / (duration / 16);
+            let current = 0;
+
+
+            function tick(){
+
+                current += step;
+
+                if(current >= target){
+
+                    el.textContent = target;
+
+                    el.dataset.done = "true";
+
+                    return;
+
+                }
+
+                el.textContent =
+                    Math.floor(current);
+
+                requestAnimationFrame(tick);
+
+            }
+
+            tick();
+
+        });
+
+}
+
+
+const statObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting){
+
+                    animateStatBars();
+
+                    statObserver
+                        .unobserve(
+                            entry.target
+                        );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:.2
+        }
+
+    );
+
+
+const statSection =
+    document.getElementById("statBars");
+
+if(statSection){
+
+    statObserver.observe(statSection);
+
+}
 
 
 /* =========================================================
@@ -3413,6 +4345,181 @@ document.addEventListener(
     }
 
 );
+
+
+/* =========================================================
+   VIDEO PLAYER
+========================================================= */
+
+const videoOverlay =
+    document.getElementById(
+        "videoOverlay"
+    );
+
+
+const videoFrame =
+    document.getElementById(
+        "videoFrame"
+    );
+
+
+const videoClose =
+    document.getElementById(
+        "videoClose"
+    );
+
+
+function openVideoPlayer(embedURL){
+
+    videoFrame.src = embedURL;
+
+    videoOverlay.classList
+        .add("show");
+
+}
+
+
+function closeVideoPlayer(){
+
+    videoOverlay.classList
+        .remove("show");
+
+    videoFrame.src = "";
+
+}
+
+
+videoClose.addEventListener(
+    "click",
+    closeVideoPlayer
+);
+
+
+videoOverlay.addEventListener(
+    "click",
+
+    event => {
+
+        if(
+            event.target ===
+            videoOverlay
+        ){
+            closeVideoPlayer();
+        }
+
+    }
+
+);
+
+
+document.addEventListener(
+    "keydown",
+
+    event => {
+
+        if(
+            event.key === "Escape" &&
+            videoOverlay.classList
+                .contains("show")
+        ){
+
+            closeVideoPlayer();
+
+        }
+
+    }
+
+);
+
+
+/* =========================================================
+   YOUTUBE SEARCH → EMBED
+========================================================= */
+
+async function searchAndPlay(query){
+
+    voiceStatus.innerHTML =
+        "⚽ SEARCHING YOUTUBE...";
+
+
+    commandBox.innerHTML =
+        `🎙️ "${query}"`;
+
+    commandBox.classList
+        .add("active");
+
+
+    try{
+
+        const response =
+            await fetch(
+                "/youtube/play",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        command: query
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(data.success && data.url){
+
+            voiceStatus.innerHTML =
+                "▶ NOW PLAYING — FOOTBALL HIGHLIGHTS";
+
+            openVideoPlayer(data.url);
+
+            return;
+
+        }
+
+    }
+
+    catch(err){
+
+        console.log(
+            "Backend unavailable, falling back",
+            err
+        );
+
+    }
+
+
+    /* Fallback: open YouTube search */
+
+    const searchURL =
+        "https://www.youtube.com/results?search_query=" +
+        encodeURIComponent(query);
+
+
+    voiceStatus.innerHTML =
+        "▶ OPENING YOUTUBE...";
+
+
+    setTimeout(
+        () => {
+
+            window.open(
+                searchURL,
+                "_blank"
+            );
+
+        },
+        600
+    );
+
+}
 
 
 /* =========================================================
@@ -3644,112 +4751,6 @@ function processCommand(command){
         command
             .toLowerCase()
             .trim();
-
-
-    /* =====================================================
-       YOUTUBE
-    ===================================================== */
-
-    if(
-
-        text.includes("youtube") ||
-
-        text.includes("play") ||
-
-        text.includes("video") ||
-
-        text.includes("watch")
-
-    ){
-
-        let searchText =
-            command
-                .replace(
-                    /youtube/gi,
-                    ""
-                )
-                .replace(
-                    /search for/gi,
-                    ""
-                )
-                .replace(
-                    /search/gi,
-                    ""
-                )
-                .replace(
-                    /play/gi,
-                    ""
-                )
-                .replace(
-                    /watch/gi,
-                    ""
-                )
-                .replace(
-                    /find/gi,
-                    ""
-                )
-                .replace(
-                    /on/gi,
-                    ""
-                )
-                .trim();
-
-
-        if(
-            searchText === "" ||
-            searchText
-                .toLowerCase()
-                .includes("open")
-        ){
-
-            voiceStatus.innerHTML =
-                "▶ OPENING YOUTUBE...";
-
-
-            setTimeout(
-                () => {
-
-                    window.open(
-                        "https://www.youtube.com/",
-                        "_blank"
-                    );
-
-                },
-                500
-            );
-
-            return;
-
-        }
-
-
-        const youtubeURL =
-            "https://www.youtube.com/results?search_query=" +
-            encodeURIComponent(
-                searchText
-            );
-
-
-        voiceStatus.innerHTML =
-            "▶ SEARCHING YOUTUBE...";
-
-
-        setTimeout(
-            () => {
-
-                window.open(
-                    youtubeURL,
-                    "_blank"
-                );
-
-            },
-            600
-        );
-
-
-        return;
-
-    }
 
 
     /* =====================================================
@@ -3996,31 +4997,11 @@ function processCommand(command){
 
 
     /* =====================================================
-       FALLBACK
+       EVERYTHING ELSE → YOUTUBE VIDEO PLAYER
+       (Says "Football Highlights" but plays anything)
     ===================================================== */
 
-    const fallbackURL =
-        "https://www.youtube.com/results?search_query=" +
-        encodeURIComponent(
-            command
-        );
-
-
-    voiceStatus.innerHTML =
-        "▶ SEARCHING YOUTUBE...";
-
-
-    setTimeout(
-        () => {
-
-            window.open(
-                fallbackURL,
-                "_blank"
-            );
-
-        },
-        600
-    );
+    searchAndPlay(command);
 
 }
 
@@ -4137,7 +5118,8 @@ document.addEventListener(
 
             try{
 
-                recognition.stop();
+                if(recognition)
+                    recognition.stop();
 
             }catch(e){}
 
@@ -4152,4 +5134,3 @@ document.addEventListener(
 </body>
 
 </html>
-```
