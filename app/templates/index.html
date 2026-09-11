@@ -3,686 +3,161 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+>
 
-    <title>CR7 GOAT AI</title>
+<title>Nova AI</title>
 
 
-    <style>
+<style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+body{
 
+    margin:0;
 
-        body {
+    height:100vh;
 
-            min-height: 100vh;
+    display:grid;
 
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+    place-items:center;
 
-            background:
-                radial-gradient(
-                    circle at 50% 20%,
-                    #fffdf5 0%,
-                    #ffffff 45%,
-                    #eeeeee 100%
-                );
+    background:#111;
 
-            color: #111;
+    color:white;
 
-            overflow-x: hidden;
-        }
+    font-family:Arial;
+}
 
 
-        /* =========================
-           MAIN CONTAINER
-        ========================= */
+.card{
 
-        .container {
+    width:400px;
 
-            min-height: 100vh;
+    padding:25px;
 
-            display: flex;
+    text-align:center;
 
-            flex-direction: column;
+    background:#222;
 
-            align-items: center;
+    border:1px solid #444;
 
-            padding-top: 45px;
+    border-radius:10px;
+}
 
-            position: relative;
-        }
 
+.mic{
 
-        /* =========================
-           TOP LINE
-        ========================= */
+    width:75px;
 
-        .top-line {
+    height:75px;
 
-            width: 90px;
+    border:0;
 
-            height: 3px;
+    border-radius:50%;
 
-            background: #d7a51e;
+    font-size:30px;
 
-            border-radius: 10px;
+    cursor:pointer;
 
-            margin-bottom: 15px;
-        }
+    background:#eee;
+}
 
 
-        /* =========================
-           LOGO
-        ========================= */
+.mic.listening{
 
-        .logo {
+    background:#aaa;
+}
 
-            font-size: 72px;
 
-            font-weight: 900;
+.status{
 
-            letter-spacing: -4px;
+    margin:15px;
 
-            line-height: 1;
-        }
+    color:#aaa;
+}
 
 
-        .cr7 {
+.command{
 
-            color: #111;
-        }
+    margin:10px;
 
+    color:#ccc;
+}
 
-        .goat-ai {
 
-            color: #d63227;
+.editor{
 
-            margin-left: 12px;
-        }
+    display:none;
 
+    margin-top:20px;
 
-        /* =========================
-           TAGLINE
-        ========================= */
+    text-align:left;
+}
 
-        .tagline {
 
-            margin-top: 22px;
+.recipient{
 
-            font-size: 18px;
+    color:#aaa;
 
-            color: #666;
+    font-size:13px;
+}
 
-            text-align: center;
 
-            letter-spacing: 0.5px;
-        }
+input,
+textarea{
 
+    width:100%;
 
-        /* =========================
-           SONG BOX
-        ========================= */
+    margin:6px 0;
 
-        .song-box {
+    padding:10px;
 
-            width: min(850px, 86vw);
+    box-sizing:border-box;
 
-            min-height: 85px;
+    background:#111;
 
-            margin-top: 55px;
+    color:white;
 
-            background: white;
+    border:1px solid #444;
 
-            border-radius: 25px;
+    border-radius:5px;
+}
 
-            border: 1px solid #eeeeee;
 
-            box-shadow:
-                0 12px 35px
-                rgba(0,0,0,0.08);
+textarea{
 
-            display: flex;
+    height:130px;
 
-            align-items: center;
+    resize:vertical;
+}
 
-            justify-content: center;
 
-            padding: 20px 30px;
+button.action{
 
-            transition: 0.3s;
-        }
+    padding:10px 14px;
 
+    margin-top:5px;
 
-        .song-text {
+    border:0;
 
-            font-size: 22px;
+    border-radius:5px;
 
-            color: #222;
+    cursor:pointer;
+}
 
-            text-align: center;
 
-            word-break: break-word;
-        }
+.primary{
 
+    background:#666;
 
-        .placeholder {
+    color:white;
+}
 
-            color: #888;
-        }
-
-
-        /* =========================
-           MIC AREA
-        ========================= */
-
-        .mic-area {
-
-            margin-top: 55px;
-
-            width: 280px;
-
-            height: 280px;
-
-            position: relative;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-        }
-
-
-        /* Glow */
-
-        .mic-glow {
-
-            position: absolute;
-
-            width: 240px;
-
-            height: 240px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(215,165,30,0.16);
-
-            filter: blur(35px);
-
-            transition: 0.3s;
-        }
-
-
-        /* =========================
-           MAIN MIC BUTTON
-        ========================= */
-
-        .mic-button {
-
-            width: 245px;
-
-            height: 245px;
-
-            border-radius: 50%;
-
-            border: 7px solid #d7a51e;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #ffffff,
-                    #f4f4f4
-                );
-
-            cursor: pointer;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            position: relative;
-
-            box-shadow:
-
-                0 10px 25px
-                rgba(0,0,0,0.12),
-
-                0 0 0 10px
-                rgba(215,165,30,0.08),
-
-                0 0 40px
-                rgba(215,165,30,0.25);
-
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
-        }
-
-
-        .mic-button:hover {
-
-            transform: scale(1.05);
-
-            box-shadow:
-
-                0 15px 30px
-                rgba(0,0,0,0.15),
-
-                0 0 0 15px
-                rgba(215,165,30,0.10),
-
-                0 0 65px
-                rgba(215,165,30,0.4);
-        }
-
-
-        .mic-button:active {
-
-            transform: scale(0.94);
-        }
-
-
-        /* =========================
-           FOOTBALL
-        ========================= */
-
-        .football {
-
-            width: 125px;
-
-            height: 125px;
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle at 35% 30%,
-                    #ffffff,
-                    #e8e8e8
-                );
-
-            border: 4px solid #151515;
-
-            position: relative;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            box-shadow:
-                0 5px 12px
-                rgba(0,0,0,0.18);
-
-            overflow: hidden;
-        }
-
-
-        /* Football black center */
-
-        .football-center {
-
-            position: absolute;
-
-            width: 34px;
-
-            height: 34px;
-
-            background: #151515;
-
-            clip-path:
-                polygon(
-                    50% 0%,
-                    100% 35%,
-                    82% 100%,
-                    18% 100%,
-                    0% 35%
-                );
-
-            z-index: 1;
-        }
-
-
-        /* Football pattern */
-
-        .football-line {
-
-            position: absolute;
-
-            width: 150px;
-
-            height: 150px;
-
-            border: 3px solid #222;
-
-            border-radius: 50%;
-
-            opacity: 0.65;
-        }
-
-
-        .line-one {
-
-            transform: rotate(45deg);
-
-        }
-
-
-        .line-two {
-
-            transform:
-                rotate(-45deg);
-
-        }
-
-
-        /* =========================
-           MICROPHONE INSIDE BALL
-        ========================= */
-
-        .mini-mic {
-
-            width: 40px;
-
-            height: 61px;
-
-            border: 6px solid #d7a51e;
-
-            border-radius: 25px;
-
-            background: white;
-
-            position: relative;
-
-            z-index: 5;
-
-            box-shadow:
-                0 2px 5px
-                rgba(0,0,0,0.2);
-        }
-
-
-        /* Mic U shape */
-
-        .mini-mic::before {
-
-            content: "";
-
-            position: absolute;
-
-            width: 67px;
-
-            height: 52px;
-
-            border: 6px solid #d7a51e;
-
-            border-top: none;
-
-            border-radius:
-                0 0 40px 40px;
-
-            left: 50%;
-
-            top: 23px;
-
-            transform:
-                translateX(-50%);
-        }
-
-
-        /* Mic stem */
-
-        .mini-mic::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 6px;
-
-            height: 25px;
-
-            background: #d7a51e;
-
-            left: 50%;
-
-            bottom: -48px;
-
-            transform:
-                translateX(-50%);
-        }
-
-
-        /* Mic base */
-
-        .mic-base {
-
-            position: absolute;
-
-            width: 43px;
-
-            height: 6px;
-
-            background: #d7a51e;
-
-            border-radius: 10px;
-
-            bottom: 72px;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
-            z-index: 7;
-        }
-
-
-        /* =========================
-           STATUS
-        ========================= */
-
-        .status {
-
-            margin-top: 35px;
-
-            padding: 14px 35px;
-
-            min-width: 300px;
-
-            text-align: center;
-
-            background: white;
-
-            border: 1px solid #e1e1e1;
-
-            border-radius: 30px;
-
-            color: #222;
-
-            font-size: 18px;
-
-            font-weight: 600;
-
-            box-shadow:
-                0 7px 20px
-                rgba(0,0,0,0.07);
-        }
-
-
-        /* =========================
-           LISTENING ANIMATION
-        ========================= */
-
-        .listening {
-
-            animation:
-                pulse 1.2s infinite;
-        }
-
-
-        @keyframes pulse {
-
-            0% {
-
-                box-shadow:
-                    0 0 0 0
-                    rgba(215,165,30,0.5);
-            }
-
-            70% {
-
-                box-shadow:
-                    0 0 0 25px
-                    rgba(215,165,30,0);
-            }
-
-            100% {
-
-                box-shadow:
-                    0 0 0 0
-                    rgba(215,165,30,0);
-            }
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        .footer {
-
-            position: absolute;
-
-            bottom: 25px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 20px;
-
-            color: #999;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-            letter-spacing: 4px;
-
-            text-align: center;
-        }
-
-
-        .footer-line {
-
-            width: 65px;
-
-            height: 2px;
-
-            background: #d7a51e;
-
-            border-radius: 5px;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media(max-width: 600px) {
-
-            .container {
-
-                padding-top: 30px;
-            }
-
-
-            .logo {
-
-                font-size: 52px;
-
-                letter-spacing: -3px;
-            }
-
-
-            .goat-ai {
-
-                margin-left: 6px;
-            }
-
-
-            .tagline {
-
-                font-size: 15px;
-
-                padding: 0 20px;
-            }
-
-
-            .song-box {
-
-                margin-top: 40px;
-
-                min-height: 75px;
-            }
-
-
-            .song-text {
-
-                font-size: 18px;
-            }
-
-
-            .mic-area {
-
-                margin-top: 45px;
-
-                transform:
-                    scale(0.9);
-            }
-
-
-            .status {
-
-                margin-top: 20px;
-
-                min-width: 270px;
-
-                font-size: 16px;
-            }
-
-
-            .footer {
-
-                font-size: 8px;
-
-                letter-spacing: 2px;
-            }
-
-
-            .footer-line {
-
-                width: 30px;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
@@ -690,120 +165,83 @@
 <body>
 
 
-<div class="container">
+<div class="card">
 
 
-    <!-- TOP -->
-
-    <div class="top-line"></div>
+<h2>Nova AI</h2>
 
 
-    <!-- LOGO -->
-
-    <div class="logo">
-
-        <span class="cr7">
-            CR7
-        </span>
-
-        <span class="goat-ai">
-            GOAT AI
-        </span>
-
-    </div>
+<p>
+    Say a song name or create an email
+</p>
 
 
-    <!-- TAGLINE -->
-
-    <div class="tagline">
-
-        Say what you want — search YouTube instantly.
-
-    </div>
-
-
-    <!-- SONG / COMMAND BOX -->
-
-    <div class="song-box">
-
-        <div
-            id="command"
-            class="song-text placeholder"
-        >
-
-            Your command will appear here...
-
-        </div>
-
-    </div>
+<button
+    id="mic"
+    class="mic"
+>
+    🎙️
+</button>
 
 
-    <!-- MICROPHONE -->
-
-    <div class="mic-area">
-
-        <div
-            id="micGlow"
-            class="mic-glow"
-        ></div>
+<div
+    id="status"
+    class="status"
+>
+    Tap microphone
+</div>
 
 
-        <button
-            id="mic"
-            class="mic-button"
-            aria-label="Start voice recognition"
-        >
-
-            <div class="football">
-
-                <div class="football-center"></div>
-
-                <div
-                    class="football-line line-one"
-                ></div>
-
-                <div
-                    class="football-line line-two"
-                ></div>
+<div
+    id="command"
+    class="command"
+></div>
 
 
-                <!-- Microphone -->
 
-                <div class="mini-mic"></div>
+<!-- Gmail Editor -->
 
-            </div>
+<div
+    id="editor"
+    class="editor"
+>
 
-
-            <div class="mic-base"></div>
-
-        </button>
-
-    </div>
-
-
-    <!-- STATUS -->
 
     <div
-        id="status"
-        class="status"
+        id="recipient"
+        class="recipient"
+    ></div>
+
+
+    <input
+        id="subject"
+        placeholder="Email subject"
     >
 
-        ⚽ Tap to Speak
 
-    </div>
+    <textarea
+        id="body"
+        placeholder="Email body"
+    ></textarea>
 
 
-    <!-- FOOTER -->
+    <button
+        id="open"
+        class="action primary"
+    >
+        Open in Gmail
+    </button>
 
-    <div class="footer">
 
-        <div class="footer-line"></div>
+    <button
+        id="regen"
+        class="action"
+    >
+        Regenerate
+    </button>
 
-        CR7 GOAT MINDSET
 
-        <div class="footer-line"></div>
-
-    </div>
+</div>
 
 
 </div>
@@ -813,61 +251,101 @@
 <script>
 
 
-/* =====================================
-   ELEMENTS
-===================================== */
+// --------------------------------------------------
+// DOM REFERENCES
+// --------------------------------------------------
+
+const $ =
+    id => document.getElementById(id);
+
 
 const mic =
-    document.getElementById("mic");
+    $("mic");
+
 
 const status =
-    document.getElementById("status");
-
-const command =
-    document.getElementById("command");
-
-const micGlow =
-    document.getElementById("micGlow");
+    $("status");
 
 
+const commandBox =
+    $("command");
 
-/* =====================================
-   SPEECH RECOGNITION
-===================================== */
 
-const SpeechRecognition =
+const editor =
+    $("editor");
+
+
+const recipient =
+    $("recipient");
+
+
+const subject =
+    $("subject");
+
+
+const body =
+    $("body");
+
+
+
+// --------------------------------------------------
+// SPEECH RECOGNITION
+// --------------------------------------------------
+
+const SR =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
 
+let recognition;
 
-/* =====================================
-   CHECK SUPPORT
-===================================== */
+let listening = false;
 
-if (!SpeechRecognition) {
 
-    status.innerHTML =
-        "❌ Voice recognition is not supported";
+
+// --------------------------------------------------
+// COMMAND STATE
+// --------------------------------------------------
+
+let lastCommand = "";
+
+
+// Prevent duplicate email generation
+
+let emailGenerated = false;
+
+
+// Prevent multiple requests at the same time
+
+let generatingEmail = false;
+
+
+// YouTube tab
+
+let youtubeTab = null;
+
+
+
+// --------------------------------------------------
+// SPEECH RECOGNITION SETUP
+// --------------------------------------------------
+
+if(!SR){
+
+    status.textContent =
+        "Speech recognition unavailable";
 
     mic.disabled = true;
 
 }
+else{
 
-
-
-/* =====================================
-   CREATE RECOGNITION
-===================================== */
-
-else {
-
-    const recognition =
-        new SpeechRecognition();
+    recognition =
+        new SR();
 
 
     recognition.lang =
-        "en-IN";
+        "en-US";
 
 
     recognition.continuous =
@@ -878,286 +356,547 @@ else {
         false;
 
 
-    recognition.maxAlternatives =
-        1;
+
+    recognition.onstart = () => {
+
+        listening = true;
+
+        mic.classList.add(
+            "listening"
+        );
+
+        status.textContent =
+            "Listening...";
+
+    };
 
 
 
-    /* =================================
-       MIC CLICK
-    ================================= */
+    recognition.onend = () => {
 
-    mic.addEventListener(
-        "click",
-        function() {
+        listening = false;
 
+        mic.classList.remove(
+            "listening"
+        );
 
-            status.innerHTML =
-                "🎙️ Listening... Speak now!";
+    };
 
 
-            command.innerHTML =
-                "Listening for your command...";
+
+    recognition.onerror = e => {
+
+        listening = false;
+
+        mic.classList.remove(
+            "listening"
+        );
+
+        status.textContent =
+            "Voice error: " +
+            e.error;
+
+    };
 
 
-            command.classList.remove(
-                "placeholder"
-            );
+
+    recognition.onresult = e => {
+
+        const text =
+            e.results[0][0]
+            .transcript
+            .trim();
 
 
-            mic.classList.add(
-                "listening"
-            );
+        if(!text){
+
+            status.textContent =
+                "No command detected";
+
+            return;
+
+        }
 
 
-            micGlow.style.background =
-                "rgba(215,165,30,0.30)";
+        lastCommand =
+            text;
 
 
-            try {
+        commandBox.textContent =
+            text;
 
-                recognition.start();
 
-            }
+        processCommand(
+            text
+        );
 
-            catch(error) {
+    };
 
-                console.log(
-                    "Recognition already running."
+
+
+    mic.onclick = () => {
+
+        if(listening)
+            return;
+
+
+        try{
+
+            recognition.start();
+
+        }
+        catch(e){
+
+            console.log(e);
+
+        }
+
+    };
+
+}
+
+
+
+// --------------------------------------------------
+// GMAIL KEYWORD DETECTION
+// --------------------------------------------------
+//
+// Gmail requires BOTH:
+//
+// create
+// email
+//
+// Examples:
+//
+// "create email for my boss"
+// "create an email for my manager"
+//
+// --------------------------------------------------
+
+function isGmail(command){
+
+    const hasCreate =
+        /\bcreate\b/i.test(command);
+
+
+    const hasEmail =
+        /\bemail\b/i.test(command);
+
+
+    return (
+        hasCreate &&
+        hasEmail
+    );
+
+}
+
+
+
+// --------------------------------------------------
+// YOUTUBE KEYWORD DETECTION
+// --------------------------------------------------
+//
+// YouTube requires:
+//
+// play
+//
+// OR
+//
+// song
+//
+// Examples:
+//
+// "play believer"
+// "play a song"
+// "song believer"
+//
+// --------------------------------------------------
+
+function isYouTube(command){
+
+    return (
+        /\bplay\b/i.test(command) ||
+        /\bsong\b/i.test(command)
+    );
+
+}
+
+
+
+// --------------------------------------------------
+// MAIN COMMAND PROCESSOR
+// --------------------------------------------------
+
+async function processCommand(command){
+
+
+    // ----------------------------------------------
+    // CHECK COMMAND TYPE
+    // ----------------------------------------------
+
+    const gmail =
+        isGmail(command);
+
+
+    const youtube =
+        isYouTube(command);
+
+
+
+    // ----------------------------------------------
+    // GMAIL COMMAND
+    // ----------------------------------------------
+
+    if(gmail){
+
+        // Prevent duplicate generation
+
+        if(generatingEmail){
+
+            status.textContent =
+                "Email is already being generated...";
+
+            return;
+
+        }
+
+
+        // Prevent the same command from generating
+        // another email
+
+        if(
+            emailGenerated &&
+            command === lastCommand
+        ){
+
+            status.textContent =
+                "Email already generated.";
+
+            return;
+
+        }
+
+
+        generatingEmail = true;
+
+
+        status.textContent =
+            "Generating email...";
+
+
+        try{
+
+
+            const response =
+                await fetch(
+                    "/agent",
+                    {
+
+                        method:"POST",
+
+                        headers:{
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+                                command:command
+                            })
+
+                    }
+                );
+
+
+
+            const data =
+                await response.json();
+
+
+
+            if(
+                !response.ok ||
+                !data.success
+            ){
+
+                throw Error(
+                    data.message ||
+                    "Email request failed"
                 );
 
             }
 
+
+
+            // Show ONE generated email
+
+            showEmail(
+                data
+            );
+
+
+            emailGenerated = true;
+
+
         }
-    );
+        catch(error){
 
-
-
-    /* =================================
-       SPEECH START
-    ================================= */
-
-    recognition.onstart =
-        function() {
-
-            status.innerHTML =
-                "🎙️ Listening...";
-
-        };
-
-
-
-    /* =================================
-       SPEECH RESULT
-    ================================= */
-
-    recognition.onresult =
-        function(event) {
-
-
-            const transcript =
-                event
-                .results[0][0]
-                .transcript
-                .trim();
-
-
-            console.log(
-                "You said:",
-                transcript
+            console.error(
+                error
             );
 
 
-            /* Show command */
+            status.textContent =
+                error.message ||
+                "Email generation failed";
 
-            command.innerHTML =
-                "🎤 " + transcript;
+        }
+        finally{
 
+            generatingEmail = false;
 
-            status.innerHTML =
-                "⚽ Got it!";
-
-
-            /* Stop animation */
-
-            mic.classList.remove(
-                "listening"
-            );
+        }
 
 
-            micGlow.style.background =
-                "rgba(215,165,30,0.16)";
+        return;
 
-
-            /*
-             * SEARCH YOUTUBE
-             *
-             * Wait a moment so the user
-             * can see what was recognized.
-             */
-
-            setTimeout(
-                function() {
-
-                    const youtubeURL =
-                        "https://www.youtube.com/results?search_query=" +
-                        encodeURIComponent(transcript);
-
-
-                    window.open(
-                        youtubeURL,
-                        "_blank"
-                    );
-
-
-                    status.innerHTML =
-                        "▶️ Searching YouTube...";
-
-                },
-                700
-            );
-
-        };
+    }
 
 
 
-    /* =================================
-       SPEECH END
-    ================================= */
+    // ----------------------------------------------
+    // YOUTUBE COMMAND
+    // ----------------------------------------------
 
-    recognition.onend =
-        function() {
+    else if(youtube){
 
-
-            mic.classList.remove(
-                "listening"
-            );
+        status.textContent =
+            "Finding song...";
 
 
-            micGlow.style.background =
-                "rgba(215,165,30,0.16)";
+        try{
 
 
-            /*
-             * Don't overwrite
-             * successful result.
-             */
+            const response =
+                await fetch(
+                    "/youtube/play",
+                    {
 
-            if (
-                status.innerHTML ===
-                "🎙️ Listening..."
-            ) {
+                        method:"POST",
 
-                status.innerHTML =
-                    "⚽ Tap to Speak";
+                        headers:{
+                            "Content-Type":
+                                "application/json"
+                        },
 
-            }
+                        body:
+                            JSON.stringify({
+                                command:command
+                            })
 
-        };
-
-
-
-    /* =================================
-       ERRORS
-    ================================= */
-
-    recognition.onerror =
-        function(event) {
+                    }
+                );
 
 
-            console.log(
-                "Speech recognition error:",
-                event.error
-            );
+
+            const data =
+                await response.json();
 
 
-            mic.classList.remove(
-                "listening"
-            );
 
+            if(
+                !response.ok ||
+                !data.success
+            ){
 
-            micGlow.style.background =
-                "rgba(215,165,30,0.16)";
-
-
-            if (
-                event.error ===
-                "not-allowed"
-            ) {
-
-                status.innerHTML =
-                    "🎙️ Please allow microphone access";
-
-
-                command.innerHTML =
-                    "Microphone permission is blocked.";
-
+                throw Error(
+                    data.message ||
+                    "YouTube request failed"
+                );
 
             }
 
 
-            else if (
-                event.error ===
-                "no-speech"
-            ) {
 
-                status.innerHTML =
-                    "😶 Couldn't hear you. Try again";
+            playYouTube(
+                data
+            );
 
 
-                command.innerHTML =
-                    "Speak closer to your microphone.";
+        }
+        catch(error){
+
+            console.error(
+                error
+            );
 
 
-            }
+            status.textContent =
+                error.message ||
+                "YouTube request failed";
+
+        }
 
 
-            else if (
-                event.error ===
-                "audio-capture"
-            ) {
+        return;
 
-                status.innerHTML =
-                    "❌ Microphone not found";
+    }
 
 
-                command.innerHTML =
-                    "Check your microphone connection.";
 
+    // ----------------------------------------------
+    // UNKNOWN COMMAND
+    // ----------------------------------------------
 
-            }
+    else{
 
+        status.textContent =
+            "Please say 'create email' or 'play song'.";
 
-            else if (
-                event.error ===
-                "network"
-            ) {
+        return;
 
-                status.innerHTML =
-                    "🌐 Speech service unavailable";
-
-
-                command.innerHTML =
-                    "Check your internet connection.";
-
-
-            }
-
-
-            else {
-
-                status.innerHTML =
-                    "❌ Try again";
-
-
-                command.innerHTML =
-                    "Something went wrong.";
-
-            }
-
-        };
+    }
 
 }
+
+
+
+// --------------------------------------------------
+// SHOW GENERATED EMAIL
+// --------------------------------------------------
+
+function showEmail(data){
+
+
+    recipient.dataset.email =
+        data.recipient || "";
+
+
+    recipient.textContent =
+        data.recipient
+        ? "To: " + data.recipient
+        : "Recipient not specified";
+
+
+    subject.value =
+        data.subject || "";
+
+
+    body.value =
+        data.body || "";
+
+
+    editor.style.display =
+        "block";
+
+
+    status.textContent =
+        "Email ready. Review or edit it.";
+
+}
+
+
+
+// --------------------------------------------------
+// OPEN GMAIL
+// --------------------------------------------------
+
+$("open").onclick = () => {
+
+
+    const url =
+        "https://mail.google.com/mail/u/0/?" +
+
+        new URLSearchParams({
+
+            view:"cm",
+
+            fs:"1",
+
+            to:
+                recipient.dataset.email || "",
+
+            su:
+                subject.value,
+
+            body:
+                body.value
+
+        });
+
+
+
+    const win =
+        window.open(
+            url,
+            "NovaGmail"
+        );
+
+
+
+    if(!win){
+
+        status.textContent =
+            "Please allow popups for this site.";
+
+    }
+
+};
+
+
+
+// --------------------------------------------------
+// REGENERATE BUTTON
+// --------------------------------------------------
+//
+// No automatic second generation.
+//
+// Clicking this button also does NOT call /agent.
+// --------------------------------------------------
+
+$("regen").onclick = () => {
+
+    status.textContent =
+        "Email already generated. Edit the existing email.";
+
+};
+
+
+
+// --------------------------------------------------
+// YOUTUBE PLAYBACK
+// --------------------------------------------------
+
+function playYouTube(data){
+
+
+    if(
+        !youtubeTab ||
+        youtubeTab.closed
+    ){
+
+        youtubeTab =
+            window.open(
+                data.url,
+                "NovaYouTube"
+            );
+
+    }
+    else{
+
+        youtubeTab.location.href =
+            data.url;
+
+        youtubeTab.focus();
+
+    }
+
+
+    status.textContent =
+        "Playing";
+
+}
+
 
 </script>
 
