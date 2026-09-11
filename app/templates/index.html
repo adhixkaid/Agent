@@ -1,12 +1,22 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RONALDO vs MESSI — The Achievement Battle</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>CR7 vs Messi — The Achievement Battle</title>
+
 
 <style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 *{
     margin:0;
@@ -19,27 +29,40 @@ html{
 }
 
 body{
+
     background:#050505;
+
     color:#fff;
-    font-family:Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     overflow-x:hidden;
 }
 
+
 /* =========================================================
-   BACKGROUND
+   ATMOSPHERE
 ========================================================= */
 
 body::before{
+
     content:"";
+
     position:fixed;
+
     inset:0;
+
     pointer-events:none;
-    z-index:-5;
+
+    z-index:-10;
 
     background:
         radial-gradient(
             circle at 50% 10%,
-            rgba(255,255,255,.09),
+            rgba(255,255,255,.10),
             transparent 35%
         ),
         radial-gradient(
@@ -54,50 +77,85 @@ body::before{
         );
 }
 
-/* stadium lines */
+
+/* =========================================================
+   STADIUM
+========================================================= */
 
 .stadium-lines{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-3;
-    opacity:.15;
-}
 
-.stadium-lines::before,
-.stadium-lines::after{
-    content:"";
-    position:absolute;
-    border:1px solid #fff;
-    border-radius:50%;
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-5;
+
+    opacity:.13;
+
 }
 
 .stadium-lines::before{
+
+    content:"";
+
+    position:absolute;
+
     width:900px;
     height:900px;
+
     left:50%;
     top:50%;
-    transform:translate(-50%,-50%);
+
+    transform:
+        translate(-50%,-50%);
+
+    border:
+        1px solid #fff;
+
+    border-radius:50%;
+
 }
 
 .stadium-lines::after{
+
+    content:"";
+
+    position:absolute;
+
     width:350px;
     height:350px;
+
     left:50%;
     top:50%;
-    transform:translate(-50%,-50%);
+
+    transform:
+        translate(-50%,-50%);
+
+    border:
+        1px solid #fff;
+
+    border-radius:50%;
+
 }
+
 
 /* =========================================================
    FLOATING FOOTBALLS
 ========================================================= */
 
 .ball{
+
     position:fixed;
+
     width:55px;
     height:55px;
+
     border-radius:50%;
-    border:2px solid rgba(255,255,255,.5);
+
+    border:2px solid
+        rgba(255,255,255,.5);
 
     background:
         radial-gradient(
@@ -108,80 +166,117 @@ body::before{
         );
 
     opacity:.25;
+
     pointer-events:none;
+
     z-index:-1;
 
-    animation:floatBall 12s linear infinite;
+    animation:
+        floatBall 12s linear infinite;
+
 }
 
 .ball::after{
+
     content:"";
+
     position:absolute;
+
     width:15px;
     height:15px;
+
     background:#000;
+
     top:18px;
     left:18px;
-    clip-path:polygon(
-        50% 0,
-        100% 35%,
-        82% 100%,
-        18% 100%,
-        0 35%
-    );
+
+    clip-path:
+        polygon(
+            50% 0,
+            100% 35%,
+            82% 100%,
+            18% 100%,
+            0 35%
+        );
+
 }
 
 .ball:nth-child(1){
+
     left:7%;
     top:20%;
+
     animation-duration:15s;
+
 }
 
 .ball:nth-child(2){
+
     right:8%;
     top:55%;
+
     width:38px;
     height:38px;
+
     animation-duration:18s;
+
 }
 
 .ball:nth-child(3){
+
     left:75%;
     top:15%;
+
     width:28px;
     height:28px;
+
     animation-duration:11s;
+
 }
 
 .ball:nth-child(4){
+
     left:20%;
     bottom:8%;
+
     width:42px;
     height:42px;
+
     animation-duration:17s;
+
 }
 
 @keyframes floatBall{
 
     0%{
-        transform:translateY(0) rotate(0deg);
+        transform:
+            translateY(0)
+            rotate(0deg);
     }
 
     50%{
-        transform:translateY(-80px) rotate(180deg);
+        transform:
+            translateY(-80px)
+            rotate(180deg);
     }
 
     100%{
-        transform:translateY(0) rotate(360deg);
+        transform:
+            translateY(0)
+            rotate(360deg);
     }
+
 }
 
+
 /* =========================================================
-   NAVBAR
+   NAVIGATION
 ========================================================= */
 
 nav{
+
     position:fixed;
+
     top:0;
     left:0;
     right:0;
@@ -189,246 +284,365 @@ nav{
     height:75px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
-    padding:0 6%;
+    padding:
+        0 6%;
 
-    background:rgba(5,5,5,.72);
-    backdrop-filter:blur(20px);
+    background:
+        rgba(5,5,5,.75);
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    backdrop-filter:
+        blur(20px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
 
     z-index:1000;
+
 }
 
 .nav-logo{
+
     font-size:18px;
+
     font-weight:900;
+
     letter-spacing:3px;
+
 }
 
 .nav-logo span{
-    opacity:.45;
+
+    opacity:.4;
+
 }
 
 .nav-links{
+
     display:flex;
+
     gap:35px;
+
 }
 
 .nav-links a{
-    color:#aaa;
+
+    color:#777;
+
     text-decoration:none;
-    font-size:12px;
+
+    font-size:10px;
+
     font-weight:bold;
+
     letter-spacing:2px;
 
     transition:.3s;
+
 }
 
 .nav-links a:hover{
+
     color:#fff;
+
 }
+
 
 /* =========================================================
    HERO
 ========================================================= */
 
 .hero{
+
     min-height:100vh;
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
+
     justify-content:center;
 
     text-align:center;
 
-    padding:120px 20px 80px;
+    padding:
+        120px 20px 80px;
 
     position:relative;
+
 }
 
 .hero::before{
+
     content:"";
 
     position:absolute;
 
-    width:600px;
-    height:600px;
+    width:650px;
+    height:650px;
 
     border-radius:50%;
 
-    background:radial-gradient(
-        circle,
-        rgba(255,255,255,.12),
-        transparent 65%
-    );
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.11),
+            transparent 65%
+        );
 
     filter:blur(10px);
 
     z-index:-1;
+
 }
 
 .eyebrow{
-    font-size:11px;
+
+    font-size:10px;
+
     letter-spacing:6px;
-    color:#777;
+
+    color:#666;
+
     margin-bottom:30px;
 
-    animation:fadeUp 1s ease forwards;
+    animation:
+        fadeUp 1s ease forwards;
+
 }
 
 .hero h1{
-    font-size:clamp(55px,10vw,145px);
+
+    font-size:
+        clamp(55px,10vw,145px);
+
     line-height:.82;
 
     font-weight:1000;
+
     letter-spacing:-8px;
 
-    animation:heroIn 1.2s ease forwards;
+    animation:
+        heroIn 1.2s ease forwards;
+
 }
 
 .hero h1 .ronaldo{
+
     display:block;
+
 }
 
 .hero h1 .vs{
-    font-size:.22em;
-    letter-spacing:5px;
-    color:#555;
 
     display:block;
-    margin:25px 0;
+
+    font-size:.22em;
+
+    letter-spacing:6px;
+
+    color:#444;
+
+    margin:
+        25px 0;
+
 }
 
 .hero h1 .messi{
+
     display:block;
+
     color:#777;
+
 }
 
 .hero-sub{
+
+    max-width:650px;
+
     margin-top:40px;
-    max-width:600px;
 
-    color:#888;
+    color:#777;
 
-    font-size:15px;
-    line-height:1.8;
+    font-size:14px;
 
-    animation:fadeUp 1.5s ease forwards;
+    line-height:1.9;
+
+    transition:.3s;
+
 }
 
 .scroll{
+
     position:absolute;
+
     bottom:35px;
 
-    font-size:9px;
-    letter-spacing:5px;
-    color:#555;
+    font-size:8px;
 
-    animation:bounce 2s infinite;
+    letter-spacing:5px;
+
+    color:#444;
+
+    animation:
+        bounce 2s infinite;
+
 }
 
 @keyframes heroIn{
 
     from{
+
         opacity:0;
-        transform:translateY(50px) scale(.95);
+
+        transform:
+            translateY(50px)
+            scale(.95);
+
     }
 
     to{
+
         opacity:1;
+
         transform:none;
+
     }
+
 }
 
 @keyframes fadeUp{
 
     from{
+
         opacity:0;
-        transform:translateY(25px);
+
+        transform:
+            translateY(25px);
+
     }
 
     to{
+
         opacity:1;
+
         transform:none;
+
     }
+
 }
 
 @keyframes bounce{
 
     0%,100%{
-        transform:translateY(0);
+        transform:
+            translateY(0);
     }
 
     50%{
-        transform:translateY(10px);
+        transform:
+            translateY(10px);
     }
+
 }
+
 
 /* =========================================================
    DIVIDER
 ========================================================= */
 
 .divider{
+
     width:90%;
+
     max-width:1200px;
+
     height:1px;
 
     margin:auto;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #555,
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #444,
+            transparent
+        );
+
 }
 
+
 /* =========================================================
-   SECTION
+   SECTIONS
 ========================================================= */
 
 section{
+
     width:90%;
+
     max-width:1300px;
 
-    margin:0 auto;
+    margin:auto;
 
-    padding:130px 0;
+    padding:
+        130px 0;
+
 }
 
 .section-label{
-    color:#555;
-    font-size:10px;
+
+    color:#444;
+
+    font-size:9px;
+
     letter-spacing:5px;
+
     margin-bottom:15px;
+
 }
 
 .section-title{
-    font-size:clamp(35px,5vw,70px);
+
+    font-size:
+        clamp(35px,5vw,70px);
+
     letter-spacing:-3px;
+
     margin-bottom:60px;
+
 }
 
+
 /* =========================================================
-   PLAYER HEADERS
+   PLAYER CARDS
 ========================================================= */
 
 .players{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:20px;
+
 }
 
 .player{
-    min-height:280px;
 
-    border:1px solid #222;
+    min-height:290px;
+
+    border:
+        1px solid #222;
 
     position:relative;
+
     overflow:hidden;
 
     padding:40px;
@@ -441,89 +655,124 @@ section{
         );
 
     transition:.5s;
+
 }
 
 .player:hover{
-    transform:translateY(-8px);
+
+    transform:
+        translateY(-8px);
+
     border-color:#555;
+
 }
 
 .player::before{
+
     content:"";
 
     position:absolute;
+
     width:250px;
     height:250px;
-
-    border-radius:50%;
 
     right:-100px;
     bottom:-100px;
 
-    border:1px solid #333;
+    border:
+        1px solid #333;
+
+    border-radius:50%;
+
 }
 
 .player-number{
-    font-size:80px;
-    font-weight:1000;
+
     position:absolute;
+
     right:25px;
     top:15px;
+
+    font-size:90px;
+
+    font-weight:1000;
+
     color:#151515;
+
 }
 
 .player h3{
-    font-size:38px;
+
     position:relative;
+
     z-index:2;
+
+    font-size:38px;
+
+    letter-spacing:-1px;
+
 }
 
 .player p{
-    color:#666;
+
     margin-top:10px;
-    font-size:12px;
-    letter-spacing:2px;
+
+    color:#666;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
 }
 
 .player.cr7{
-    border-width:2px;
-    border-color:#fff;
-}
 
-.player.cr7 h3{
-    letter-spacing:2px;
+    border:
+        2px solid #fff;
+
+    box-shadow:
+        0 0 50px
+        rgba(255,255,255,.04);
+
 }
 
 .player.cr7::after{
+
     content:"DOMINANT";
+
     position:absolute;
 
     right:25px;
     bottom:25px;
 
-    font-size:9px;
+    font-size:8px;
+
     letter-spacing:4px;
 
-    color:#fff;
 }
+
 
 /* =========================================================
    ACHIEVEMENT GRID
 ========================================================= */
 
 .achievement-grid{
+
     display:grid;
 
     grid-template-columns:
         repeat(4,1fr);
 
     gap:14px;
+
 }
 
 .achievement{
-    min-height:180px;
 
-    border:1px solid #222;
+    min-height:200px;
+
+    border:
+        1px solid #222;
 
     padding:25px;
 
@@ -537,122 +786,178 @@ section{
         transform .4s,
         border-color .4s,
         background .4s;
+
 }
 
 .achievement:hover{
-    transform:translateY(-10px);
-    border-color:#777;
+
+    transform:
+        translateY(-10px);
+
+    border-color:#666;
+
     background:#111;
+
 }
 
 .achievement::before{
+
     content:"";
 
     position:absolute;
 
-    width:0;
-    height:2px;
-
     left:0;
     bottom:0;
+
+    width:0;
+    height:2px;
 
     background:#fff;
 
     transition:.5s;
+
 }
 
 .achievement:hover::before{
+
     width:100%;
+
 }
 
-.icon{
-    font-size:25px;
+.achievement .icon{
+
+    font-size:24px;
+
     margin-bottom:25px;
-    filter:grayscale(1);
+
+    filter:
+        grayscale(1);
+
 }
 
 .achievement h4{
-    font-size:17px;
+
+    font-size:16px;
+
     margin-bottom:10px;
+
 }
 
 .achievement p{
+
     color:#666;
-    font-size:11px;
-    line-height:1.6;
+
+    font-size:10px;
+
+    line-height:1.7;
+
 }
 
 .winner{
-    border:2px solid #fff;
 
-    transform:scale(1.03);
+    border:
+        2px solid #fff;
+
+    transform:
+        scale(1.025);
 
     background:
         radial-gradient(
             circle at 80% 20%,
-            rgba(255,255,255,.1),
+            rgba(255,255,255,.08),
             transparent 50%
         );
+
 }
 
 .winner::after{
+
     content:"CR7";
 
     position:absolute;
 
-    top:15px;
     right:15px;
+    top:15px;
 
-    font-size:8px;
+    font-size:7px;
+
     letter-spacing:3px;
+
     color:#fff;
+
 }
+
 
 /* =========================================================
    BATTLE TABLE
 ========================================================= */
 
 .battle-table{
+
     width:100%;
-    border-collapse:collapse;
+
+    border-collapse:
+        collapse;
+
 }
 
 .battle-table th,
 .battle-table td{
-    padding:25px 20px;
 
-    border-bottom:1px solid #222;
+    padding:
+        25px 20px;
+
+    border-bottom:
+        1px solid #222;
 
     text-align:center;
+
 }
 
 .battle-table th{
-    color:#555;
-    font-size:10px;
+
+    color:#444;
+
+    font-size:9px;
+
     letter-spacing:3px;
+
 }
 
 .battle-table td:first-child{
+
     text-align:left;
+
     color:#aaa;
+
 }
 
 .cr7-score{
+
     font-size:30px;
+
     font-weight:900;
+
     color:#fff;
+
 }
 
 .messi-score{
+
     font-size:25px;
+
     color:#555;
+
 }
 
 .winner-cell{
+
     position:relative;
+
 }
 
 .winner-cell::before{
+
     content:"";
 
     position:absolute;
@@ -660,72 +965,109 @@ section{
     left:0;
     top:50%;
 
-    transform:translateY(-50%);
+    transform:
+        translateY(-50%);
 
     width:3px;
     height:35px;
 
     background:#fff;
+
 }
+
+.battle-table tbody tr{
+
+    transition:
+        background .3s;
+
+}
+
+.battle-table tbody tr:hover{
+
+    background:
+        rgba(255,255,255,.035);
+
+}
+
 
 /* =========================================================
    DOMINANCE METER
 ========================================================= */
 
 .meter-section{
+
     text-align:center;
+
 }
 
 .meter-wrap{
+
     max-width:900px;
-    margin:70px auto 0;
+
+    margin:
+        70px auto 0;
+
 }
 
 .meter-labels{
+
     display:flex;
+
     justify-content:space-between;
 
     margin-bottom:15px;
 
-    font-size:11px;
+    font-size:9px;
+
     letter-spacing:3px;
+
 }
 
 .meter{
+
     height:16px;
 
     background:#181818;
 
-    border:1px solid #333;
+    border:
+        1px solid #333;
 
     overflow:hidden;
+
 }
 
 .meter-fill{
+
     width:86%;
+
     height:100%;
 
     background:#fff;
 
     position:relative;
 
-    animation:meterLoad 2s ease forwards;
+    animation:
+        meterLoad 2s ease forwards;
+
 }
 
 .meter-fill::after{
+
     content:"";
 
     position:absolute;
+
     inset:0;
 
     background:
         repeating-linear-gradient(
             135deg,
-            transparent 0px,
+            transparent 0,
             transparent 8px,
             rgba(0,0,0,.15) 8px,
             rgba(0,0,0,.15) 16px
         );
+
 }
 
 @keyframes meterLoad{
@@ -737,41 +1079,53 @@ section{
     to{
         width:86%;
     }
+
 }
 
 .meter-result{
+
     margin-top:30px;
 
-    font-size:clamp(35px,7vw,90px);
+    font-size:
+        clamp(35px,7vw,90px);
 
     font-weight:1000;
+
     letter-spacing:-5px;
+
 }
+
 
 /* =========================================================
    ACHIEVEMENT WALL
 ========================================================= */
 
 .wall{
+
     display:grid;
 
     grid-template-columns:
         repeat(3,1fr);
 
     gap:15px;
+
 }
 
 .wall-card{
+
     height:250px;
 
-    border:1px solid #222;
+    border:
+        1px solid #222;
 
     padding:35px;
 
     position:relative;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:flex-end;
 
     overflow:hidden;
@@ -784,13 +1138,20 @@ section{
         );
 
     transition:.5s;
+
 }
 
 .wall-card:hover{
-    transform:scale(1.02);
+
+    transform:
+        scale(1.02);
+
+    border-color:#666;
+
 }
 
 .wall-card .big{
+
     position:absolute;
 
     top:15px;
@@ -801,110 +1162,805 @@ section{
     font-weight:1000;
 
     color:#151515;
+
 }
 
 .wall-card small{
-    color:#666;
+
+    color:#555;
+
     letter-spacing:3px;
-    font-size:9px;
+
+    font-size:8px;
+
 }
 
 .wall-card h3{
+
     margin-top:10px;
-    font-size:25px;
+
+    font-size:23px;
+
 }
+
+
+/* =========================================================
+   MESSI ACHIEVEMENT WALL
+========================================================= */
+
+.messi-wall{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+.messi-card{
+
+    min-height:220px;
+
+    padding:30px;
+
+    border:
+        1px solid #222;
+
+    background:#090909;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+}
+
+.messi-card:hover{
+
+    transform:
+        translateY(-8px);
+
+    border-color:#555;
+
+}
+
+.messi-card .number{
+
+    position:absolute;
+
+    right:15px;
+    top:5px;
+
+    font-size:75px;
+
+    font-weight:1000;
+
+    color:#151515;
+
+}
+
+.messi-card h3{
+
+    position:absolute;
+
+    bottom:45px;
+
+    font-size:23px;
+
+}
+
+.messi-card p{
+
+    position:absolute;
+
+    bottom:20px;
+
+    color:#555;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+}
+
+
+/* =========================================================
+   VOICE AGENT
+========================================================= */
+
+.voice-section{
+
+    text-align:center;
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.voice-status{
+
+    margin-bottom:40px;
+
+    font-size:10px;
+
+    letter-spacing:5px;
+
+    color:#555;
+
+}
+
+.voice-status.active{
+
+    color:#fff;
+
+    animation:
+        statusBlink 1s infinite;
+
+}
+
+@keyframes statusBlink{
+
+    50%{
+        opacity:.4;
+    }
+
+}
+
+
+/* =========================================================
+   FOOTBALL MICROPHONE
+========================================================= */
+
+.football-mic{
+
+    width:290px;
+    height:290px;
+
+    border-radius:50%;
+
+    position:relative;
+
+    cursor:pointer;
+
+    background:
+        radial-gradient(
+            circle at 32% 24%,
+            #fff 0%,
+            #ddd 22%,
+            #888 52%,
+            #111 100%
+        );
+
+    border:
+        4px solid #fff;
+
+    box-shadow:
+
+        0 25px 70px
+        rgba(0,0,0,.9),
+
+        inset
+        -25px -25px 45px
+        rgba(0,0,0,.6),
+
+        inset
+        20px 20px 40px
+        rgba(255,255,255,.5);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+    animation:
+        footballFloat 4s ease-in-out infinite;
+
+    overflow:hidden;
+
+}
+
+.football-mic:hover{
+
+    transform:
+        scale(1.05);
+
+}
+
+
+/* =========================================================
+   FOOTBALL PATTERN
+========================================================= */
+
+.football-pattern::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:80px;
+    height:80px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    background:#111;
+
+    clip-path:
+        polygon(
+            50% 0,
+            100% 35%,
+            82% 100%,
+            18% 100%,
+            0 35%
+        );
+
+}
+
+.football-pattern::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border:
+        4px solid #111;
+
+    border-radius:50%;
+
+    opacity:.8;
+
+}
+
+
+/* =========================================================
+   FOOTBALL LINES
+========================================================= */
+
+.football-lines{
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+.football-lines::before,
+.football-lines::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:80px;
+
+    border:
+        4px solid #111;
+
+    border-radius:50%;
+
+}
+
+.football-lines::before{
+
+    left:-80px;
+    top:70px;
+
+    transform:
+        rotate(35deg);
+
+}
+
+.football-lines::after{
+
+    right:-80px;
+    bottom:70px;
+
+    transform:
+        rotate(35deg);
+
+}
+
+
+/* =========================================================
+   MIC SYMBOL
+========================================================= */
+
+.mic-symbol{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:20;
+
+    width:75px;
+    height:110px;
+
+}
+
+.mic-head{
+
+    position:absolute;
+
+    width:40px;
+    height:60px;
+
+    left:18px;
+    top:0;
+
+    border:
+        6px solid #fff;
+
+    border-radius:25px;
+
+    background:#111;
+
+}
+
+.mic-body{
+
+    position:absolute;
+
+    width:70px;
+    height:58px;
+
+    left:2px;
+    top:38px;
+
+    border:
+        6px solid #fff;
+
+    border-top:none;
+
+    border-radius:
+        0 0 45px 45px;
+
+}
+
+.mic-stand{
+
+    position:absolute;
+
+    width:6px;
+    height:28px;
+
+    background:#fff;
+
+    left:34px;
+    top:92px;
+
+}
+
+.mic-stand::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:40px;
+    height:6px;
+
+    background:#fff;
+
+    left:-17px;
+    bottom:0;
+
+    border-radius:10px;
+
+}
+
+
+/* =========================================================
+   LISTENING ANIMATION
+========================================================= */
+
+.voice-active{
+
+    animation:
+        listening 1s infinite !important;
+
+}
+
+@keyframes listening{
+
+    0%{
+
+        transform:
+            scale(1)
+            rotate(0deg);
+
+        box-shadow:
+
+            0 0 0 0
+            rgba(255,255,255,.5),
+
+            0 25px 70px
+            rgba(0,0,0,.9);
+
+    }
+
+    50%{
+
+        transform:
+            scale(1.08)
+            rotate(180deg);
+
+        box-shadow:
+
+            0 0 0 25px
+            rgba(255,255,255,0),
+
+            0 0 90px
+            rgba(255,255,255,.5);
+
+    }
+
+    100%{
+
+        transform:
+            scale(1)
+            rotate(360deg);
+
+        box-shadow:
+
+            0 0 0 50px
+            rgba(255,255,255,0),
+
+            0 25px 70px
+            rgba(0,0,0,.9);
+
+    }
+
+}
+
+@keyframes footballFloat{
+
+    0%,100%{
+
+        margin-top:0;
+
+    }
+
+    50%{
+
+        margin-top:-12px;
+
+    }
+
+}
+
+
+/* =========================================================
+   WAVEFORM
+========================================================= */
+
+.waveform{
+
+    height:60px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:5px;
+
+    margin-top:35px;
+
+    opacity:.2;
+
+}
+
+.waveform span{
+
+    width:4px;
+
+    height:10px;
+
+    background:#fff;
+
+    border-radius:5px;
+
+}
+
+.voice-active + .waveform{
+
+    opacity:1;
+
+}
+
+.voice-active + .waveform span{
+
+    animation:
+        wave .7s ease-in-out infinite alternate;
+
+}
+
+.waveform span:nth-child(2){
+    animation-delay:.1s;
+}
+
+.waveform span:nth-child(3){
+    animation-delay:.2s;
+}
+
+.waveform span:nth-child(4){
+    animation-delay:.3s;
+}
+
+.waveform span:nth-child(5){
+    animation-delay:.4s;
+}
+
+.waveform span:nth-child(6){
+    animation-delay:.5s;
+}
+
+.waveform span:nth-child(7){
+    animation-delay:.6s;
+}
+
+@keyframes wave{
+
+    from{
+        height:8px;
+    }
+
+    to{
+        height:45px;
+    }
+
+}
+
+
+/* =========================================================
+   COMMAND BOX
+========================================================= */
+
+.command-box{
+
+    width:
+        min(750px,90vw);
+
+    min-height:70px;
+
+    margin-top:35px;
+
+    padding:20px 30px;
+
+    border:
+        1px solid #222;
+
+    background:#090909;
+
+    color:#777;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    transition:.3s;
+
+}
+
+.command-box.active{
+
+    border-color:#666;
+
+    color:#fff;
+
+}
+
+
+/* =========================================================
+   COMMAND EXAMPLES
+========================================================= */
+
+.commands{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:10px;
+
+    max-width:800px;
+
+    margin-top:25px;
+
+}
+
+.command-chip{
+
+    padding:
+        10px 15px;
+
+    border:
+        1px solid #222;
+
+    color:#555;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.command-chip:hover{
+
+    color:#fff;
+
+    border-color:#777;
+
+}
+
 
 /* =========================================================
    FINAL GOAT
 ========================================================= */
 
 .goat{
+
     min-height:90vh;
 
     display:flex;
+
     flex-direction:column;
 
     align-items:center;
+
     justify-content:center;
 
     text-align:center;
 
     position:relative;
+
 }
 
 .goat-circle{
+
     width:280px;
     height:280px;
 
     border-radius:50%;
 
-    border:1px solid #444;
+    border:
+        1px solid #444;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     position:relative;
 
-    animation:rotateSlow 20s linear infinite;
+    animation:
+        rotateSlow 20s linear infinite;
+
 }
 
 .goat-circle::before,
 .goat-circle::after{
+
     content:"";
 
     position:absolute;
 
-    border:1px solid #333;
+    border:
+        1px solid #333;
 
     border-radius:50%;
+
 }
 
 .goat-circle::before{
+
     inset:20px;
+
 }
 
 .goat-circle::after{
+
     inset:45px;
+
 }
 
 .goat-text{
+
     position:absolute;
+
     z-index:2;
+
+    animation:
+        rotateReverse 20s linear infinite;
+
 }
 
 .goat-text small{
+
     display:block;
 
-    font-size:9px;
+    font-size:8px;
+
     letter-spacing:5px;
-    color:#666;
+
+    color:#555;
 
     margin-bottom:10px;
+
 }
 
 .goat-text strong{
+
     font-size:75px;
+
     letter-spacing:-5px;
+
 }
 
 .goat h2{
+
     margin-top:60px;
 
-    font-size:clamp(45px,8vw,110px);
+    font-size:
+        clamp(45px,8vw,110px);
 
     letter-spacing:-6px;
+
 }
 
 .goat p{
-    color:#666;
 
     max-width:500px;
 
     margin-top:20px;
 
-    font-size:13px;
-    line-height:1.8;
+    color:#555;
+
+    font-size:12px;
+
+    line-height:1.9;
+
 }
 
 @keyframes rotateSlow{
@@ -916,43 +1972,70 @@ section{
     to{
         transform:rotate(360deg);
     }
+
 }
+
+@keyframes rotateReverse{
+
+    from{
+        transform:rotate(0);
+    }
+
+    to{
+        transform:rotate(-360deg);
+    }
+
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:
+        translateY(50px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+}
+
+.reveal.show{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
 
 /* =========================================================
    FOOTER
 ========================================================= */
 
 footer{
-    padding:50px 20px;
+
+    padding:
+        50px 20px;
 
     text-align:center;
 
-    border-top:1px solid #161616;
+    border-top:
+        1px solid #161616;
 
-    color:#444;
+    color:#333;
 
-    font-size:9px;
+    font-size:8px;
 
     letter-spacing:4px;
+
 }
 
-/* =========================================================
-   REVEAL ANIMATION
-========================================================= */
-
-.reveal{
-    opacity:0;
-    transform:translateY(50px);
-
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
-}
-
-.reveal.show{
-    opacity:1;
-    transform:none;
-}
 
 /* =========================================================
    MOBILE
@@ -961,41 +2044,57 @@ footer{
 @media(max-width:800px){
 
     nav{
-        padding:0 20px;
+
+        padding:
+            0 20px;
+
     }
 
     .nav-links{
+
         display:none;
+
     }
 
     section{
-        padding:90px 0;
+
+        padding:
+            90px 0;
+
     }
 
     .players{
+
         grid-template-columns:1fr;
+
     }
 
     .achievement-grid{
+
         grid-template-columns:
             repeat(2,1fr);
+
     }
 
-    .wall{
+    .wall,
+    .messi-wall{
+
         grid-template-columns:1fr;
+
     }
 
     .battle-table{
-        font-size:11px;
+
+        font-size:10px;
+
     }
 
     .battle-table th,
     .battle-table td{
-        padding:18px 8px;
-    }
 
-    .hero h1{
-        letter-spacing:-5px;
+        padding:
+            18px 8px;
+
     }
 
 }
@@ -1003,34 +2102,56 @@ footer{
 @media(max-width:500px){
 
     .achievement-grid{
+
         grid-template-columns:1fr;
+
     }
 
     .player{
+
         min-height:230px;
+
     }
 
     .player h3{
+
         font-size:30px;
+
+    }
+
+    .football-mic{
+
+        width:230px;
+        height:230px;
+
     }
 
     .goat-circle{
+
         width:210px;
         height:210px;
+
     }
 
     .goat-text strong{
+
         font-size:55px;
+
     }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- FLOATING BALLS -->
+
+<!-- =====================================================
+     BACKGROUND FOOTBALLS
+====================================================== -->
 
 <div class="ball"></div>
 <div class="ball"></div>
@@ -1040,35 +2161,56 @@ footer{
 <div class="stadium-lines"></div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      NAVIGATION
-======================================================= -->
+====================================================== -->
 
 <nav>
 
     <div class="nav-logo">
-        CR7 <span>VS</span> LM10
+
+        CR7
+        <span>VS</span>
+        LM10
+
     </div>
 
+
     <div class="nav-links">
-        <a href="#battle">BATTLE</a>
-        <a href="#records">RECORDS</a>
-        <a href="#achievements">ACHIEVEMENTS</a>
-        <a href="#goat">GOAT</a>
+
+        <a href="#battle">
+            BATTLE
+        </a>
+
+        <a href="#achievements">
+            ACHIEVEMENTS
+        </a>
+
+        <a href="#records">
+            RECORDS
+        </a>
+
+        <a href="#voice">
+            VOICE AGENT
+        </a>
+
     </div>
 
 </nav>
 
 
-<!-- ======================================================
+<!-- =====================================================
      HERO
-======================================================= -->
+====================================================== -->
 
 <header class="hero">
 
     <div class="eyebrow">
+
         THE GREATEST RIVALRY IN FOOTBALL
+
     </div>
+
 
     <h1>
 
@@ -1076,9 +2218,11 @@ footer{
             RONALDO
         </span>
 
+
         <span class="vs">
             VS
         </span>
+
 
         <span class="messi">
             MESSI
@@ -1086,14 +2230,24 @@ footer{
 
     </h1>
 
-    <p class="hero-sub">
-        Two legends. One era. Thousands of moments.
-        But when the achievements are placed side by side,
-        one name refuses to disappear.
+
+    <p class="hero-sub" id="heroText">
+
+        Two legends.
+        One era.
+        Thousands of moments.
+
+        <br>
+
+        The achievements tell the story.
+
     </p>
 
+
     <div class="scroll">
+
         SCROLL TO ENTER THE BATTLE
+
     </div>
 
 </header>
@@ -1102,9 +2256,9 @@ footer{
 <div class="divider"></div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      PLAYERS
-======================================================= -->
+====================================================== -->
 
 <section id="battle" class="reveal">
 
@@ -1112,13 +2266,18 @@ footer{
         01 / THE RIVALS
     </div>
 
+
     <h2 class="section-title">
+
         TWO ICONS.
         <br>
         ONE LEGACY.
+
     </h2>
 
+
     <div class="players">
+
 
         <div class="player cr7">
 
@@ -1126,11 +2285,15 @@ footer{
                 07
             </div>
 
+
             <h3>
+
                 CRISTIANO
                 <br>
                 RONALDO
+
             </h3>
+
 
             <p>
                 THE MACHINE
@@ -1145,11 +2308,15 @@ footer{
                 10
             </div>
 
+
             <h3>
+
                 LIONEL
                 <br>
                 MESSI
+
             </h3>
+
 
             <p>
                 THE MAGICIAN
@@ -1157,6 +2324,7 @@ footer{
 
         </div>
 
+
     </div>
 
 </section>
@@ -1165,9 +2333,9 @@ footer{
 <div class="divider"></div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      ACHIEVEMENTS
-======================================================= -->
+====================================================== -->
 
 <section id="achievements" class="reveal">
 
@@ -1175,28 +2343,54 @@ footer{
         02 / ACHIEVEMENT WAR
     </div>
 
+
     <h2 class="section-title">
+
         THE
         <br>
         TROPHY ROOM
+
     </h2>
 
 
     <div class="achievement-grid">
 
 
+        <!-- RONALDO -->
+
         <div class="achievement winner">
 
-            <div class="icon">🏆</div>
+            <div class="icon">
+                🏆
+            </div>
 
             <h4>
                 CHAMPIONS LEAGUE
             </h4>
 
             <p>
-                Ronaldo's European legacy
-                stands among the greatest
-                ever produced by the competition.
+                Five Champions League
+                titles and an extraordinary
+                European legacy.
+            </p>
+
+        </div>
+
+
+        <div class="achievement winner">
+
+            <div class="icon">
+                ⚽
+            </div>
+
+            <h4>
+                ALL-TIME CL GOALS
+            </h4>
+
+            <p>
+                Ronaldo's Champions League
+                scoring record is one of
+                football's defining records.
             </p>
 
         </div>
@@ -1204,15 +2398,18 @@ footer{
 
         <div class="achievement">
 
-            <div class="icon">👑</div>
+            <div class="icon">
+                👑
+            </div>
 
             <h4>
                 BALLON D'OR
             </h4>
 
             <p>
-                One of the defining individual
-                awards of the modern era.
+                Five Ballon d'Or awards
+                across an exceptional
+                individual career.
             </p>
 
         </div>
@@ -1220,49 +2417,38 @@ footer{
 
         <div class="achievement winner">
 
-            <div class="icon">⚽</div>
+            <div class="icon">
+                🇵🇹
+            </div>
 
             <h4>
-                EUROPEAN SCORING
+                PORTUGAL
             </h4>
 
             <p>
-                Ronaldo built an extraordinary
-                scoring legacy across Europe's
-                biggest stages.
+                European champion and
+                Nations League winner
+                with Portugal.
             </p>
 
         </div>
 
 
-        <div class="achievement winner">
+        <!-- MESSI -->
 
-            <div class="icon">🌍</div>
+        <div class="achievement">
+
+            <div class="icon">
+                👑
+            </div>
 
             <h4>
-                INTERNATIONAL
+                BALLON D'OR
             </h4>
 
             <p>
-                Portugal captain.
-                European champion.
-                Nations League winner.
-            </p>
-
-        </div>
-
-
-        <div class="achievement winner">
-
-            <div class="icon">🔥</div>
-
-            <h4>
-                CL KNOCKOUT MOMENTS
-            </h4>
-
-            <p>
-                The bigger the stage,
-                the louder the Ronaldo moments.
+                Messi has won the Ballon d'Or
+                eight times, the most in history.
             </p>
 
         </div>
@@ -1270,47 +2456,53 @@ footer{
 
         <div class="achievement">
 
-            <div class="icon">🎯</div>
+            <div class="icon">
+                🌎
+            </div>
 
             <h4>
-                PLAYMAKING
+                WORLD CUP
             </h4>
 
             <p>
-                Messi's passing and creative
-                influence remain legendary.
+                Argentina captain who lifted
+                the 2022 FIFA World Cup.
             </p>
 
         </div>
 
 
-        <div class="achievement winner">
+        <div class="achievement">
 
-            <div class="icon">💪</div>
+            <div class="icon">
+                🏆
+            </div>
 
             <h4>
-                LONGEVITY
+                COPA AMÉRICA
             </h4>
 
             <p>
-                Elite production across
-                multiple generations of football.
+                Messi led Argentina to
+                Copa América success.
             </p>
 
         </div>
 
 
-        <div class="achievement winner">
+        <div class="achievement">
 
-            <div class="icon">✈️</div>
+            <div class="icon">
+                🎯
+            </div>
 
             <h4>
-                DIFFERENT LEAGUES
+                CREATIVE GENIUS
             </h4>
 
             <p>
-                Success and elite scoring
-                across multiple European leagues.
+                Elite goalscoring, passing,
+                dribbling and playmaking.
             </p>
 
         </div>
@@ -1324,9 +2516,9 @@ footer{
 <div class="divider"></div>
 
 
-<!-- ======================================================
-     RECORD TABLE
-======================================================= -->
+<!-- =====================================================
+     RECORDS
+====================================================== -->
 
 <section id="records" class="reveal">
 
@@ -1334,10 +2526,13 @@ footer{
         03 / HEAD TO HEAD
     </div>
 
+
     <h2 class="section-title">
+
         RECORDS
         <br>
         ON TRIAL
+
     </h2>
 
 
@@ -1370,19 +2565,73 @@ footer{
             <tr>
 
                 <td>
-                    Champions League legacy
+                    Champions League titles
                 </td>
 
                 <td class="winner-cell">
+
                     <span class="cr7-score">
-                        ★
+                        5
                     </span>
+
                 </td>
 
                 <td>
+
+                    <span class="messi-score">
+                        4
+                    </span>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Ballon d'Or
+                </td>
+
+                <td>
+
+                    <span class="cr7-score">
+                        5
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span class="messi-score">
+                        8
+                    </span>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    World Cup
+                </td>
+
+                <td>
+
                     <span class="messi-score">
                         —
                     </span>
+
+                </td>
+
+                <td>
+
+                    <span class="messi-score">
+                        1
+                    </span>
+
                 </td>
 
             </tr>
@@ -1391,19 +2640,23 @@ footer{
             <tr>
 
                 <td>
-                    International legacy
+                    European Championship
                 </td>
 
                 <td class="winner-cell">
+
                     <span class="cr7-score">
-                        ★
+                        1
                     </span>
+
                 </td>
 
                 <td>
+
                     <span class="messi-score">
-                        ★
+                        —
                     </span>
+
                 </td>
 
             </tr>
@@ -1412,19 +2665,23 @@ footer{
             <tr>
 
                 <td>
-                    European club career
-                </td>
-
-                <td class="winner-cell">
-                    <span class="cr7-score">
-                        ★
-                    </span>
+                    International trophies
                 </td>
 
                 <td>
-                    <span class="messi-score">
-                        ★
+
+                    <span class="cr7-score">
+                        2
                     </span>
+
+                </td>
+
+                <td>
+
+                    <span class="messi-score">
+                        3+
+                    </span>
+
                 </td>
 
             </tr>
@@ -1433,40 +2690,23 @@ footer{
             <tr>
 
                 <td>
-                    Goal-scoring longevity
+                    Elite longevity
                 </td>
 
                 <td class="winner-cell">
+
                     <span class="cr7-score">
                         ★
                     </span>
+
                 </td>
 
                 <td>
+
                     <span class="messi-score">
                         ★
                     </span>
-                </td>
 
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Individual awards
-                </td>
-
-                <td class="winner-cell">
-                    <span class="cr7-score">
-                        ★
-                    </span>
-                </td>
-
-                <td>
-                    <span class="messi-score">
-                        ★
-                    </span>
                 </td>
 
             </tr>
@@ -1482,20 +2722,23 @@ footer{
 <div class="divider"></div>
 
 
-<!-- ======================================================
-     DOMINANCE METER
-======================================================= -->
+<!-- =====================================================
+     DOMINANCE
+====================================================== -->
 
 <section class="meter-section reveal">
 
     <div class="section-label">
-        04 / THE MOMENT
+        04 / CR7 MODE
     </div>
 
+
     <h2 class="section-title">
+
         THE
         <br>
         DOMINANCE METER
+
     </h2>
 
 
@@ -1522,16 +2765,21 @@ footer{
 
 
         <div class="meter-result">
+
             86%
+
         </div>
+
 
         <p style="
             color:#555;
             margin-top:15px;
-            font-size:11px;
+            font-size:9px;
             letter-spacing:3px;
         ">
+
             CR7 MODE ACTIVATED
+
         </p>
 
     </div>
@@ -1542,9 +2790,9 @@ footer{
 <div class="divider"></div>
 
 
-<!-- ======================================================
-     ACHIEVEMENT WALL
-======================================================= -->
+<!-- =====================================================
+     RONALDO WALL
+====================================================== -->
 
 <section class="reveal">
 
@@ -1552,10 +2800,13 @@ footer{
         05 / CR7 FILES
     </div>
 
+
     <h2 class="section-title">
+
         THE
         <br>
         RONALDO WALL
+
     </h2>
 
 
@@ -1605,11 +2856,11 @@ footer{
             </div>
 
             <small>
-                PORTUGAL
+                EURO 2016
             </small>
 
             <h3>
-                EUROPEAN
+                PORTUGAL
                 CHAMPION
             </h3>
 
@@ -1641,7 +2892,7 @@ footer{
             </div>
 
             <small>
-                EUROPEAN LEAGUES
+                MAJOR EUROPEAN LEAGUES
             </small>
 
             <h3>
@@ -1663,8 +2914,8 @@ footer{
             </small>
 
             <h3>
-                THE BRAND
-                BECAME LEGEND
+                THE
+                BRAND
             </h3>
 
         </div>
@@ -1678,18 +2929,289 @@ footer{
 <div class="divider"></div>
 
 
-<!-- ======================================================
+<!-- =====================================================
+     MESSI WALL
+====================================================== -->
+
+<section class="reveal">
+
+    <div class="section-label">
+        06 / MESSI FILES
+    </div>
+
+
+    <h2 class="section-title">
+
+        THE
+        <br>
+        MESSI WALL
+
+    </h2>
+
+
+    <div class="messi-wall">
+
+
+        <div class="messi-card">
+
+            <div class="number">
+                8
+            </div>
+
+            <h3>
+                BALLON D'OR
+            </h3>
+
+            <p>
+                INDIVIDUAL AWARDS
+            </p>
+
+        </div>
+
+
+        <div class="messi-card">
+
+            <div class="number">
+                1
+            </div>
+
+            <h3>
+                WORLD CUP
+            </h3>
+
+            <p>
+                ARGENTINA — 2022
+            </p>
+
+        </div>
+
+
+        <div class="messi-card">
+
+            <div class="number">
+                4
+            </div>
+
+            <h3>
+                CHAMPIONS LEAGUE
+            </h3>
+
+            <p>
+                EUROPEAN TITLES
+            </p>
+
+        </div>
+
+
+        <div class="messi-card">
+
+            <div class="number">
+                2
+            </div>
+
+            <h3>
+                COPA AMÉRICA
+            </h3>
+
+            <p>
+                ARGENTINA
+            </p>
+
+        </div>
+
+
+        <div class="messi-card">
+
+            <div class="number">
+                1
+            </div>
+
+            <h3>
+                FINALISSIMA
+            </h3>
+
+            <p>
+                ARGENTINA
+            </p>
+
+        </div>
+
+
+        <div class="messi-card">
+
+            <div class="number">
+                10
+            </div>
+
+            <h3>
+                THE MAGICIAN
+            </h3>
+
+            <p>
+                CREATIVE LEGACY
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- =====================================================
+     VOICE AGENT
+====================================================== -->
+
+<section id="voice" class="voice-section reveal">
+
+
+    <div class="section-label">
+
+        07 / CR7 VOICE AGENT
+
+    </div>
+
+
+    <h2 class="section-title">
+
+        SPEAK.
+        <br>
+        I'LL HANDLE IT.
+
+    </h2>
+
+
+    <div
+        class="voice-status"
+        id="voiceStatus">
+
+        TAP THE FOOTBALL TO SPEAK
+
+    </div>
+
+
+    <!-- FOOTBALL MIC -->
+
+    <div
+        class="football-mic"
+        id="voiceMic"
+        title="Tap to speak">
+
+
+        <div class="football-pattern"></div>
+
+        <div class="football-lines"></div>
+
+
+        <div class="mic-symbol">
+
+            <div class="mic-head"></div>
+
+            <div class="mic-body"></div>
+
+            <div class="mic-stand"></div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- WAVEFORM -->
+
+    <div
+        class="waveform"
+        id="waveform">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+
+    <!-- COMMAND RESULT -->
+
+    <div
+        class="command-box"
+        id="commandBox">
+
+        Your voice command will appear here...
+
+    </div>
+
+
+    <!-- EXAMPLES -->
+
+    <div class="commands">
+
+
+        <div
+            class="command-chip"
+            data-command="Play Cristiano Ronaldo Champions League goals on YouTube">
+
+            ▶ Ronaldo YouTube
+
+        </div>
+
+
+        <div
+            class="command-chip"
+            data-command="Search Messi vs Ronaldo on YouTube">
+
+            ▶ Messi vs Ronaldo
+
+        </div>
+
+
+        <div
+            class="command-chip"
+            data-command="Open Gmail">
+
+            ✉ Open Gmail
+
+        </div>
+
+
+        <div
+            class="command-chip"
+            data-command="Search Ronaldo records on Google">
+
+            🔎 Google Search
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- =====================================================
      FINAL GOAT
-======================================================= -->
+====================================================== -->
 
 <section id="goat" class="goat reveal">
+
 
     <div class="goat-circle">
 
         <div class="goat-text">
 
             <small>
-                THE FINAL VERDICT
+                FINAL VERDICT
             </small>
 
             <strong>
@@ -1702,28 +3224,41 @@ footer{
 
 
     <h2>
+
         BUILT.
         <br>
         NOT GIVEN.
+
     </h2>
 
 
     <p>
-        Talent can create moments.
-        Discipline creates a career.
-        Ronaldo turned discipline,
-        ambition and obsession into
-        one of football's greatest legacies.
+
+        Talent creates moments.
+
+        <br>
+
+        Discipline creates careers.
+
+        <br>
+
+        Ronaldo turned obsession,
+        ambition and consistency
+        into an extraordinary football legacy.
+
     </p>
+
 
 </section>
 
 
 <footer>
 
-    RONALDO × MESSI
+    CR7 × MESSI
     &nbsp; • &nbsp;
     THE ACHIEVEMENT BATTLE
+    &nbsp; • &nbsp;
+    VOICE AGENT
     &nbsp; • &nbsp;
     CR7 GOAT MODE
 
@@ -1739,24 +3274,30 @@ footer{
 const reveals =
     document.querySelectorAll(".reveal");
 
+
 const observer =
     new IntersectionObserver(
+
         entries => {
 
             entries.forEach(entry => {
 
                 if(entry.isIntersecting){
 
-                    entry.target.classList.add("show");
+                    entry.target
+                        .classList
+                        .add("show");
 
                 }
 
             });
 
         },
+
         {
             threshold:.12
         }
+
     );
 
 
@@ -1767,127 +3308,858 @@ reveals.forEach(
 
 
 /* =========================================================
-   MOUSE PARALLAX
-========================================================= */
-
-document.addEventListener(
-    "mousemove",
-    event => {
-
-        const x =
-            (event.clientX /
-            window.innerWidth - .5) * 20;
-
-        const y =
-            (event.clientY /
-            window.innerHeight - .5) * 20;
-
-        document.querySelectorAll(".ball")
-        .forEach((ball,index)=>{
-
-            const multiplier =
-                (index+1) * .35;
-
-            ball.style.transform =
-                `translate(
-                    ${x * multiplier}px,
-                    ${y * multiplier}px
-                )`;
-
-        });
-
-    }
-);
-
-
-/* =========================================================
-   RANDOM FOOTBALL ROTATION
-========================================================= */
-
-document.querySelectorAll(".ball")
-.forEach(ball => {
-
-    ball.addEventListener(
-        "mouseenter",
-        () => {
-
-            ball.style.opacity = ".7";
-
-        }
-    );
-
-    ball.addEventListener(
-        "mouseleave",
-        () => {
-
-            ball.style.opacity = ".25";
-
-        }
-    );
-
-});
-
-
-/* =========================================================
-   TABLE ROW HOVER
-========================================================= */
-
-document.querySelectorAll(
-    ".battle-table tbody tr"
-).forEach(row => {
-
-    row.addEventListener(
-        "mouseenter",
-        () => {
-
-            row.style.background =
-                "rgba(255,255,255,.035)";
-
-        }
-    );
-
-    row.addEventListener(
-        "mouseleave",
-        () => {
-
-            row.style.background =
-                "transparent";
-
-        }
-    );
-
-});
-
-
-/* =========================================================
-   HERO TITLE MOUSE EFFECT
+   HERO PARALLAX
 ========================================================= */
 
 const heroTitle =
     document.querySelector(".hero h1");
 
+
 document.addEventListener(
     "mousemove",
+
     event => {
 
         if(window.innerWidth < 700)
             return;
 
+
         const x =
-            (event.clientX /
-            window.innerWidth - .5) * 5;
+            (
+                event.clientX /
+                window.innerWidth -
+                .5
+            ) * 5;
+
 
         const y =
-            (event.clientY /
-            window.innerHeight - .5) * 5;
+            (
+                event.clientY /
+                window.innerHeight -
+                .5
+            ) * 5;
+
 
         heroTitle.style.transform =
             `translate(${x}px,${y}px)`;
 
     }
+
 );
+
+
+/* =========================================================
+   FLOATING BALL PARALLAX
+========================================================= */
+
+document.addEventListener(
+    "mousemove",
+
+    event => {
+
+        const x =
+            (
+                event.clientX /
+                window.innerWidth -
+                .5
+            ) * 15;
+
+
+        const y =
+            (
+                event.clientY /
+                window.innerHeight -
+                .5
+            ) * 15;
+
+
+        document
+            .querySelectorAll(".ball")
+            .forEach(
+                (ball,index) => {
+
+                    const multiplier =
+                        (index + 1) * .3;
+
+
+                    ball.style.marginLeft =
+                        `${x * multiplier}px`;
+
+
+                    ball.style.marginTop =
+                        `${y * multiplier}px`;
+
+                }
+            );
+
+    }
+
+);
+
+
+/* =========================================================
+   VOICE AGENT
+========================================================= */
+
+const voiceMic =
+    document.getElementById(
+        "voiceMic"
+    );
+
+
+const voiceStatus =
+    document.getElementById(
+        "voiceStatus"
+    );
+
+
+const commandBox =
+    document.getElementById(
+        "commandBox"
+    );
+
+
+const heroText =
+    document.getElementById(
+        "heroText"
+    );
+
+
+const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+
+let recognition = null;
+
+
+/* =========================================================
+   CHECK BROWSER SUPPORT
+========================================================= */
+
+if(!SpeechRecognition){
+
+    voiceStatus.innerHTML =
+        "VOICE RECOGNITION NOT SUPPORTED — USE CHROME";
+
+    voiceMic.style.opacity =
+        ".5";
+
+}else{
+
+    recognition =
+        new SpeechRecognition();
+
+
+    recognition.lang =
+        "en-IN";
+
+
+    recognition.continuous =
+        false;
+
+
+    recognition.interimResults =
+        false;
+
+
+    recognition.maxAlternatives =
+        1;
+
+
+    /* =====================================================
+       MIC CLICK
+    ===================================================== */
+
+    voiceMic.addEventListener(
+        "click",
+
+        () => {
+
+            try{
+
+                recognition.start();
+
+            }
+
+            catch(error){
+
+                console.log(
+                    "Recognition already running."
+                );
+
+            }
+
+        }
+
+    );
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    recognition.onstart =
+        () => {
+
+            activateVoice();
+
+        };
+
+
+    /* =====================================================
+       RESULT
+    ===================================================== */
+
+    recognition.onresult =
+        event => {
+
+            const transcript =
+                event
+                    .results[0][0]
+                    .transcript
+                    .trim();
+
+
+            console.log(
+                "USER:",
+                transcript
+            );
+
+
+            commandBox.innerHTML =
+                `🎙️ "${transcript}"`;
+
+
+            commandBox.classList
+                .add("active");
+
+
+            heroText.innerHTML =
+                `You said:
+                <strong>
+                "${transcript}"
+                </strong>`;
+
+
+            voiceStatus.innerHTML =
+                "COMMAND RECEIVED";
+
+
+            processCommand(
+                transcript
+            );
+
+        };
+
+
+    /* =====================================================
+       END
+    ===================================================== */
+
+    recognition.onend =
+        () => {
+
+            deactivateVoice();
+
+        };
+
+
+    /* =====================================================
+       ERROR
+    ===================================================== */
+
+    recognition.onerror =
+        event => {
+
+            console.log(
+                "VOICE ERROR:",
+                event.error
+            );
+
+
+            deactivateVoice();
+
+
+            if(
+                event.error ===
+                "not-allowed"
+            ){
+
+                voiceStatus.innerHTML =
+                    "MICROPHONE PERMISSION DENIED";
+
+                commandBox.innerHTML =
+                    "Please allow microphone access in Chrome.";
+
+            }
+
+
+            else if(
+                event.error ===
+                "no-speech"
+            ){
+
+                voiceStatus.innerHTML =
+                    "I COULDN'T HEAR YOU — TRY AGAIN";
+
+            }
+
+
+            else if(
+                event.error ===
+                "audio-capture"
+            ){
+
+                voiceStatus.innerHTML =
+                    "NO MICROPHONE FOUND";
+
+            }
+
+
+            else{
+
+                voiceStatus.innerHTML =
+                    "VOICE ERROR — TRY AGAIN";
+
+            }
+
+        };
+
+}
+
+
+/* =========================================================
+   VOICE ACTIVE
+========================================================= */
+
+function activateVoice(){
+
+    voiceMic.classList
+        .add("voice-active");
+
+
+    voiceStatus.classList
+        .add("active");
+
+
+    voiceStatus.innerHTML =
+        "🎙️ LISTENING... SPEAK NOW";
+
+
+    commandBox.innerHTML =
+        "I'm listening...";
+
+
+    commandBox.classList
+        .add("active");
+
+}
+
+
+/* =========================================================
+   VOICE DEACTIVATE
+========================================================= */
+
+function deactivateVoice(){
+
+    voiceMic.classList
+        .remove("voice-active");
+
+
+    voiceStatus.classList
+        .remove("active");
+
+
+    if(
+        voiceStatus.innerHTML
+        ===
+        "🎙️ LISTENING... SPEAK NOW"
+    ){
+
+        voiceStatus.innerHTML =
+            "TAP THE FOOTBALL TO SPEAK";
+
+    }
+
+}
+
+
+/* =========================================================
+   COMMAND PROCESSOR
+========================================================= */
+
+function processCommand(command){
+
+    const text =
+        command
+            .toLowerCase()
+            .trim();
+
+
+    /* =====================================================
+       YOUTUBE
+    ===================================================== */
+
+    if(
+
+        text.includes("youtube") ||
+
+        text.includes("play") ||
+
+        text.includes("video") ||
+
+        text.includes("watch")
+
+    ){
+
+        let searchText =
+            command;
+
+
+        searchText =
+            searchText
+                .replace(
+                    /youtube/gi,
+                    ""
+                )
+                .replace(
+                    /search for/gi,
+                    ""
+                )
+                .replace(
+                    /search/gi,
+                    ""
+                )
+                .replace(
+                    /play/gi,
+                    ""
+                )
+                .replace(
+                    /watch/gi,
+                    ""
+                )
+                .replace(
+                    /find/gi,
+                    ""
+                )
+                .replace(
+                    /on/gi,
+                    ""
+                )
+                .trim();
+
+
+        /* Just "Open YouTube" */
+
+        if(
+
+            searchText === "" ||
+
+            searchText
+                .toLowerCase()
+                .includes("open")
+
+        ){
+
+            window.open(
+                "https://www.youtube.com/",
+                "_blank"
+            );
+
+            return;
+
+        }
+
+
+        /* YouTube search */
+
+        const youtubeURL =
+            "https://www.youtube.com/results?search_query=" +
+            encodeURIComponent(
+                searchText
+            );
+
+
+        voiceStatus.innerHTML =
+            "▶ OPENING YOUTUBE...";
+
+
+        setTimeout(
+
+            () => {
+
+                window.open(
+                    youtubeURL,
+                    "_blank"
+                );
+
+            },
+
+            600
+
+        );
+
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       GMAIL
+    ===================================================== */
+
+    if(
+
+        text.includes("gmail") ||
+
+        text.includes("email") ||
+
+        text.includes("mail")
+
+    ){
+
+        /* Open Gmail */
+
+        if(
+
+            text.includes(
+                "open gmail"
+            ) ||
+
+            text === "gmail" ||
+
+            text === "open mail"
+
+        ){
+
+            voiceStatus.innerHTML =
+                "✉ OPENING GMAIL...";
+
+
+            setTimeout(
+
+                () => {
+
+                    window.open(
+                        "https://mail.google.com/",
+                        "_blank"
+                    );
+
+                },
+
+                500
+
+            );
+
+
+            return;
+
+        }
+
+
+        /*
+         * Find email address
+         */
+
+        const emailMatch =
+            command.match(
+                /[\w.-]+@[\w.-]+\.\w+/i
+            );
+
+
+        let subject = "";
+
+
+        /*
+         * Extract subject
+         */
+
+        const subjectMatch =
+            command.match(
+                /subject (.+?)(?: body | message | saying |$)/i
+            );
+
+
+        if(subjectMatch){
+
+            subject =
+                subjectMatch[1]
+                    .trim();
+
+        }
+
+
+        let gmailURL =
+            "https://mail.google.com/mail/?" +
+            "view=cm&fs=1";
+
+
+        if(emailMatch){
+
+            gmailURL +=
+                "&to=" +
+                encodeURIComponent(
+                    emailMatch[0]
+                );
+
+        }
+
+
+        if(subject){
+
+            gmailURL +=
+                "&su=" +
+                encodeURIComponent(
+                    subject
+                );
+
+        }
+
+
+        let body =
+            command
+                .replace(
+                    /open gmail/gi,
+                    ""
+                )
+                .replace(
+                    /send email/gi,
+                    ""
+                )
+                .replace(
+                    /send an email/gi,
+                    ""
+                )
+                .replace(
+                    /email/gi,
+                    ""
+                )
+                .trim();
+
+
+        if(body){
+
+            gmailURL +=
+                "&body=" +
+                encodeURIComponent(
+                    body
+                );
+
+        }
+
+
+        voiceStatus.innerHTML =
+            "✉ OPENING GMAIL COMPOSE...";
+
+
+        setTimeout(
+
+            () => {
+
+                window.open(
+                    gmailURL,
+                    "_blank"
+                );
+
+            },
+
+            600
+
+        );
+
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       GOOGLE
+    ===================================================== */
+
+    if(
+
+        text.includes(
+            "search google"
+        ) ||
+
+        text.includes(
+            "search web"
+        ) ||
+
+        text.includes("google")
+
+    ){
+
+        let query =
+            command
+                .replace(
+                    /search google/gi,
+                    ""
+                )
+                .replace(
+                    /search web/gi,
+                    ""
+                )
+                .replace(
+                    /google/gi,
+                    ""
+                )
+                .trim();
+
+
+        const googleURL =
+            "https://www.google.com/search?q=" +
+            encodeURIComponent(
+                query
+            );
+
+
+        voiceStatus.innerHTML =
+            "🔎 SEARCHING GOOGLE...";
+
+
+        setTimeout(
+
+            () => {
+
+                window.open(
+                    googleURL,
+                    "_blank"
+                );
+
+            },
+
+            600
+
+        );
+
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       INSTAGRAM
+    ===================================================== */
+
+    if(
+        text.includes("instagram")
+    ){
+
+        voiceStatus.innerHTML =
+            "OPENING INSTAGRAM...";
+
+
+        setTimeout(
+
+            () => {
+
+                window.open(
+                    "https://www.instagram.com/",
+                    "_blank"
+                );
+
+            },
+
+            500
+
+        );
+
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       FALLBACK
+    ===================================================== */
+
+    /*
+     * Unknown commands are sent to YouTube.
+     */
+
+    const fallbackURL =
+        "https://www.youtube.com/results?search_query=" +
+        encodeURIComponent(
+            command
+        );
+
+
+    voiceStatus.innerHTML =
+        "SEARCHING YOUTUBE...";
+
+
+    setTimeout(
+
+        () => {
+
+            window.open(
+                fallbackURL,
+                "_blank"
+            );
+
+        },
+
+        600
+
+    );
+
+}
+
+
+/* =========================================================
+   QUICK COMMAND BUTTONS
+========================================================= */
+
+document
+    .querySelectorAll(".command-chip")
+    .forEach(
+        chip => {
+
+            chip.addEventListener(
+                "click",
+
+                () => {
+
+                    const command =
+                        chip.dataset.command;
+
+
+                    commandBox.innerHTML =
+                        `🎙️ "${command}"`;
+
+
+                    commandBox.classList
+                        .add("active");
+
+
+                    heroText.innerHTML =
+                        `Command:
+                        <strong>
+                        "${command}"
+                        </strong>`;
+
+
+                    processCommand(
+                        command
+                    );
+
+                }
+
+            );
+
+        }
+
+    );
 
 </script>
 
 </body>
+
 </html>
+```
